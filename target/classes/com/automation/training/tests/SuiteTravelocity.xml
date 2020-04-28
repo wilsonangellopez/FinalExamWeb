@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!-- <suite name="My test suite" verbose="1" thread-count="5" parallel="methods"> -->
+<suite name="My test suite">
+	<!-- <listeners> -->
+	<!-- <listener class-name="com.automation.training.MyCoolListener"></listener> -->
+	<!-- </listeners> -->
+	<parameter name="browser" value="chrome"></parameter>
+	<test name="First test">
+		<classes>
+			<class name="com.automation.training.tests.TravelocityTestsOne"></class>
+			<class name="com.automation.training.tests.TravelocityTestsTwo"></class>
+			<class name="com.automation.training.tests.TravelocityTestsThree"></class>
+			<class name="com.automation.training.tests.TravelocityTestsFour"></class>
+			<class name="com.automation.training.tests.TravelocityTestsFive"></class>
+		</classes>
+
+	</test>
+
+</suite>
