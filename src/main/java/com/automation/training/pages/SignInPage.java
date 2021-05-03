@@ -10,8 +10,8 @@ public class SignInPage extends BasePage {
 
 	public boolean verifySignInPage() {
 		
-		boolean r1= getPageTitle().equalsIgnoreCase("Sign In");
-		return r1;
+		boolean isSignInPage= getPageTitle().equalsIgnoreCase("Sign In");
+		return isSignInPage;
 	}
 
 }

@@ -1,289 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+<testng-results skipped="0" failed="3" ignored="2" total="6" passed="1">
   <reporter-output>
     <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #tab-package-tab-hp]]>
+      <![CDATA[[INFO 2021-05-02] click in fligts]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: #tab-package-tab-hp]]>
+      <![CDATA[[INFO 2021-05-02] click in RoundTrip]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #fh-fh-hp-package]]>
+      <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: a[aria-controls*='roundtrip']]]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: #fh-fh-hp-package]]>
+      <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: button[aria-label*='Leaving from']]]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #fh-fh-hp-package]]>
+      <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> id: location-field-leg1-origin]]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: #fh-fh-hp-package]]>
+      <![CDATA[[INFO 2021-05-02] Writing: Las]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #fh-fh-hp-package]]>
+      <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: div[data-stid*='origin'] li[data-index='0'] button]]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: #fh-fh-hp-package]]>
+      <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: button[aria-label='Going to']]]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] buscando elemento con texto: Flying from]]>
+      <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> id: location-field-leg1-destination]]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] Se encontro el WebElement: [[ChromeDriver: chrome on WINDOWS (dd8b71ee25f5761a5261c2fefdcacbe5)] -> xpath: //span[text()="Flying from"]//following-sibling::input[@aria-autocomplete='list' and not(contains(@class,'disabled')) ]]]]>
+      <![CDATA[[INFO 2021-05-02] Writing: Lax]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo de seleccionar: LAS]]>
+      <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: div[data-stid*='destination'] li[data-index='0'] button]]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] Se dio click en: [[ChromeDriver: chrome on WINDOWS (dd8b71ee25f5761a5261c2fefdcacbe5)] -> xpath: //span[text()="Flying from"]//following-sibling::input[@aria-autocomplete='list' and not(contains(@class,'disabled')) ]]]]>
+      <![CDATA[[INFO 2021-05-02] Opcion enviada: Departure]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] click en el inputclear-btn-input gcw-storeable text gcw-origin gcw-required gcw-distinct-locations]]>
+      <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> id: d1-btn]]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] Escribiendo: Las Vegas, NV (LAS-McCarran Intl.)]]>
+      <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: button[data-stid='date-picker-paging']:nth-child(2)]]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] Se dio enter]]>
+      <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: button[data-stid='date-picker-paging']:nth-child(2)]]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] buscando elemento con texto: Flying to]]>
+      <![CDATA[[INFO 2021-05-02] Click: Proxy element for: DefaultElementLocator 'By.cssSelector: button[data-stid='apply-date-picker'] >span']]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] Se encontro el WebElement: [[ChromeDriver: chrome on WINDOWS (dd8b71ee25f5761a5261c2fefdcacbe5)] -> xpath: //span[text()="Flying to"]//following-sibling::input[@aria-autocomplete='list' and not(contains(@class,'disabled')) ]]]]>
+      <![CDATA[[INFO 2021-05-02] Click: Proxy element for: DefaultElementLocator 'By.cssSelector: button[data-testid='submit-button']']]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo de seleccionar: LAX]]>
+      <![CDATA[[INFO 2021-05-02] In dropdown list + From pageLAS to LAX flights]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] Se dio click en: [[ChromeDriver: chrome on WINDOWS (dd8b71ee25f5761a5261c2fefdcacbe5)] -> xpath: //span[text()="Flying to"]//following-sibling::input[@aria-autocomplete='list' and not(contains(@class,'disabled')) ]]]]>
+      <![CDATA[[INFO 2021-05-02] click in fligts]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] click en el inputclear-btn-input gcw-storeable text gcw-destination gcw-required gcw-distinct-locations]]>
+      <![CDATA[[INFO 2021-05-02] click in fligts]]>
     </line>
     <line>
-      <![CDATA[[INFO 2020-04-24] Escribiendo: Los Angeles, California]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] Se dio enter]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.xpath: //button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.xpath: //button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.xpath: //button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']]]>
-    </line>
-    <line>
-      <![CDATA[[ERROR 2020-04-24] error:Expected condition failed: waiting for presence of element located by: By.xpath: //button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next'] (tried for 30 second(s) with 500 milliseconds interval)]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #uitk-live-announce]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: #uitk-live-announce]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] Verificando que tenga resultados]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: fieldset[class='sort-filter-bar control box']]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: fieldset[class='sort-filter-bar control box']]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: fieldset[class='sort-filter-bar control box']]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: fieldset[class='sort-filter-bar control box']]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #uitk-live-announce]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: #uitk-live-announce]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #uitk-live-announce]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: #uitk-live-announce]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: .page-header]]>
-    </line>
-    <line>
-      <![CDATA[[ERROR 2020-04-24] error:Expected condition failed: waiting for presence of element located by: By.cssSelector: .page-header (tried for 30 second(s) with 500 milliseconds interval)]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #license-plate]]>
-    </line>
-    <line>
-      <![CDATA[[ERROR 2020-04-24] error:Expected condition failed: waiting for presence of element located by: By.cssSelector: #license-plate (tried for 30 second(s) with 500 milliseconds interval)]]>
-    </line>
-    <line>
-      <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: .lead-price]]>
-    </line>
-    <line>
-      <![CDATA[[ERROR 2020-04-24] error:Expected condition failed: waiting for presence of element located by: By.cssSelector: .lead-price (tried for 30 second(s) with 500 milliseconds interval)]]>
+      <![CDATA[[INFO 2021-05-02] click in fligts]]>
     </line>
   </reporter-output>
-  <suite name="My test suite" duration-ms="175723" started-at="2020-04-24T22:16:04Z" finished-at="2020-04-24T22:19:00Z">
+  <suite name="Test suite Travelocity" duration-ms="141730" started-at="2021-05-03T04:30:13Z" finished-at="2021-05-03T04:32:35Z">
     <groups>
     </groups>
-    <test name="First test" duration-ms="175723" started-at="2020-04-24T22:16:04Z" finished-at="2020-04-24T22:19:00Z">
-      <class name="com.automation.training.tests.TravelocityTestsTwo">
-        <test-method status="PASS" signature="beforeSuite(java.lang.String)[pri:0, instance:com.automation.training.tests.TravelocityTestsTwo@595b007d]" name="beforeSuite" is-config="true" duration-ms="13746" started-at="2020-04-24T17:16:04Z" finished-at="2020-04-24T17:16:18Z">
+    <test name="Travelocity tests" duration-ms="141730" started-at="2021-05-03T04:30:13Z" finished-at="2021-05-03T04:32:35Z">
+      <class name="com.automation.training.tests.TravelocityTestsOne">
+        <test-method status="PASS" signature="beforeSuite(java.lang.String)[pri:0, instance:com.automation.training.tests.TravelocityTestsOne@370736d9]" name="beforeSuite" is-config="true" duration-ms="19504" started-at="2021-05-02T23:30:13Z" finished-at="2021-05-02T23:30:32Z">
           <params>
             <param index="0">
               <value>
@@ -294,44 +81,89 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method status="FAIL" signature="testTravelocity()[pri:0, instance:com.automation.training.tests.TravelocityTestsTwo@595b007d]" name="testTravelocity" duration-ms="161943" started-at="2020-04-24T17:16:18Z" finished-at="2020-04-24T17:19:00Z">
-          <exception class="org.openqa.selenium.NoSuchElementException">
+        <test-method status="PASS" signature="test2DropDownSorting(java.lang.String)[pri:2, instance:com.automation.training.tests.TravelocityTestsOne@370736d9]" name="test2DropDownSorting" duration-ms="30355" started-at="2021-05-02T23:30:32Z" data-provider="dataP" finished-at="2021-05-02T23:31:03Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Price (Lowest)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[[INFO 2021-05-02] click in fligts]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] click in RoundTrip]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: a[aria-controls*='roundtrip']]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: button[aria-label*='Leaving from']]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> id: location-field-leg1-origin]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Writing: Las]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: div[data-stid*='origin'] li[data-index='0'] button]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: button[aria-label='Going to']]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> id: location-field-leg1-destination]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Writing: Lax]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: div[data-stid*='destination'] li[data-index='0'] button]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Opcion enviada: Departure]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> id: d1-btn]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: button[data-stid='date-picker-paging']:nth-child(2)]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: button[data-stid='date-picker-paging']:nth-child(2)]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Click: Proxy element for: DefaultElementLocator 'By.cssSelector: button[data-stid='apply-date-picker'] >span']]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] Click: Proxy element for: DefaultElementLocator 'By.cssSelector: button[data-testid='submit-button']']]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-02] In dropdown list + From pageLAS to LAX flights]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- test2DropDownSorting -->
+        <test-method status="FAIL" signature="test2DropDownSorting(java.lang.String)[pri:2, instance:com.automation.training.tests.TravelocityTestsOne@370736d9]" name="test2DropDownSorting" duration-ms="30383" started-at="2021-05-02T23:31:03Z" data-provider="dataP" finished-at="2021-05-02T23:31:33Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Departure (Earliest)]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"css selector","selector":"div[class='lead-price']"}
-  (Session info: chrome=81.0.4044.122)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'CO-IT005951', ip: '10.130.19.154', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 81.0.4044.122, chrome: {chromedriverVersion: 80.0.3987.106 (f68069574609..., userDataDir: C:\Users\WILSON~1.ANG\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:63742}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: dd8b71ee25f5761a5261c2fefdcacbe5
-*** Element info: {Using=css selector, value=div[class='lead-price']}]]>
+              <![CDATA[Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator 'By.cssSelector: a[aria-controls*='flight']' (tried for 30 second(s) with 500 milliseconds interval)]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"div[class='lead-price']"}
-  (Session info: chrome=81.0.4044.122)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'CO-IT005951', ip: '10.130.19.154', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 81.0.4044.122, chrome: {chromedriverVersion: 80.0.3987.106 (f68069574609..., userDataDir: C:\Users\WILSON~1.ANG\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:63742}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: dd8b71ee25f5761a5261c2fefdcacbe5
-*** Element info: {Using=css selector, value=div[class='lead-price']}
-	at sun.reflect.GeneratedConstructorAccessor15.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:420)
-	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:431)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-	at com.automation.training.pages.FlightInformationPage.verifyHotelSelected(FlightInformationPage.java:569)
-	at com.automation.training.tests.TravelocityTestsTwo.testTravelocity(TravelocityTestsTwo.java:45)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator 'By.cssSelector: a[aria-controls*='flight']' (tried for 30 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at com.automation.training.pages.TravelocityHomePage.clickFlights(TravelocityHomePage.java:152)
+	at com.automation.training.tests.TravelocityTestsOne.test2DropDownSorting(TravelocityTestsOne.java:86)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -357,293 +189,223 @@ Session ID: dd8b71ee25f5761a5261c2fefdcacbe5
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"a[aria-controls*='flight']"}
+  (Session info: chrome=90.0.4430.93)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'CO-IT005951', ip: '192.168.42.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_261'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 90.0.4430.93, chrome: {chromedriverVersion: 90.0.4430.24 (4c6d850f087da..., userDataDir: C:\Users\WILSON~1.ANG\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:55251}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: bbcbbac7128fac871ab64624eeb9c4db
+*** Element info: {Using=css selector, value=a[aria-controls*='flight']}
+	at sun.reflect.GeneratedConstructorAccessor18.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:420)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:431)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy11.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:314)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:43)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:300)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:297)
+	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:670)
+	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:666)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	... 27 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
             <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #tab-package-tab-hp]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: #tab-package-tab-hp]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #fh-fh-hp-package]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: #fh-fh-hp-package]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #fh-fh-hp-package]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: #fh-fh-hp-package]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #fh-fh-hp-package]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: #fh-fh-hp-package]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] buscando elemento con texto: Flying from]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] Se encontro el WebElement: [[ChromeDriver: chrome on WINDOWS (dd8b71ee25f5761a5261c2fefdcacbe5)] -> xpath: //span[text()="Flying from"]//following-sibling::input[@aria-autocomplete='list' and not(contains(@class,'disabled')) ]]]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo de seleccionar: LAS]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] Se dio click en: [[ChromeDriver: chrome on WINDOWS (dd8b71ee25f5761a5261c2fefdcacbe5)] -> xpath: //span[text()="Flying from"]//following-sibling::input[@aria-autocomplete='list' and not(contains(@class,'disabled')) ]]]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] click en el inputclear-btn-input gcw-storeable text gcw-origin gcw-required gcw-distinct-locations]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] Escribiendo: Las Vegas, NV (LAS-McCarran Intl.)]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] Se dio enter]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] buscando elemento con texto: Flying to]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] Se encontro el WebElement: [[ChromeDriver: chrome on WINDOWS (dd8b71ee25f5761a5261c2fefdcacbe5)] -> xpath: //span[text()="Flying to"]//following-sibling::input[@aria-autocomplete='list' and not(contains(@class,'disabled')) ]]]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo de seleccionar: LAX]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] Se dio click en: [[ChromeDriver: chrome on WINDOWS (dd8b71ee25f5761a5261c2fefdcacbe5)] -> xpath: //span[text()="Flying to"]//following-sibling::input[@aria-autocomplete='list' and not(contains(@class,'disabled')) ]]]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] click en el inputclear-btn-input gcw-storeable text gcw-destination gcw-required gcw-distinct-locations]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] Escribiendo: Los Angeles, California]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] Se dio enter]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.xpath: //button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.xpath: //button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.xpath: //button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']]]>
-            </line>
-            <line>
-              <![CDATA[[ERROR 2020-04-24] error:Expected condition failed: waiting for presence of element located by: By.xpath: //button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next'] (tried for 30 second(s) with 500 milliseconds interval)]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #uitk-live-announce]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: #uitk-live-announce]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] Verificando que tenga resultados]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: fieldset[class='sort-filter-bar control box']]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: fieldset[class='sort-filter-bar control box']]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: fieldset[class='sort-filter-bar control box']]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: fieldset[class='sort-filter-bar control box']]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #uitk-live-announce]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: #uitk-live-announce]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #uitk-live-announce]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] el elemento Si estaBy.cssSelector: #uitk-live-announce]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] lista ordenada]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: .page-header]]>
-            </line>
-            <line>
-              <![CDATA[[ERROR 2020-04-24] error:Expected condition failed: waiting for presence of element located by: By.cssSelector: .page-header (tried for 30 second(s) with 500 milliseconds interval)]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: #license-plate]]>
-            </line>
-            <line>
-              <![CDATA[[ERROR 2020-04-24] error:Expected condition failed: waiting for presence of element located by: By.cssSelector: #license-plate (tried for 30 second(s) with 500 milliseconds interval)]]>
-            </line>
-            <line>
-              <![CDATA[[INFO 2020-04-24] En el metodo ElementoPresenteBy.cssSelector: .lead-price]]>
-            </line>
-            <line>
-              <![CDATA[[ERROR 2020-04-24] error:Expected condition failed: waiting for presence of element located by: By.cssSelector: .lead-price (tried for 30 second(s) with 500 milliseconds interval)]]>
+              <![CDATA[[INFO 2021-05-02] click in fligts]]>
             </line>
           </reporter-output>
-        </test-method> <!-- testTravelocity -->
-        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.automation.training.tests.TravelocityTestsTwo@595b007d]" name="afterSuite" is-config="true" duration-ms="1" started-at="2020-04-24T17:19:00Z" finished-at="2020-04-24T17:19:00Z">
+        </test-method> <!-- test2DropDownSorting -->
+        <test-method status="FAIL" signature="test2DropDownSorting(java.lang.String)[pri:2, instance:com.automation.training.tests.TravelocityTestsOne@370736d9]" name="test2DropDownSorting" duration-ms="30207" started-at="2021-05-02T23:31:33Z" data-provider="dataP" finished-at="2021-05-02T23:32:03Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Arrival (Earliest)]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator 'By.cssSelector: a[aria-controls*='flight']' (tried for 30 second(s) with 500 milliseconds interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator 'By.cssSelector: a[aria-controls*='flight']' (tried for 30 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at com.automation.training.pages.TravelocityHomePage.clickFlights(TravelocityHomePage.java:152)
+	at com.automation.training.tests.TravelocityTestsOne.test2DropDownSorting(TravelocityTestsOne.java:86)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"a[aria-controls*='flight']"}
+  (Session info: chrome=90.0.4430.93)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'CO-IT005951', ip: '192.168.42.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_261'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 90.0.4430.93, chrome: {chromedriverVersion: 90.0.4430.24 (4c6d850f087da..., userDataDir: C:\Users\WILSON~1.ANG\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:55251}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: bbcbbac7128fac871ab64624eeb9c4db
+*** Element info: {Using=css selector, value=a[aria-controls*='flight']}
+	at sun.reflect.GeneratedConstructorAccessor18.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:420)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:431)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy11.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:314)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:43)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:300)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:297)
+	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:670)
+	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:666)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	... 27 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+            <line>
+              <![CDATA[[INFO 2021-05-02] click in fligts]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- test2DropDownSorting -->
+        <test-method status="FAIL" signature="test2DropDownSorting(java.lang.String)[pri:2, instance:com.automation.training.tests.TravelocityTestsOne@370736d9]" name="test2DropDownSorting" duration-ms="30388" started-at="2021-05-02T23:32:03Z" data-provider="dataP" finished-at="2021-05-02T23:32:34Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Duration (Shortest)]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator 'By.cssSelector: a[aria-controls*='flight']' (tried for 30 second(s) with 500 milliseconds interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator 'By.cssSelector: a[aria-controls*='flight']' (tried for 30 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at com.automation.training.pages.TravelocityHomePage.clickFlights(TravelocityHomePage.java:152)
+	at com.automation.training.tests.TravelocityTestsOne.test2DropDownSorting(TravelocityTestsOne.java:86)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"a[aria-controls*='flight']"}
+  (Session info: chrome=90.0.4430.93)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'CO-IT005951', ip: '192.168.42.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_261'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 90.0.4430.93, chrome: {chromedriverVersion: 90.0.4430.24 (4c6d850f087da..., userDataDir: C:\Users\WILSON~1.ANG\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:55251}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: bbcbbac7128fac871ab64624eeb9c4db
+*** Element info: {Using=css selector, value=a[aria-controls*='flight']}
+	at sun.reflect.GeneratedConstructorAccessor18.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:420)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:431)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy11.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:314)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:43)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:300)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:297)
+	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:670)
+	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:666)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	... 27 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+            <line>
+              <![CDATA[[INFO 2021-05-02] click in fligts]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- test2DropDownSorting -->
+        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.automation.training.tests.TravelocityTestsOne@370736d9]" name="afterSuite" is-config="true" duration-ms="849" started-at="2021-05-02T23:32:34Z" finished-at="2021-05-02T23:32:35Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterSuite -->
-      </class> <!-- com.automation.training.tests.TravelocityTestsTwo -->
-    </test> <!-- First test -->
-  </suite> <!-- My test suite -->
+      </class> <!-- com.automation.training.tests.TravelocityTestsOne -->
+    </test> <!-- Travelocity tests -->
+  </suite> <!-- Test suite Travelocity -->
 </testng-results>

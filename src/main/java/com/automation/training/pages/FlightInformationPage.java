@@ -2,17 +2,15 @@ package com.automation.training.pages;
 
 import static com.automation.training.utils.TestContext.CONTEXT;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.automation.dto.CruceroDTO;
+import com.automation.dto.CruiseDTO;
 import com.automation.dto.FlightsDTO;
 import com.automation.dto.HotelDTO;
 import com.automation.training.utils.Logger;
@@ -25,599 +23,534 @@ public class FlightInformationPage extends BasePage{
 	@FindBy(css="div[class='totalContainer']")
 	private List<WebElement> listTripTotalPrice;
 
-	@FindBy(xpath="//div[@class='flightSummary-expandedDetails bagFeesRequested']")
+	@FindBy(css="div[class='flightSummary-expandedDetails bagFeesRequested']")
 	private List<WebElement> listDepartureReturnInfo;
 
-	@FindBy(xpath="//button[@class='btn-text toggle-trigger']")
+	@FindBy(css="button[class='btn-text toggle-trigger']")
 	private List<WebElement> listBtnsShowFlyAndBaggageFee;
-
-	@FindBy(xpath="//div[@id='flight-leg-0']")
-	private WebElement contenidoDeparture;
-
-	@FindBy(xpath="//div[@id='flight-leg-1']")
-	private WebElement contenidoReturn;
-
-	@FindBy(xpath="//button[@class='btn-text toggle-trigger']")
-	private WebElement btnShowFly2; 
 
 	@FindBy(css="#bookButton")
 	private WebElement btnBooking;
 
 	@FindBy(css="div[class='departureDate type-500']")
-	private List<WebElement> listaFechas;
+	private List<WebElement> listDatesFlight;
 
 	@FindBy(css="div[class='departure'] span")
-	private List<WebElement> listaHorasIni;
+	private List<WebElement> listTimeInit;
 
 	@FindBy(css="div[class='arrival'] span")
-	private List<WebElement> listadoHorasFin;
+	private List<WebElement> listTimeEnds;
 
 	@FindBy(css="div[class='departure'] div")
-	private List<WebElement> ListOrigenesVuelos;
+	private List<WebElement> listOriginFlights;
 
 	@FindBy(css="div[class='arrival'] div")
-	private List<WebElement> ListDestinoVuelos;
+	private List<WebElement> listDestinationFlights;
 
 	@FindBy(css="span[class='durationTime type-500']")
 	private List<WebElement> ListTotalFlightTime;
 
-	@FindBy(css="div[class='priceGuarantee']")
+	@FindBy(className="tripTotals")
 	private List<WebElement> priceGuarantee;
 
 	@FindBy(css="#license-plate #hotel-name")
-	private WebElement nameHotelExpected;
+	private WebElement nameHotel;
+
+	@FindBy(css="#license-plate span[class^='icon icon-stars']")
+	private WebElement starsHotel;
 
 	@FindBy(css="section[class='segmented-list cf']")
 	private WebElement containerRooms;
 
+	@FindBy(css="section[class='segmented-list cf'] article[class^='segment no-target'] a[data-control='modal']")
+	private List<WebElement> listaRooms;
+
 	@FindBy(css="section[class='segmented-list cf'] article[class='segment no-target room cf room-above-fold branded-deal']")
 	private WebElement firstRoomUnRealDeal;
 
-	//--FH
-
 	@FindBy(id="trip-flight-start")
-	private WebElement fechaSalidaVuelo_FH;
+	private WebElement dateDepartureFH;
 
 	@FindBy(id="trip-flight-end")
-	private WebElement fechaLlegadaVuelo_FH;
+	private WebElement dateArrivalFH;
 
 	@FindBy(id="hotelCheckinDateFullFormat")
-	private WebElement fechaCheckInHotel_FH;
+	private WebElement dateCheckInHotel;
 
 	@FindBy(id="hotelCheckoutDateFullFormat")
-	private WebElement fechaCheckOutHotel_FH;
+	private WebElement dateCheckOutHotel;
 
 	@FindBy(id="trip-flight-to")
-	private WebElement flightFrom_FH;
+	private WebElement flightFromFH;
 
 	@FindBy(id="trip-flight-from")
-	private WebElement flightTo_FH; 
+	private WebElement flightToFH; 
 
 	@FindBy(id="trip-summary-hotel-title")
-	private WebElement hotelName_FH;
+	private WebElement hotelName;
 
 	@FindBy(id="departure-time-automation-label-0")
-	private WebElement horaSalidaVueloFrom_FH;
+	private WebElement timeDepartFlightFrom;
 
 	@FindBy(id="arrival-time-automation-label-0")
-	private WebElement horaLlegadaVueloFrom_FH;
+	private WebElement timeArrivalFromFH;
 
 	@FindBy(id="duration-automation-label-0")
-	private WebElement duracionTotalVueloFrom_FH;
+	private WebElement totalFlightDurationFrom;
 
 	@FindBy(id="departure-time-automation-label-1")
-	private WebElement horaSalidaVueloTo_FH;
+	private WebElement timeDepartureFlightTO;
 
 	@FindBy(id="arrival-time-automation-label-1")
-	private WebElement horaLlegadaVueloTo_FH;
+	private WebElement timeArrivalFlightTO;
 
 	@FindBy(id="duration-automation-label-1")
-	private WebElement duracionTotalVueloTo_FH;
-	
+	private WebElement totalFlightDurationTo;
+
 	@FindBy(css="#totalPriceSubTitle Strong")
-	private WebElement valorTotalViajeVuelo_FH;
-	
+	private WebElement totalValueFlight;
+
 	@FindBy(css="#FlightUDPBookNowButton1 button")
 	private WebElement btnNextFinalDetails;
 
+	@FindBy(id="covid-alert-refundability-0")
+	private WebElement modal;
 
+	@FindBy(css="div[class='lead-price']")
+	private WebElement parcial;
 
+	@FindBy(css="img#interstitial-secondary-image")
+	private WebElement imagenWait;
+
+	@FindBy(css="section.mis-bg-wrapper")
+	private WebElement sectionLoader;
+
+	@FindBy(css="span.updated-price")
+	private List<WebElement> valueCruise;
+
+	@FindBy(css="div.title-on-ship-image")
+	private WebElement nameCruise;
+
+	@FindBy(css="div.card-content-detail.departure-city")
+	private WebElement departureCruise;
+
+	@FindBy(css="div.card-content-detail.sailing-dates")
+	private WebElement departureDateCruise;
 
 
 	public FlightInformationPage(WebDriver driver) {
 		super(driver);
 	}
 
-	public boolean verificarPage() {
-
-		if(Subtitulo.getText().equalsIgnoreCase("Review your trip")){
-			return true;
-		}
-		else return false;
-	}
-
-
 	public boolean verifyTripTotalPrice(){
+
 		elementoPresente(By.cssSelector("div[class='totalContainer']"));
-		List<WebElement> list= obtainsList(listTripTotalPrice, "listTripTotalPrice");
+		List<WebElement> listPrices= obtainsList(listTripTotalPrice, By.cssSelector("span[class='packagePriceTotal']"));
 
-		String valor = list.get(0).getText();
-		String valor2= list.get(1).getText();
+		if(listPrices.get(1).getText().equalsIgnoreCase(""))	{
 
-
-		if(list.get(1).getText().equalsIgnoreCase(""))	{
-
-			String algo = list.get(1).getText();
-			System.out.println(algo);
+			listPrices.get(1).getText();
 			return false;
-
-
-		}
-		else {
+		} else {
 
 			FlightsDTO FlyRet = CONTEXT.get("FlyRet");
 
-			FlyRet.setFlightTotalPrice(list.get(1).getText());
+			FlyRet.setFlightTotalPrice(listPrices.get(1).getText());
 			CONTEXT.set("FlyRet", FlyRet);
-
 			return true;
 
 		}
 	}
 
-	//metodo que compara la informacion ingresada con la informacion de la sgt pagina.
-	public boolean verifyDepartureReturnInfo(){
+	public boolean verifyDepartureReturnInfoFlight(){
 
 		elementoPresente(By.cssSelector("button[class='btn-text toggle-trigger']"));
 
 		FlightsDTO flightExpectedDep = CONTEXT.get("FlyDep");
 		FlightsDTO flightExpectedRet = CONTEXT.get("FlyRet");
+		FlightsDTO fly = CONTEXT.get("fly");
 
-
-		Boolean bandera1, bandera2, bandera3, bandera4, bandera5, bandera6, bandera7, bandera8, bandera9, bandera10, bandera11, bandera12, banderaGeneral;
-
-		String fecha= listaFechas.get(0).getText();
-
-		if(listaFechas.get(0).getText().equalsIgnoreCase(flightExpectedDep.getFlightDateDeparture())) {
-			Logger.printInfo("Departure date is equals with the users choice");
-			bandera1= true;
+		if(!listDatesFlight.get(0).getText().equalsIgnoreCase(flightExpectedDep.getFlightDateDeparture())) {
+			Logger.printInfo("Departure date is Not equals with the users choice");
+			return false;
 		}
-		else bandera1=false;
-		String listaFec= listaFechas.get(1).getText();
 
-		if(listaFechas.get(1).getText().equalsIgnoreCase(flightExpectedRet.getFlightDateDeparture())){
-			Logger.printInfo("Return date is equals with the users choice");
-			bandera2=true;
+		if(!listDatesFlight.get(1).getText().equalsIgnoreCase(flightExpectedRet.getFlightDateDeparture())){
+			Logger.printInfo("Return date is Not equals with the users choice");
+			return false;
 		}
-		else bandera2=false;
 
-		if(listaHorasIni.get(0).getText().equalsIgnoreCase(flightExpectedDep.getFlightTimeInitDeparture())) {
-			Logger.printInfo("Departure time beging is the same");
-			bandera3=true;
+		if(!listTimeInit.get(0).getText().equalsIgnoreCase(flightExpectedDep.getFlightTimeInitDeparture())) {
+			Logger.printInfo("Departure time beging is Not the same");
+			return false;
 		}
-		else bandera3=false;
 
-		if(listaHorasIni.get(2).getText().equalsIgnoreCase(flightExpectedRet.getFlightTimeInitDeparture())) {
-			Logger.printInfo("Return time flight is the same with the user choise");
-			bandera4=true;
+		if(!listTimeInit.get(2).getText().equalsIgnoreCase(flightExpectedRet.getFlightTimeInitDeparture())) {
+			Logger.printInfo("Return time flight is not the same with the user choise");
+			return false;
 		}
-		else bandera4=false;
 
-		if(ListOrigenesVuelos.get(0).getText().equalsIgnoreCase("LAS")){
-			Logger.printInfo("Place to beging DepartureThe choise is the same with the user fill at the begining of the process");
-			bandera5=true;
+		if(!listOriginFlights.get(0).getText().equalsIgnoreCase(fly.getFlyFrom().toString())){
+			Logger.printInfo("Place to beging DepartureThe choise is not the same with the user fill at the begining of the process");
+			return false;
 		}
-		else bandera5=false;
 
-		if(ListOrigenesVuelos.get(1).getText().equalsIgnoreCase("LAX")){
-			Logger.printInfo("place to begind return The choise is the same with the user fill at the begining of the process");
-			bandera6=true;
+		if(!listOriginFlights.get(1).getText().equalsIgnoreCase(fly.getFlyTo().toString())){
+			Logger.printInfo("place to begind return The choise is not the same with the user fill at the begining of the process");
+			return false;
 		}
-		else bandera6=false;
 
-		if(ListDestinoVuelos.get(0).getText().equalsIgnoreCase("LAX")) {
-			Logger.printInfo("Place to End Flight from Departure The choise is the same with the user fill at the begining of the process");
-			bandera7=true;
+		if(!listDestinationFlights.get(0).getText().equalsIgnoreCase(fly.getFlyTo().toString())) {
+			Logger.printInfo("Place to End Flight from Departure The choise is not the same with the user fill at the begining of the process");
+			return false;
 		}
-		else bandera7=false;
 
-		if(ListDestinoVuelos.get(1).getText().equalsIgnoreCase("LAS")) {
-			Logger.printInfo("Place to end flight from Return The choise is the same with the user fill at the begining of the process");
-			bandera8=true;
+		if(!listDestinationFlights.get(1).getText().equalsIgnoreCase(fly.getFlyFrom().toString())) {
+			Logger.printInfo("Place to end flight from Return The choise is not the same with the user fill at the begining of the process");
+			return false;
 		}
-		else bandera8=false;
 
-		if(listadoHorasFin.get(0).getText().equalsIgnoreCase(flightExpectedDep.getFlightTimeEndDeparture())) {
-			Logger.printInfo("The departure time is the same");
-			bandera9=true;
+		if(!listTimeEnds.get(0).getText().equalsIgnoreCase(flightExpectedDep.getFlightTimeEndDeparture())) {
+			Logger.printInfo("The departure time is not the same");
+			return false;
 		}
-		else bandera9=false;
 
-		if(listadoHorasFin.get(2).getText().equalsIgnoreCase(flightExpectedRet.getFlightTimeEndDeparture())) {
-			Logger.printInfo("the return time is the same");
-			bandera10=true;
+		if(!listTimeEnds.get(2).getText().equalsIgnoreCase(flightExpectedRet.getFlightTimeEndDeparture())) {
+			Logger.printInfo("the return time is not the same");
+			return false;
 		}
-		else bandera10=false;
 
-		if(ListTotalFlightTime.get(0).getText().equalsIgnoreCase(flightExpectedDep.getFlightDurationTotalDeparture())) {
-			Logger.printInfo("Total time flight departure is the same");
-			bandera11=true;
+		if(!ListTotalFlightTime.get(0).getText().equalsIgnoreCase(flightExpectedDep.getFlightDurationTotalDeparture())) {
+			Logger.printInfo("Total time flight departure is Not the same");
+			return false;
 		}
-		else bandera11=false;
 
-		if(ListTotalFlightTime.get(2).getText().equalsIgnoreCase(flightExpectedRet.getFlightDurationTotalReturn())) {
-			Logger.printInfo("Total time flight return is the same");
-			bandera12=true;
-		}
-		else bandera12=false;
+		if(!ListTotalFlightTime.get(2).getText().equalsIgnoreCase(flightExpectedRet.getFlightDurationTotalReturn())) {
+			Logger.printInfo("Total time flight return is Not the same");
+			return false;
+		} 
+		return true;
 
-		if(!bandera1 && !bandera2 && !bandera3 && !bandera4 && !bandera5 && bandera6 && !bandera7 && !bandera8 && !bandera9 && !bandera10 && !bandera11 && !bandera12) {
-			banderaGeneral=false;	
-		}
-		else banderaGeneral=true;
-
-		return banderaGeneral;
 	}
 
-
-	//*************************
-	
 	public void waitFlightInformation() {
 		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("#v2ProductSummary"), By.cssSelector("div")));
-		
-		
 	}
-	public boolean verifyDateDepartureReturnFlight_FH(){
+
+	public boolean verifyDateDepartureArrivalFH(){
 
 		FlightsDTO flightExpectedDep = CONTEXT.get("FlyDep");
 		FlightsDTO flightExpectedRet = CONTEXT.get("FlyRet");
 
-		Boolean bandera1=false, bandera2=false , banderaGeneral=false;
+		Boolean isSameDateDept=false, isSameArrivalDate=false , isSameDeptArrivDate=false;
 
-		String f1= fechaSalidaVuelo_FH.getText();
-		String ff1= flightExpectedDep.getFlightDateDeparture();
-
-		if(fechaSalidaVuelo_FH.getText().equalsIgnoreCase(flightExpectedDep.getFlightDateDeparture())) {
+		if(dateDepartureFH.getText().equalsIgnoreCase(flightExpectedDep.getFlightDateDeparture())) {
 			Logger.printInfo("Departure date is equals with the users choice");
-			bandera1= true;
-		}
-		else { 
+			isSameDateDept= true;
+		} else { 
 			Logger.printInfo("Departure date is not equals with the users choice");
-			bandera1=false;
+			isSameDateDept=false;
 		}
 
-		String f2 = fechaLlegadaVuelo_FH.getText();
-		String ff2= flightExpectedRet.getFlightDateDeparture();
-		if(fechaLlegadaVuelo_FH.getText().equalsIgnoreCase(flightExpectedRet.getFlightDateDeparture())){
+		if(dateArrivalFH.getText().equalsIgnoreCase(flightExpectedRet.getFlightDateDeparture())){
 			Logger.printInfo("Return date is equals with the users choice");
-			bandera2=true;
+			isSameArrivalDate=true;
 		}
 		else {
 			Logger.printInfo("Return date is not equals with the users choice");
-			bandera2=false;
+			isSameArrivalDate=false;
 		}
 
-		if( !bandera1 && !bandera2) {
-			banderaGeneral=false;	
+		if( !isSameDateDept && !isSameArrivalDate) {
+			isSameDeptArrivDate=false;	
+		} else {
+			isSameDeptArrivDate=true;
 		}
-		else banderaGeneral=true;
 
-		return banderaGeneral;
-
+		return isSameDeptArrivDate;
 	}
 
-	public boolean verifyTimeDepartureReturnFlightFrom_FH(){
+	public boolean verifyTimeDepartureArrivalFromFH(){
 
 		FlightsDTO flightExpectedDep = CONTEXT.get("FlyDep");
 
+		Boolean isSameTimeDepFlightFrom=false,  isSameTimeArrival=false, isSameTime=false;
 
-		Boolean bandera3=false,  bandera9=false, banderaGeneral=false;
-
-		String f3 = horaSalidaVueloFrom_FH.getText();
-		String ff3= flightExpectedDep.getFlightTimeInitDeparture();
-		if(horaSalidaVueloFrom_FH.getText().equalsIgnoreCase(flightExpectedDep.getFlightTimeInitDeparture())) {
+		if(timeDepartFlightFrom.getText().equalsIgnoreCase(flightExpectedDep.getFlightTimeInitDeparture())) {
 			Logger.printInfo("Departure time beging is the same");
-			bandera3=true;
-		}
-		else {
+			isSameTimeDepFlightFrom=true;
+		} else {
 			Logger.printInfo("Departure time beging is Not the same");
-			bandera3=false;
+			isSameTimeDepFlightFrom=false;
 		}
 
-		String h = horaLlegadaVueloFrom_FH.getText();
-		String hh= flightExpectedDep.getFlightTimeEndDeparture();
-		if(horaLlegadaVueloFrom_FH.getText().equalsIgnoreCase(flightExpectedDep.getFlightTimeEndDeparture())) {
+		if(timeArrivalFromFH.getText().equalsIgnoreCase(flightExpectedDep.getFlightTimeEndDeparture())) {
 			Logger.printInfo("The departure time is the same");
-			bandera9=true;
-		}
-		else {
-			bandera9=false;
+			isSameTimeArrival=true;
+		} else {
+			isSameTimeArrival=false;
 			Logger.printInfo("The departure time is not the same");
 		}
 
 
-		if( !bandera3 && !bandera9) {
-			banderaGeneral=false;	
+		if( !isSameTimeDepFlightFrom && !isSameTimeArrival) {
+			isSameTime=false;	
 		}
-		else banderaGeneral=true;
+		else isSameTime=true;
 
-		return banderaGeneral;
+		return isSameTime;
 
 	}
 
-	public boolean verifyTimeDepRetFlightTo_FH(){
+	public boolean verifyTimeDepartureArrivalFlightTo(){
 
 		FlightsDTO flightExpectedRet = CONTEXT.get("FlyRet");
 
-		Boolean bandera4=false,  bandera10=false, banderaGeneral=false;
+		if(!timeDepartureFlightTO.getText().equalsIgnoreCase(flightExpectedRet.getFlightTimeInitDeparture())) {
+			Logger.printInfo("Arrival time init flight is Not the same with the user choise");
 
-		String f4=horaSalidaVueloTo_FH.getText();
-		String ff4= flightExpectedRet.getFlightTimeInitDeparture();
-
-		if(horaSalidaVueloTo_FH.getText().equalsIgnoreCase(flightExpectedRet.getFlightTimeInitDeparture())) {
-			Logger.printInfo("Return time init flight is the same with the user choise");
-			bandera4=true;
-		}
-		else {
-			Logger.printInfo("Return time init flight is Not the same with the user choise");
-			bandera4=false;
+			return false;
 		}
 
-		String h2= horaLlegadaVueloTo_FH.getText();
-		String h22= flightExpectedRet.getFlightTimeEndDeparture();
-
-		if(horaLlegadaVueloTo_FH.getText().equalsIgnoreCase(flightExpectedRet.getFlightTimeEndDeparture())) {
-			Logger.printInfo("the return end time is the same");
-			bandera10=true;
-		}
-		else {
-			Logger.printInfo("the return end time is Not the same");
-			bandera10=false;
+		if(!timeArrivalFlightTO.getText().equalsIgnoreCase(flightExpectedRet.getFlightTimeEndDeparture())) {
+			Logger.printInfo("The arrival end time is Not the same");
+			return false;
 		}
 
-		if(!bandera4 && !bandera10) {
-			banderaGeneral=false;	
-		}
-		else {
-			banderaGeneral=true;
-		}
-
-		return banderaGeneral;
+		return true;
 	}
 
-	public boolean verifyFlightFromTo_FH(){
+	public boolean verifyPlaceFlightFromTo(){
 
 		FlightsDTO fly = CONTEXT.get("fly");
 
-		Boolean bandera5=false,  bandera6=false, banderaGeneral=false;
+		Boolean isSamePlaceFrom=false,  isSamePlaceTo=false, isSamePlace=false;
 
-		String flyFromCntx= fly.getFlightFrom().substring(0,9);
-		String flightFrom = flightFrom_FH.getText().substring(0,9);
-
-		if(flightFrom_FH.getText().substring(0,9).equalsIgnoreCase(fly.getFlightFrom().substring(0,9))){
+		if(flightFromFH.getText().substring(0,9).equalsIgnoreCase(fly.getFlightFrom().substring(0,9))){
 			Logger.printInfo("Place to beging DepartureThe choise is the same with the user fill at the begining of the process");
-			bandera5=true;
+			isSamePlaceFrom=true;
+		}else {
+			isSamePlaceFrom=false;
 		}
-		else bandera5=false;
 
-		//-
-		String flyfrom= fly.getFlightTo().substring(0,9);
-		String flightfromm = flightTo_FH.getText().substring(0,9);
-
-		if(flightTo_FH.getText().substring(0,9).equalsIgnoreCase(fly.getFlightTo().substring(0,9))){
+		if(flightToFH.getText().substring(0,9).equalsIgnoreCase(fly.getFlightTo().substring(0,9))){
 			Logger.printInfo("place to begind return The choise is the same with the user fill at the begining of the process");
-			bandera6=true;
+			isSamePlaceTo=true;
 		}
-		else bandera6=false;
-
-		if( !bandera5 && !bandera6) {
-			banderaGeneral=false;	
+		else {
+			isSamePlaceTo=false;
 		}
-		else banderaGeneral=true;
 
-		return banderaGeneral;
+		if( !isSamePlaceFrom && !isSamePlaceTo) {
+			isSamePlace=false;	
+		}else {
+			isSamePlace=true;
+		}
+
+		return isSamePlace;
 
 	}
 
-	public boolean verifyHotelName_FH(){
-		
-		FlightsDTO fly = CONTEXT.get("fly");
+	public boolean verifyHotelNameFH(){
+
 		HotelDTO hotel = CONTEXT.get("hotel");
 
-		Boolean bandera7=false;
-
-		String f5= hotelName_FH.getText();
-		String ff5= hotel.getName();
-		if(hotelName_FH.getText().equalsIgnoreCase(hotel.getName())) {
+		boolean isSameName;
+		if(hotelName.getText().equalsIgnoreCase(hotel.getName())) {
 			Logger.printInfo("The departure time is the same");
-			return bandera7=true;
+			isSameName=true;
+			return isSameName;
 		}
 		else {
 			Logger.printInfo("The departure time is not the same");
-			return bandera7=false;
+			isSameName=false;
+			return isSameName;
 		}
 	}
-	
-	public boolean verifyHotelCheckInDate_FH() {
-		
+
+	public boolean verifyHotelCheckInOutDate() {
+
 		FlightsDTO flightExpectedDep = CONTEXT.get("FlyDep");
 		FlightsDTO flightExpectedRet = CONTEXT.get("FlyRet");
 
-		Boolean  bandera8, bandera13, banderaGeneral;
+		Boolean  isSameCheckinDate, isSameCheckOutDate, isSameDate;
 
-		String f6= fechaCheckInHotel_FH.getText();
-		String f7= flightExpectedDep.getFlightDateDeparture();
-		if(fechaCheckInHotel_FH.getText().equalsIgnoreCase(flightExpectedDep.getFlightDateDeparture())) {
+		if(dateCheckInHotel.getText().equalsIgnoreCase(flightExpectedDep.getFlightDateDeparture())) {
 			Logger.printInfo("The departure time is the same");
-			bandera8=true;
-		}
-		else {
+			isSameCheckinDate=true;
+		}else {
 			Logger.printInfo("The departure time is not the same");
-			bandera8=false;
+			isSameCheckinDate=false;
 		}
 
-		String f8= fechaCheckOutHotel_FH.getText();
-		String ff8=flightExpectedRet.getFlightDateDeparture();
-		if(fechaCheckOutHotel_FH.getText().equalsIgnoreCase(flightExpectedRet.getFlightDateDeparture())) {
+		if(dateCheckOutHotel.getText().equalsIgnoreCase(flightExpectedRet.getFlightDateDeparture())) {
 			Logger.printInfo("The departure time is the same");
-			bandera13=true;
+			isSameCheckOutDate=true;
+		}else {
+			isSameCheckOutDate=false;
 		}
-		else bandera13=false;
 
-		if( !bandera8 && !bandera13) {
-			banderaGeneral=false;	
+		if( !isSameCheckinDate && !isSameCheckOutDate) {
+			isSameDate=false;	
 		}
-		else banderaGeneral=true;
+		else isSameDate=true;
 
-		return banderaGeneral;
+		return isSameDate;
 
 	}
-	
-	public boolean verifyTotalFlightDurationFROM_FH() {
-		
+
+	public boolean verifyTotalFlightDurationFrom() {
+
 		FlightsDTO flightExpectedDep = CONTEXT.get("FlyDep");
 
-		Boolean bandera11=false;
-		
-		String d= duracionTotalVueloFrom_FH.getText();
-		String dd = flightExpectedDep.getFlightDurationTotalDeparture();			
+		Boolean isSameTotalFlight=false;
 
-		if(duracionTotalVueloFrom_FH.getText().equalsIgnoreCase(flightExpectedDep.getFlightDurationTotalDeparture())) {
+		if(totalFlightDurationFrom.getText().equalsIgnoreCase(flightExpectedDep.getFlightDurationTotalDeparture())) {
 			Logger.printInfo("Total time flight departure is the same");
-			return bandera11=true;
-		}
-		else {
+			isSameTotalFlight=true;
+			return isSameTotalFlight;
+		} else {
 			Logger.printInfo("Total time flight departure is not the same");
-			return bandera11=false;
+			isSameTotalFlight=false;
+			return isSameTotalFlight;
 		}
 	}
-	
-	public boolean verifyTotalDurationFlightTO_FH() {
-		
+
+	public boolean verifyTotalDurationFlightTo() {
+
 		FlightsDTO flightExpectedRet = CONTEXT.get("FlyRet");
 
-		Boolean bandera12=false;
+		Boolean isSameTotalFlight=false;
 
-		String d2= duracionTotalVueloTo_FH.getText();
-		String dd2= flightExpectedRet.getFlightDurationTotalReturn();
-
-		if(duracionTotalVueloTo_FH.getText().equalsIgnoreCase(flightExpectedRet.getFlightDurationTotalReturn())) {
+		if(totalFlightDurationTo.getText().equalsIgnoreCase(flightExpectedRet.getFlightDurationTotalReturn())) {
 			Logger.printInfo("Total time flight return is the same");
-			return bandera12=true;
-		}
-		else {
+			isSameTotalFlight=true;
+			return isSameTotalFlight;
+		} else {
 			Logger.printInfo("Total time flight return is not the same");
-			return bandera12=false;
+			return isSameTotalFlight=false;
 		}
-		
+
 	}
-	
-	public void obtainTotalTripValue_FH() {
-		
+
+	public void obtainTotalTripValueFH() {
+
 		HotelDTO hotel = new HotelDTO();
 		hotel= CONTEXT.get("hotel");
-		hotel.setValue(valorTotalViajeVuelo_FH.getText());
+		hotel.setValue(totalValueFlight.getText());
 		CONTEXT.set("hotel", hotel);
-		
-	}
-	
-	public void clickBtnNextFinalDetails() {
-		 if(isPresent(btnNextFinalDetails)!=null) btnNextFinalDetails.click();
-		
-	}
-	//*************************	
 
-	public void selectBtnContinueBooking() {
+	}
+
+	public CheckOutPage clickBtnNextFinalDetails() {
+		if(isPresent(btnNextFinalDetails)!=null) {
+			btnNextFinalDetails.click();
+			return new CheckOutPage(getDriver());
+		}
+		return null;
+	}
+
+	public CheckOutPage selectBtnContinueBooking() {
 
 		if(isPresent(btnBooking)!=null) {
-
 			btnBooking.click();
+			return new CheckOutPage(getDriver());
 		}
+		return null;
 	}
 
 	public boolean verifyPriceGuaranteeText() {
 
-
-		WebElement e = getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(priceGuarantee.get(1), By.cssSelector("div[class='priceGuarantee'] span span")));
+		WebElement e = getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(priceGuarantee.get(1), By.cssSelector("span.packagePriceTotal")));
 
 		if(e.getClass()!= null) {
-			System.out.println("si esta el elemento");
 			return true;
-
+		} else {
+			return false;
 		}
-		else return false;
 	}
 
-	public boolean verifyHotelSelected() {
+	public boolean verifyHotelNameSelected() {
 
-		
+		Logger.printInfo("verify name selected");
+
+		waitForPageToBeLoaded(getDriver(), 20);
+
 		elementoPresente(By.cssSelector(".page-header"));
 		elementoPresente(By.cssSelector("#license-plate"));
 		elementoPresente(By.cssSelector(".lead-price"));
 
-		WebElement parcial= getDriver().findElement(By.cssSelector("div[class='lead-price']"));
-		String valueHotelExpected= parcial.findElement(By.partialLinkText("$")).getText();
-		String nameHotelExpected= getDriver().findElement(By.cssSelector("#license-plate #hotel-name")).getText();
-		String starsHotelExpected= getDriver().findElement(By.cssSelector("#license-plate span[class^='icon icon-stars']")).getAttribute("title");
+		HotelDTO hotel = new HotelDTO();
+		hotel= CONTEXT.get("hotel");
+
+
+		String nameHotelExpected = nameHotel.getText();
+		return hotel.getName().equals(nameHotelExpected);
+	}
+
+	public boolean verifyHotelValueSelected() {
 
 		HotelDTO hotel = new HotelDTO();
 		hotel= CONTEXT.get("hotel");
 
-		boolean r1= hotel.getName().equals(nameHotelExpected)?true:false;
-		boolean r2= hotel.getStars().equals(starsHotelExpected)?true:false;
-		boolean r3= hotel.getValue().equals(valueHotelExpected)?true:false;
+		String valueHotelExpected = parcial.findElement(By.partialLinkText("$")).getText();
+		boolean isHotelValueEquals= hotel.getValue().equals(valueHotelExpected)?true:false;
+		return isHotelValueEquals;
+	}
 
+	public boolean verifyHotelStarsSelected() {
 
-		if(r1&&r2&&r3)return true;
-		else return false;
+		HotelDTO hotel = new HotelDTO();
+		hotel= CONTEXT.get("hotel");
+
+		String starsHotelExpected= starsHotel.getAttribute("title");
+		boolean isHotelStarsEquals= hotel.getStars().equals(starsHotelExpected)?true:false;
+		return isHotelStarsEquals;
 	}
 
 	public boolean verifyCruiseSelected() {
 
-		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("#cabin-category-north-view"), By.cssSelector("aside[class='col sailing-details']")));
-		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("div.trip-summary"), By.cssSelector("div.ember-view")));
-		//---
-		String valueCruiseExpected= getDriver().findElements(By.cssSelector("span.updated-price")).get(0).getText();
-		String nameCruiseExpected= getDriver().findElement(By.cssSelector("div[class='small-title trip-title']")).getText();
-		String departureCruiseExpected= getDriver().findElement(By.cssSelector("div[class='departure-port']")).getText();
-		String departureDateCruiseExpected= getDriver().findElement(By.cssSelector("div[class='departure-date']")).getText();
+		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("div.user-decisions"), By.cssSelector("div.infosite.decision-point.margin-top.box")));
 
-		CruceroDTO crucero = new CruceroDTO();
-		crucero= CONTEXT.get("crucero");
-		
-		boolean r4;
-		if(departureDateCruiseExpected.contains(crucero.getDateDeparture())) r4=true; 
-		else r4=false;
+		String valueCruiseExpected = valueCruise.get(0).getText();
+		String nameCruiseExpected= nameCruise.getText();
+		String departureCruiseExpected= departureCruise.getText();
+		String departureDateCruiseExpected= departureDateCruise.getText();
 
-		boolean r1= crucero.getName().equalsIgnoreCase(nameCruiseExpected)?true:false;
-		boolean r2= crucero.getFrom().equals(departureCruiseExpected)?true:false;
-		boolean r3= crucero.getValue().equals(valueCruiseExpected)?true:false;
+		CruiseDTO cruise = new CruiseDTO();
+		cruise= CONTEXT.get("cruise");
 
-		if(r1&&r2&&r3&&r4)return true;
-		else return false;
-	}
-
-	public boolean selectTheFirstRoomOption() {
-		Logger.printInfo("Seleccionando el pimer Room");
-
-		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(containerRooms, By.cssSelector("article[class='segment no-target room cf room-above-fold']")));
-		
-		List<WebElement> listaRooms = getDriver().findElements(By.cssSelector("section[class='segmented-list cf'] article[class^='segment no-target'] a[data-control='modal']"));
-		listaRooms.stream().findFirst().get().click();
-		
-		getWait().until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#covid-alert-refundability")));
-		
-		WebElement modal = getDriver().findElement(By.id("covid-alert-refundability"));
-		if(isPresent(modal)!=null && modal.isDisplayed()) {
-			
-			getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("div.modal-body a[class='btn btn-secondary btn-sub-action book-button modal-button'][role='button']")));
-			
-			getDriver().findElement(By.cssSelector("div.modal-body a[class='btn btn-secondary btn-sub-action book-button modal-button'][role='button']")).click();
+		boolean isCruiseDepartureDateSame;
+		if(departureDateCruiseExpected.contains(cruise.getDateDeparture())) { 
+			isCruiseDepartureDateSame=true;
+		} else {
+			isCruiseDepartureDateSame=false;
 		}
-		
-		return true;
+
+		boolean isNameCruiseSame= cruise.getName().equalsIgnoreCase(nameCruiseExpected)?true:false;
+		boolean isDepartureCruiseSame= cruise.getFrom().equals(departureCruiseExpected)?true:false;
+		boolean isValueCruiseSame= cruise.getValue().equals(valueCruiseExpected)?true:false;
+
+		if(isNameCruiseSame 
+				&& isDepartureCruiseSame
+				&& isValueCruiseSame
+				&& isCruiseDepartureDateSame) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
+	public FlightsSearchPage selectTheFirstRoomOption() {
 
+		Logger.printInfo("select the first Room");
+		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(containerRooms, By.cssSelector("article[class='segment no-target room cf room-above-fold']")));
+		listaRooms.stream().findFirst().get().click();
+
+		modalAppear(modal);
+
+		return new FlightsSearchPage(getDriver());
+	}
 
 }

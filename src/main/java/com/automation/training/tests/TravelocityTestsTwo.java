@@ -1,85 +1,98 @@
 package com.automation.training.tests;
 
+import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.testng.Assert.assertTrue;
 
+import org.hamcrest.CoreMatchers;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.automation.training.pages.CheckOutPage;
-import com.automation.training.pages.FlightInformationPage;
-import com.automation.training.pages.FlightsSearchPage;
-import com.automation.training.pages.TravelocityHomePage;
 
 public class TravelocityTestsTwo extends BaseTestTravel {
 	
-	TravelocityHomePage travelocityHomePage;
 
 	@Test
-	public void testTravelocity() {	
+	@Parameters({"from", "to", "name", "middleName", "lastName", "phoneNumber", "firstResult","thirdResult"})
+	public void testTravelocity(String from, 
+			String to, 
+			String name,
+			String middleName,
+			String lastName,
+			String phoneNumber,
+			String firstResult,
+			String thirdResult) {
 
 		travelocityHomePage = getTravelocityHomePage();
 		
 		assertTrue(travelocityHomePage.clickVacationPackages(), "The bot can not click flight hotels button ");
 		assertTrue(travelocityHomePage.verifyPageOpen(), "The page is not in Vacation Package / Flight Hotel");
-		travelocityHomePage.seleccionarFromAndTo(travelocityHomePage.buscarElemento("Flying from FH"),"LAS");
-		travelocityHomePage.seleccionarFromAndTo(travelocityHomePage.buscarElemento("Flying to FH"),"LAX");
-		travelocityHomePage.seleccionarDepartureDate("Departure2");		
-		travelocityHomePage.seleccionarDepartureDate("Returning2");
-		travelocityHomePage.selectRooms();
-		travelocityHomePage.selectQuantityAdults();
-		travelocityHomePage.clickBtnSearch("FH");
-
-		FlightsSearchPage flightsSearchPage = getFlights();
+		travelocityHomePage.selectFromAndTo(travelocityHomePage.findElement("Flying from FH"),from);
+		travelocityHomePage.selectFromAndTo(travelocityHomePage.findElement("Flying to FH"),to);
+		travelocityHomePage.selectDayForFlightHotel();
+		assertFalse(travelocityHomePage.verifyLongerTrip(), "Your length of stay cannot be longer than n nights.");
+		travelocityHomePage.selectRoomsFlightHotel();
+		travelocityHomePage.selectQuantityAdults("2");
+		flightsSearchPage= travelocityHomePage.clickBtnSearch(false);
 		
 		assertTrue(flightsSearchPage.verifyLoaderVisible(), "The loader is visible");
-		assertTrue(flightsSearchPage.verifySortOptionsFH(), "The Result flight page dont have sort options");
+		assertTrue(flightsSearchPage.verifySortOptionsFlightHotel(), "The Result flight page dont have sort options");
 		assertTrue(flightsSearchPage.verifyInfoFlight(), "The flight information have some differences");
-		assertTrue(flightsSearchPage.verifyTitle(),"The subTitle is diferent");
-		assertTrue(flightsSearchPage.verifyResults(), "The page doesn't show Flight and Hotel results");
+		assertTrue(flightsSearchPage.verifyTitleFlightHotel(),"The subTitle is diferent");
+		assertTrue(flightsSearchPage.verifyResultsFlightHotel(), "The page doesn't show Flight and Hotel results");
+		
 		assertTrue(flightsSearchPage.verifyResultSorteByPrice(), "The price is not sorted well");
-		assertTrue(flightsSearchPage.selectFirstResultWith3Starts(), "The bot can not select a result at least 3 starts");
+		
+		int position = flightsSearchPage.obtainPositionOf3StarsHotel();
+		flightsSearchPage.obtain3StartsHotelInfo(position);	
+		flightInformationPage = flightsSearchPage.selectFirstResultWith3Starts(position);
+		flightInformationPage.changeTab("Getting");
+		flightInformationPage.changeTab("Book");
+		
 
-		FlightInformationPage flightInformationPage = getFlightsInformationPage();
-
-		flightInformationPage.cambiarDePestaña("Book");	
-//		assertTrue(flightInformationPage.verifyTripTotalPrice(), "The page dont contain total Price");
-		assertTrue(flightInformationPage.verifyHotelSelected(), "The hotel founded is not the same");
-		assertTrue(flightInformationPage.selectTheFirstRoomOption(), "The system doesn't display rooms");
+		assertTrue(flightInformationPage.verifyHotelNameSelected(), "The hotel name founded is not the same by the user choice");
+		assertTrue(flightInformationPage.verifyHotelStarsSelected(), "The hotel by stars founded is not the same by the user choice");
+		assertTrue(flightInformationPage.verifyHotelValueSelected(), "The hotel value founded is not the same by the user choice");
 		
-		FlightsSearchPage flightsSearchPage2 = getFlights();
+		flightsSearchPage = flightInformationPage.selectTheFirstRoomOption();
 		
-		flightsSearchPage2.loaderFlightSearchPage();
-//		flightsSearchPage2.clickSelectButtonToLosAngeles();
-		assertTrue(flightsSearchPage2.clickSelectButtonToLosAngeles(), "The system doesn't display tickets to Los Angeles");
-		assertTrue(flightsSearchPage2.selectLasVegasTicket(), "The system doesn't display third or more tickets to Las Vegas");
+		flightsSearchPage.loaderFlightSearchPage();
+		assertTrue(flightsSearchPage.verifyTicketExistGeneral(firstResult, true),"The ticket is not Displayed");
+		flightsSearchPage.getInfoFlight(firstResult, true);
+		assertTrue(flightsSearchPage.selectTicketGeneral(firstResult),"The button select is not available");
+		flightsSearchPage.selectFaresBtnGeneral(firstResult, true);
 		
-		FlightInformationPage flightInformationPage2 = getFlightsInformationPage();
-		flightInformationPage2.waitFlightInformation();
-		assertTrue(flightInformationPage2.verifyDateDepartureReturnFlight_FH(), "Date Flight information has diferences");
-		assertTrue(flightInformationPage2.verifyTimeDepartureReturnFlightFrom_FH(), "Departure Time flight information has diferences");
-		assertTrue(flightInformationPage2.verifyTimeDepRetFlightTo_FH(), "Returning Time flight information has diferences");
-		assertTrue(flightInformationPage2.verifyFlightFromTo_FH(), "The Origin and Destination has diferences");
-		assertTrue(flightInformationPage2.verifyHotelName_FH(), "The hotel name has diferences");
-		assertTrue(flightInformationPage2.verifyHotelCheckInDate_FH(), "The checkin date has diferences");
-		assertTrue(flightInformationPage2.verifyTotalFlightDurationFROM_FH(), "The total time flight duration departure has diferences");
-		assertTrue(flightInformationPage2.verifyTotalDurationFlightTO_FH(), "The total time flight duration return has diferences");
-		flightInformationPage2.obtainTotalTripValue_FH();
-		flightInformationPage2.clickBtnNextFinalDetails();
+		assertTrue(flightsSearchPage.verifyTicketExistGeneral(thirdResult, false),"The ticket is not Displayed");
+		flightsSearchPage.getInfoFlight(thirdResult, false);
+		assertTrue(flightsSearchPage.selectTicketGeneral(thirdResult),"The button select is not available");
+		flightInformationPage = flightsSearchPage.selectFaresBtnGeneral(thirdResult, false);
+	
+		flightInformationPage.waitFlightInformation();
+		assertTrue(flightInformationPage.verifyDateDepartureArrivalFH(), "Date Flight information has diferences");
+		assertTrue(flightInformationPage.verifyTimeDepartureArrivalFromFH(), "Departure Time flight information has diferences");
+		assertTrue(flightInformationPage.verifyTimeDepartureArrivalFlightTo(), "Returning Time flight information has diferences");
+		assertTrue(flightInformationPage.verifyPlaceFlightFromTo(), "The Origin and Destination has diferences");
+		assertTrue(flightInformationPage.verifyHotelNameFH(), "The hotel name has diferences");
+		assertTrue(flightInformationPage.verifyHotelCheckInOutDate(), "The checkin date has diferences");
+		assertTrue(flightInformationPage.verifyTotalFlightDurationFrom(), "The total time flight duration departure has diferences");
+		assertTrue(flightInformationPage.verifyTotalDurationFlightTo(), "The total time flight duration return has diferences");
+		flightInformationPage.obtainTotalTripValueFH();
 		
-		CheckOutPage checkOutPage = getCheckOutpage();
+		checkOutPage = flightInformationPage.clickBtnNextFinalDetails();
+		
 		checkOutPage.waitCheckOutPage();
-		assertTrue(checkOutPage.verifyHotelName_FH(), "The Hotel name has some diferences");
-		assertTrue(checkOutPage.verifyDatesHotel_FH(),"The checkin/ checkOut dates has some diferences");
-		assertTrue(checkOutPage.verifyDatesFlights_FH(), "The departure / return flight dates has some diferences");
-		assertTrue(checkOutPage.verifyFromToFlight_FH(), "The origin and destination has some diferences");
-		assertTrue(checkOutPage.verifyPrecioFinal_FH(),"The final price has some diferences");
+		assertTrue(checkOutPage.verifyHotelName(), "The Hotel name has some diferences");
+		assertTrue(checkOutPage.verifyDatesHotel(),"The checkin/ checkOut dates has some diferences");
+		assertTrue(checkOutPage.verifyDatesFlights(), "The departure / return flight dates has some diferences");
+		assertTrue(checkOutPage.verifyFromToFlight(), "The origin and destination has some diferences");
+		assertTrue(checkOutPage.verifyFinalPriceFH(),"The final price has some diferences");
 		
-		assertTrue(checkOutPage.verifyTitle(), "The page is not in checkOut page");
-		assertTrue(checkOutPage.verifySubTitle_FH(), "The page has diferens in the subtitle");
-		assertTrue(checkOutPage.verifyFirstName(), "The first name can not be filled");
-		assertTrue(checkOutPage.verifyMiddleName(), "The middle name has problems");
-		assertTrue(checkOutPage.verifyLastName(), "The last name has problems");
-		assertTrue(checkOutPage.verifyPhoneNumber(), "The phoneNumber has problems");
-		assertTrue(checkOutPage.verifyTickets_FH(), "The quantity of tickets is not the same");
+		assertThat(checkOutPage.getPageTitleCheckOutPage(), CoreMatchers.is("Travelocity: Payment"));
+		assertTrue(checkOutPage.verifySubTitleFlightHotel(), "The page has diferens in the subtitle");
+		assertThat(checkOutPage.getFirstName(name), CoreMatchers.is(name));
+		assertThat(checkOutPage.getMiddleName(middleName), CoreMatchers.is(middleName));
+		assertThat(checkOutPage.getLastName(lastName), CoreMatchers.is(lastName));
+		assertThat(checkOutPage.getPhoneNumber(phoneNumber), CoreMatchers.is(phoneNumber));
 
 	}
 

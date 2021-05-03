@@ -5,14 +5,11 @@ import static com.automation.training.utils.TestContext.CONTEXT;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-
 import com.automation.dto.FlightsDTO;
 import com.automation.dto.HotelDTO;
 import com.automation.training.utils.Logger;
@@ -20,9 +17,9 @@ import com.automation.training.utils.Logger;
 public class CheckOutPage extends BasePage {
 
 	@FindBy(xpath="h2[class='faceoff-module-title']")
-	private WebElement titulo;
+	private WebElement title;
 
-	@FindBy(xpath="//input[@id='firstname[0]']")
+	@FindBy(css="input[name$='firstName']")
 	private WebElement inputFirstName;
 
 	@FindBy(xpath="//p[@class='uitk-validation-error']")
@@ -34,16 +31,14 @@ public class CheckOutPage extends BasePage {
 	@FindBy(css="label[for='middlename[0]'] p")
 	private WebElement middleNameError;
 
-	@FindBy(xpath="//input[@id='lastname[0]']")
+	@FindBy(css="input[id='lastname[0]']")
 	private WebElement lastName;
 
 	@FindBy(css="label[for='lastname[0]'] p")
 	private WebElement LastNameError;
 
-	@FindBy(xpath="//input[@id='phone-number[0]']")
+	@FindBy(css="input[id='phone-number[0]'] , input[data-cko-rfrr-id='MCKO.CKO.Phone.NumberEntered']")
 	private WebElement phoneNumber;
-	
-	
 
 	@FindBy(css="label[for='phone-number[0]'] p")
 	private WebElement phoneNumberError;
@@ -51,110 +46,67 @@ public class CheckOutPage extends BasePage {
 	@FindBy(id="totalPriceForTrip")
 	private WebElement totalPriceTrip;
 
-	@FindBy(css="h2[class='faceoff-module-title']")
+	@FindBy(css="h2.faceoff-module-title")
 	private WebElement subtitle;
 
-	//-checkOut
 	@FindBy(css="div.product-content a[role='button']")
-	private List<WebElement> listaNombres;
+	private List<WebElement> listNames;
 
 	@FindBy(css="div.product-content div[class='date-info']")
-	private List<WebElement> listaFechas_FH;
+	private List<WebElement> listDates;
 
 	@FindBy(css="div.product-content div[class='location-info']")
-	private List<WebElement> listaFromTOFlight_FH;
+	private List<WebElement> listFromTOFlight;
 
 	@FindBy(css="span[data-price-update='tripTotal']")
-	private WebElement precioFinal_FH;
+	private WebElement finalPrice;
 
 	@FindBy(css="h2[class='title-main']")
 	private List<WebElement> listSubtitles;
 
-	@FindBy(css="div[class='product-description']")
-	private List<WebElement> listTicketsRooms;
-
+	@FindBy(id="secondary-content")
+	private WebElement sectionHotelInfo;
 
 	public CheckOutPage(WebDriver driver) {
 		super(driver);
+
 	}
 
-	// puede ser validacion de la informacion del vuelo q ya tengo los datos en contexto.
 
-	public boolean buscarSeccionVueloHotelInfo() {
-		
-		boolean r1= getDriver().findElement(By.cssSelector("aside#secondary-content")) == null?true:false;
-		return r1;
-	}
-	public boolean verifyTitle() {
-		Logger.printInfo("verificando el titulo");
 
-		String titu= getPageTitle();
-		System.out.println(titu);
-
-		if(getPageTitle().equalsIgnoreCase("Travelocity: Payment"))return true;
-		else return false;
+	public String getSubTitle() {
+		return getText(subtitle);
 	}
 
-	public boolean verifySubTitle() {
-		Logger.printInfo("verificando el subtitulo");
-		//		modalHandle();
 
-		boolean isPresent=elementoPresente(By.cssSelector("h2[class='faceoff-module-title']"));
+	public String getFirstName(String name) {
 
-		if(isPresent) {
-			String cc= getSubTitle(subtitle);
-			boolean result= (getSubTitle(subtitle).equalsIgnoreCase("Who's traveling?"))? true: false;
-			return result;
-		}
-		else return false;
+		inputFirstName.sendKeys(name);
+		Logger.printInfo("Text: "+ inputFirstName.getAttribute("value"));
+		return inputFirstName.getAttribute("value");
 	}
 
-	public boolean verifyFirstName() {
-		Logger.printInfo("verificando el nombre");
-		
-		inputFirstName.sendKeys("wilson");
-		boolean ispresent= (getDriver().findElements(By.cssSelector("p[class='uitk-validation-error']")).size()>0);// si encuentra elemento retorna true de lo contrario retorna false
-
-		System.out.println("var: "+ispresent);// si retorna false no encontro el error, esta bien
-
-		boolean fin = !ispresent?true:false; //siNO encontro el error entonces retorna true aqui
-		System.out.println(fin);
-		return fin;
+	public String getMiddleName(String mName) {
+		middleName.sendKeys(mName);
+		return middleName.getAttribute("value");
 	}
 
-	public boolean verifyMiddleName() {
-		middleName.sendKeys("Angel");
-
-		boolean isPresent= elementoPresente(By.cssSelector("input[id='middlename[0]']+p , input[data-cko-rfrr-id='MCKO.CKO.MIDDLENAME']+p[class='uitk-validation-error']"))?false:true; // si encuentra el mensaje de error retorno false
-		System.out.println(isPresent);// si retorna false aqui es encontro el mensaje de error
-		return isPresent;
+	public String getLastName(String lastNameP) {
+		lastName.sendKeys(lastNameP);
+		return lastName.getAttribute("value");
 	}
 
-	public boolean verifyLastName() {
-		lastName.sendKeys("lopez");
+	public String getPhoneNumber(String phoneNumberP) {
 
-		boolean isPresent= elementoPresente(By.cssSelector("input[id='lastname[0]']+p , input[data-cko-rfrr-id='MCKO.CKO.TRAVELER1LASTNAME']+p[class='uitk-validation-error']"))?false:true; // si encuentra el mensaje de error retorno false
-		System.out.println(isPresent);// si retorna false aqui es encontro el mensaje de error
-		return isPresent;
-	}
-
-	public boolean verifyPhoneNumber() {
-		
-		WebElement phoneNumber = getDriver().findElement(By.cssSelector("input[id='phone-number[0]'] , input[data-cko-rfrr-id='MCKO.CKO.Phone.NumberEntered']"));
-		phoneNumber.sendKeys("2345245344");
-	
-		boolean isPresent= elementoPresente(By.cssSelector("label[for='phone-number[0]'] p , input[data-cko-rfrr-id='MCKO.CKO.Phone.NumberEntered']+p[class='uitk-validation-error'] "))?false:true; // si encuentra el mensaje de error retorno false
-		System.out.println(isPresent);// si retorna false aqui es encontro el mensaje de error
-		return isPresent;
+		phoneNumber.sendKeys(phoneNumberP);
+		return phoneNumber.getAttribute("value");
 	}
 
 	public boolean verifyTotalPriceTrip() {
 
 		FlightsDTO FlyRet = CONTEXT.get("FlyRet");
-		boolean selecccionado = FlyRet.getFlightTotalPrice().equalsIgnoreCase(totalPriceTrip.getText())?true:false;
-
-		return selecccionado;
-
+		boolean bTotalPriceTrip = FlyRet.getFlightTotalPrice().equalsIgnoreCase(totalPriceTrip.getText())?true:false;
+		return bTotalPriceTrip;
 
 	}
 
@@ -163,142 +115,85 @@ public class CheckOutPage extends BasePage {
 		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("div[class='site-content cols-row cf']"), By.cssSelector("#secondary-content")));
 	}
 
-	public boolean verifyHotelName_FH(){
+	public boolean verifyHotelName(){
 
-		FlightsDTO fly = CONTEXT.get("fly");
 		HotelDTO hotel = CONTEXT.get("hotel");
+		List<String>names= listNames.stream().map(x-> x.getText()).collect(Collectors.toList());
+		boolean flag= hotel.getName().equalsIgnoreCase(names.get(1))?true:false;
 
-		List<String>nombres= listaNombres.stream().map(x-> x.getText()).collect(Collectors.toList());
-		String nom1= nombres.get(1);
-		boolean r1= hotel.getName().equalsIgnoreCase(nombres.get(1))?true:false;
-
-		return r1;
+		return flag;
 	}
 
-	public boolean verifyDatesHotel_FH() {
+	public boolean verifyDatesHotel() {
 
 		FlightsDTO flightExpectedDep = CONTEXT.get("FlyDep");
 		FlightsDTO flightExpectedRet = CONTEXT.get("FlyRet");
 
-		Boolean bandera1=false, bandera2=false , banderaGeneral=false;
+		WebElement listDatesForHotel = listDates.get(1);
+		String listDatesHotel= listDatesForHotel.getText();
 
+		String[] date = listDatesHotel.split("-");
 
-		List<String[]> fechas= listaFechas_FH.stream().map(x-> x.getText().split("-")).collect(Collectors.toList());
-		List<String> listadofechas = new ArrayList<>();
-		for (String[] f : fechas) {
+		String checkIn= date[0].trim();
+		String checkOut= date[1].trim();
 
-			String f1= f[0].trim();
-			System.out.println(f1);
-			String f2= f[1].trim();
-			System.out.println(f2);
-
-			listadofechas.add(f1);
-			listadofechas.add(f2);
-			break;
-
-		}
-
-		String ff1= flightExpectedDep.getFlightDateDeparture();
-
-		String f= listadofechas.get(0);
-
-		if(listadofechas.get(0).equalsIgnoreCase(flightExpectedDep.getFlightDateDeparture())) {
-			Logger.printInfo("Checkin date is equals with the users choice");
-			bandera1= true;
-		}
-		else { 
+		if(!checkIn.equalsIgnoreCase(flightExpectedDep.getFlightDateDeparture())) {
 			Logger.printInfo("Checkin date is not equals with the users choice");
-			bandera1=false;
+			return false;
 		}
 
-		String ff2= flightExpectedRet.getFlightDateDeparture();
-		if(listadofechas.get(1).equalsIgnoreCase(flightExpectedRet.getFlightDateDeparture())){
-			Logger.printInfo("Checkin date is equals with the users choice");
-			bandera2=true;
-		}
-		else {
+		if(!checkOut.equalsIgnoreCase(flightExpectedRet.getFlightDateDeparture())){
 			Logger.printInfo("Checkin date is not equals with the users choice");
-			bandera2=false;
+			return false;
 		}
 
-		if( !bandera1 && !bandera2) {
-			banderaGeneral=false;	
-		}
-		else banderaGeneral=true;
+		return true;
 
-		return banderaGeneral;
-
-
-		//				return true;
 	}
 
-	public boolean verifyDatesFlights_FH() {
+	public boolean verifyDatesFlights() {
 
 		FlightsDTO flightExpectedDep = CONTEXT.get("FlyDep");
 		FlightsDTO flightExpectedRet = CONTEXT.get("FlyRet");
 
-		Boolean bandera1=false, bandera2=false , banderaGeneral=false;
+		List<String[]> dates= listDates.stream().map(x-> x.getText().split("-")).collect(Collectors.toList());
 
+		List<String> listDates = new ArrayList<>();
+		for (String[] date : dates) {
 
-		List<String[]> fechas= listaFechas_FH.stream().map(x-> x.getText().split("-")).collect(Collectors.toList());
-		List<String> listadofechas = new ArrayList<>();
-		for (String[] f : fechas) {
+			String date1= date[0].trim();
+			String date2= date[1].trim();
 
-			String f1= f[0].trim();
-			String f2= f[1].trim();
-
-			listadofechas.add(f1);
-			listadofechas.add(f2);
+			listDates.add(date1);
+			listDates.add(date2);
 			break;
-
 		}
 
-		String ff1= flightExpectedDep.getFlightDateDeparture();
-
-		String f= listadofechas.get(0);
-
-		if(listadofechas.get(0).equalsIgnoreCase(flightExpectedDep.getFlightDateDeparture())) {
-			Logger.printInfo("Checkin date is equals with the users choice");
-			bandera1= true;
-		}
-		else { 
-			Logger.printInfo("Checkin date is not equals with the users choice");
-			bandera1=false;
+		if(!listDates.get(0).equalsIgnoreCase(flightExpectedDep.getFlightDateDeparture())) {
+			Logger.printInfo("The date for departure is not equals with the users choice");
+			return false;
 		}
 
-		String ff2= flightExpectedRet.getFlightDateDeparture();
-		if(listadofechas.get(1).equalsIgnoreCase(flightExpectedRet.getFlightDateDeparture())){
-			Logger.printInfo("Checkin date is equals with the users choice");
-			bandera2=true;
-		}
-		else {
-			Logger.printInfo("Checkin date is not equals with the users choice");
-			bandera2=false;
+		if(!listDates.get(1).equalsIgnoreCase(flightExpectedRet.getFlightDateDeparture())){
+			Logger.printInfo("The date date for returning is not equals with the users choice");
+			return false;
 		}
 
-		if( !bandera1 && !bandera2) {
-			banderaGeneral=false;	
-		}
-		else banderaGeneral=true;
-
-		return banderaGeneral;
-
+		return true;
 	}
 
-	public boolean verifyFromToFlight_FH() {
+	public boolean verifyFromToFlight() {
 
 
-		List<String[]> fechas= listaFromTOFlight_FH.stream().map(x-> x.getText().split(" to ")).collect(Collectors.toList());
-		List<String> listadofechas = new ArrayList<>();
-		for (String[] f : fechas) {
+		List<String[]> dates= listFromTOFlight.stream().map(x-> x.getText().split(" to ")).collect(Collectors.toList());
+		List<String> listDates = new ArrayList<>();
+		for (String[] f : dates) {
 
 			String f1= f[0].trim().replace(" (LAS)", "");
-			System.out.println(f1);
 			String f2= f[1].trim().replace(" (LAX)", "");
-			System.out.println(f2);
 
-			listadofechas.add(f1);
-			listadofechas.add(f2);
+			listDates.add(f1);
+			listDates.add(f2);
 			break;
 
 		}
@@ -306,56 +201,46 @@ public class CheckOutPage extends BasePage {
 
 		FlightsDTO fly = CONTEXT.get("fly");
 
-		Boolean bandera5=false,  bandera6=false, banderaGeneral=false;
+		Boolean flagDatesFrom=false,  flagDatesTo=false;
 
-		String flyFromCntx= fly.getFlightFrom().substring(0,9);
-		if(listadofechas.get(0).equalsIgnoreCase(fly.getFlightFrom().substring(0,9))){
+		if(listDates.get(0).equalsIgnoreCase(fly.getFlightFrom().substring(0,9))){
 			Logger.printInfo("Place to beging DepartureThe choise is the same with the user fill at the begining of the process");
-			bandera5=true;
+			flagDatesFrom=true;
 		}
-		else bandera5=false;
-		//-
+		else flagDatesFrom=false;
 
-		String flyfrom= fly.getFlightTo().substring(0,11);
-		String a= listadofechas.get(1);
-
-		if(listadofechas.get(1).equalsIgnoreCase(fly.getFlightTo().substring(0,11))){
+		if(listDates.get(1).equalsIgnoreCase(fly.getFlightTo().substring(0,11))){
 			Logger.printInfo("place to begind return The choise is the same with the user fill at the begining of the process");
-			bandera6=true;
+			flagDatesTo=true;
 		}
-		else bandera6=false;
+		else flagDatesTo=false;
 
-		boolean r1= !bandera5 && !bandera6?false:true;
+		boolean flagDates= !flagDatesFrom && !flagDatesTo?false:true;
 
-		return r1;
+		return flagDates;
 
 	}
 
-	public boolean verifyPrecioFinal_FH() {
+	public boolean verifyFinalPriceFH() {
 
 		HotelDTO hotel = CONTEXT.get("hotel");
-		boolean r1= hotel.getValue().equalsIgnoreCase(precioFinal_FH.getText())?true:false;
-
-		return r1;
+		boolean flagPrice= hotel.getValue().equalsIgnoreCase(finalPrice.getText())?true:false;
+		return flagPrice;
 	}
 
-	public boolean verifySubTitle_FH() {
+	public boolean verifySubTitleFlightHotel() {
 
 		String subTitle= listSubtitles.stream().findFirst().get().getText();
-		boolean r1= subTitle.equalsIgnoreCase("Who's flying?")?true:false;
-		return r1;
+		boolean flag= subTitle.equalsIgnoreCase("Who's flying?")?true:false;
+		return flag;
 
 	}
+	
+		public String getPageTitleCheckOutPage() {
+			
+			return getPageTitle();
+		}
 
-	public boolean verifyTickets_FH() {
 
-		HotelDTO hotel = CONTEXT.get("hotel");
-
-		String a= listTicketsRooms.get(0).getText().substring(0,1);
-		System.out.println(a);
-		boolean r1 = hotel.getQuantityAdults().equalsIgnoreCase(listTicketsRooms.get(0).getText().substring(0,1))?true:false;
-
-		return r1;
-	}
 
 }

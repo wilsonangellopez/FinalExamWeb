@@ -1,6 +1,6 @@
 package com.automation.dto;
 
-public class CruceroDTO {
+public class CruiseDTO {
 	
 	
 	private String name;
@@ -10,11 +10,11 @@ public class CruceroDTO {
 	private String from;
 	private String to;
 	
-	public CruceroDTO() {
+	public CruiseDTO() {
 		
 	}
 	
-	public CruceroDTO(String name, String value, String dateDeparture, String dateReturning, String from, String to) {
+	public CruiseDTO(String name, String value, String dateDeparture, String dateReturning, String from, String to) {
 		this.name = name;
 		this.value = value;
 		this.dateDeparture = dateDeparture;

@@ -4,31 +4,37 @@ import java.time.LocalDate;
 
 public class FlightsDTO {
 	
-	private String flightFrom; //lax
-	private String flightTo;   //las
+	private String flightFrom; 
+	private String flightTo;   
 	
-	private String flightTimeInitDeparture; //5:25pm
-	private String flightTimeEndDeparture;// 6:35pm
+	private String flyFrom;
+	private String flyTo;
 	
-	private String flightDateDeparture; //Thu, Apr 16
-	private String flightDurationTotalDeparture; // 1h11m
+	private String flightTimeInitDeparture; 
+	private String flightTimeEndDeparture;
 	
-	private String flightTimeInitReturn; // 5:57pm 
-	private String flightTimeEndReturn; // 9:32pm
+	private String flightDateDeparture; 
+	private String flightDurationTotalDeparture; 
 	
-	private String flightDateReturn; // Wed, Jun 3
-	private String flightDurationTotalReturn; //3h 35m 
+	private String flightTimeInitReturn;  
+	private String flightTimeEndReturn; 
+	
+	private String flightDateReturn; 
+	private String flightDurationTotalReturn;  
 	
 	private String flightTotalPrice;
 	
-	private LocalDate flightDateDep_FH;
-	private LocalDate flightDateRet_FH;
+	private LocalDate flightDateDep;
+	private LocalDate flightDateRet;
 	
 
-	public FlightsDTO(String flightFrom, String flightTo, String flightTimeInitDeparture, String flightTimeEndDeparture,
-			String flightDateDeparture, String flightDurationTotalDeparture, String flightTimeInitReturn,
-			String flightTimeEndReturn, String flightDateReturn, String flightDurationTotalReturn, String flightTotalPrice,
-			LocalDate flightDateDep_FH, LocalDate flightDateRet_FH) {
+	public FlightsDTO(String flightFrom, String flightTo, String flightTimeInitDeparture,
+			String flightTimeEndDeparture, String flightDateDeparture,
+			String flightDurationTotalDeparture, String flightTimeInitReturn,
+			String flightTimeEndReturn, String flightDateReturn,
+			String flightDurationTotalReturn, String flightTotalPrice,
+			LocalDate flightDateDep, LocalDate flightDateRet,
+			String flyFrom, String flyTo ) {
 		
 		this.flightFrom = flightFrom;
 		this.flightTo = flightTo;
@@ -41,8 +47,10 @@ public class FlightsDTO {
 		this.flightDateReturn = flightDateReturn;
 		this.flightDurationTotalReturn = flightDurationTotalReturn;
 		this.flightTotalPrice = flightTotalPrice;
-		this.flightDateDep_FH= flightDateDep_FH;
-		this.flightDateRet_FH = flightDateRet_FH;
+		this.flightDateDep= flightDateDep;
+		this.flightDateRet = flightDateRet;
+		this.flyFrom = flyFrom;
+		this.flyTo= flyTo;
 	}
 	
 
@@ -141,22 +149,42 @@ public class FlightsDTO {
 
 
 	public LocalDate getFlightDateDep_FH() {
-		return flightDateDep_FH;
+		return flightDateDep;
 	}
 
 
 	public void setFlightDateDep_FH(LocalDate flightDateDep_FH) {
-		this.flightDateDep_FH = flightDateDep_FH;
+		this.flightDateDep = flightDateDep_FH;
 	}
 
 
-	public LocalDate getFlightDateRet_FH() {
-		return flightDateRet_FH;
+	public LocalDate getFlightDateRet() {
+		return flightDateRet;
 	}
 
 
-	public void setFlightDateRet_FH(LocalDate flightDateRet_FH) {
-		this.flightDateRet_FH = flightDateRet_FH;
+	public void setFlightDateRet(LocalDate flightDateRet) {
+		this.flightDateRet = flightDateRet;
+	}
+
+
+	public String getFlyFrom() {
+		return flyFrom;
+	}
+
+
+	public void setFlyFrom(String flyFrom) {
+		this.flyFrom = flyFrom;
+	}
+
+
+	public String getFlyTo() {
+		return flyTo;
+	}
+
+
+	public void setFlyTo(String flyTo) {
+		this.flyTo = flyTo;
 	}
 
 }

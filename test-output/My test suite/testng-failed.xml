@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [My test suite]">
+  <parameter name="lastName" value="Lopez"/>
+  <parameter name="phoneNumber" value="3174253892"/>
+  <parameter name="thirdResult" value="1"/>
   <parameter name="browser" value="chrome"/>
-  <test name="First test(failed)">
+  <parameter name="name" value="Wilson"/>
+  <parameter name="firstResult" value="1"/>
+  <parameter name="from" value="LAS"/>
+  <parameter name="middleName" value="Angel"/>
+  <parameter name="to" value="LAX"/>
+  <test name="Travelocity tests(failed)">
     <classes>
-      <class name="com.automation.training.tests.TravelocityTestsTwo">
+      <class name="com.automation.training.tests.TravelocityTestsFive">
         <methods>
           <include name="beforeSuite"/>
           <include name="afterSuite"/>
           <include name="testTravelocity"/>
         </methods>
-      </class> <!-- com.automation.training.tests.TravelocityTestsTwo -->
+      </class> <!-- com.automation.training.tests.TravelocityTestsFive -->
     </classes>
-  </test> <!-- First test(failed) -->
+  </test> <!-- Travelocity tests(failed) -->
 </suite> <!-- Failed suite [My test suite] -->

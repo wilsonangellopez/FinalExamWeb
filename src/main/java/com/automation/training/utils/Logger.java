@@ -16,12 +16,15 @@ import org.testng.Reporter;
  */
 public class Logger {
 
-	//	private static final String DATEPATTERN = "MM-dd-yyyy HH:mm:ss ZZ";
 	private static final String LOGTEMPLATE = "[%s %s] %s";
 
+	/**
+	 * Update formatted dates 
+	 * @param N/A
+	 * @author wilson.angel | Globant
+	 */
 
-
-	public static String fechaActual() {
+	public static String getDateFormat() {
 
 		LocalDate fecha = LocalDate.now();
 		String sbFecha = fecha.toString();
@@ -40,8 +43,7 @@ public class Logger {
 	public static void printInfo(String message){
 
 
-		String logMessage = String.format(LOGTEMPLATE,"INFO",fechaActual(),message);
-		//		String logMessage = String.format(LOGTEMPLATE,"INFO",DateTime.now().toString(DATEPATTERN),message);
+		String logMessage = String.format(LOGTEMPLATE,"INFO",getDateFormat(),message);
 		Reporter.log(logMessage,true);	
 	}
 
@@ -52,7 +54,7 @@ public class Logger {
 	 */	
 
 	public static void printDebug(String message){
-		String logMessage = String.format(LOGTEMPLATE,"DEBUG",fechaActual(),message);
+		String logMessage = String.format(LOGTEMPLATE,"DEBUG",getDateFormat(),message);
 		Reporter.log(logMessage,true);	
 	}
 
@@ -63,7 +65,7 @@ public class Logger {
 	 */
 
 	public static void printError(String message) {
-		String logMessage = String.format(LOGTEMPLATE,"ERROR",fechaActual(),message);
+		String logMessage = String.format(LOGTEMPLATE,"ERROR",getDateFormat(),message);
 		Reporter.log(logMessage,true);	
 
 	}
@@ -75,7 +77,7 @@ public class Logger {
 	 */
 
 	public static void printWarning(String message) {
-		String logMessage = String.format(LOGTEMPLATE,"WARNING",fechaActual(),message);
+		String logMessage = String.format(LOGTEMPLATE,"WARNING",getDateFormat(),message);
 		Reporter.log(logMessage,true);	
 	}
 }

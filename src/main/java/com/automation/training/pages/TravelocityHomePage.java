@@ -1,13 +1,13 @@
 package com.automation.training.pages;
 
+import static com.automation.training.utils.TestContext.CONTEXT;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
-import java.util.stream.Stream;
+import java.time.*;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -20,9 +20,6 @@ import org.openqa.selenium.support.ui.Select;
 import com.automation.dto.FlightsDTO;
 import com.automation.dto.HotelDTO;
 import com.automation.training.utils.Logger;
-import com.google.inject.Key;
-import net.bytebuddy.asm.Advice.Return; 
-import static com.automation.training.utils.TestContext.CONTEXT;
 
 public class TravelocityHomePage extends BasePage {
 
@@ -31,11 +28,39 @@ public class TravelocityHomePage extends BasePage {
 		driver.get("https://www.travelocity.com/");
 	}
 
-	@FindBy(id="tab-flight-tab-hp")
+	@FindBy(css="a[aria-controls*='flight']")
 	private WebElement btnFlights;
 
 	@FindBy(id="tab-hotel-tab-hp")
 	private WebElement btnHotel;
+
+	@FindBy(css="button[aria-label*='Leaving from']")
+	private WebElement inputLeavingFrom;
+
+	@FindBy(id="location-field-leg1-origin")
+	private WebElement inputLeavingTxt;
+
+	@FindBy(css="button[aria-label='Going to']")
+	private WebElement inputGoingTo;
+
+	@FindBy(css="div[data-stid*='origin'] li[data-index='0'] button")
+	private WebElement inputLeavingToSelect;
+
+	@FindBy(id="location-field-leg1-destination")
+	private WebElement inputGoingToTxt;
+
+	@FindBy(css="div[data-stid*='destination'] li[data-index='0'] button")
+	private WebElement inputGoingToSelect;
+
+	@FindBy(css="button[data-stid='apply-date-picker'] >span")
+	private WebElement btnDoneCalendar;
+	
+	@FindBy(css="button[data-testid='submit-button']")
+	private WebElement btnSearch;
+	
+
+
+	//---
 
 	@FindBy(css="#tab-package-tab-hp")
 	private WebElement btnVacationPackages;
@@ -43,68 +68,59 @@ public class TravelocityHomePage extends BasePage {
 	@FindBy(css="#fh-fh-hp-package")
 	private WebElement RbnFlightHotel;
 
-	@FindBy(xpath="//label[@id='flight-type-roundtrip-label-hp-flight']")
+	@FindBy(css="a[aria-controls*='roundtrip']")
 	private WebElement btnRoundtrip;
 
-	@FindBy(css="#package-origin-hp-package")
-	private WebElement inputFlyingFrom_FH;
+	@FindBy(css="button.btn-primary.btn-action.gcw-submit")
+	private List<WebElement> listBtnSearchFly;
 
-	@FindBy(css="#package-destination-hp-package")
-	private WebElement inputFlyingTo_FH;
+	//	@FindBy(id="flight-departing-hp-flight") //d1-btn
+	@FindBy(id="d1-btn") //
+	private WebElement inputCalendardDeptFlight;
 
-	@FindBy(id="flight-departing-hp-flight")
-	private WebElement inputCalendarDeparture;
+	@FindBy(id="flight-returning-hp-flight")
+	private WebElement inputCalendarRetFlight;
 
-	@FindBy(css="#package-departing-hp-package")
-	private WebElement inputCalDep_FH;
-
-	@FindBy(css="input#package-departing-hp-package")
-	private WebElement inputCalDep_E;
+	@FindBy(id="package-departing-hp-package")
+	private WebElement inputCalendarDepFlightHotel;
 
 	@FindBy(id="package-returning-hp-package")
-	private WebElement inputCalRet_FH;
+	private WebElement inputCalendarRetFlightHotel;
 
-	@FindBy(xpath="//input[@id='flight-returning-hp-flight']")
-	private WebElement inputCalendarReturning;
-
-	@FindBy(css="div[class='datepicker-cal-month']")
+	@FindBy(className="datepicker-cal-month")
 	private WebElement calendarioDiv;
 
-	@FindBy(xpath="//button[contains(@class,'datepicker-next btn')]")
+	@FindBy(css="button[data-stid='date-picker-paging']:nth-child(2)")
 	private WebElement btnNextCalendar;
 
-	@FindBy(xpath="//button[contains(@class,'datepicker-paging datepicker-prev btn-paging btn-secondary prev')]")
-	private WebElement btnBackCalendar;
-
-	@FindBy(xpath="//caption[@class=\"datepicker-cal-month-header\"]")
+	@FindBy(css="caption.datepicker-cal-month-header")
 	private WebElement MesesCalendar;
 
-	@FindBy(xpath="//button[@class='btn-primary btn-action gcw-submit ' and span[contains(text(),'Search')]]")
-	private WebElement btnSearch;
-
 	@FindBy(id="search-button-hp-package")
-	private WebElement btnSearch_FH;
+	private WebElement btnSearchFH;
 
 	@FindBy(id="package-rooms-hp-package")
-	private WebElement drpRooms2;
-	//-3
-	@FindBy(id="hotel-destination-hp-hotel")
-	private WebElement inputGoingTo;
+	private WebElement drpRoomsFlightHotel;
+
+	@FindBy(id="hotel-rooms-hp-hotel")
+	private WebElement drpRoomsHotel;
+
+
 
 	@FindBy(id="hotel-checkin-hp-hotel")
-	private WebElement inputCheckIn_H;
+	private WebElement inputCheckInHotel;
 
 	@FindBy(id="hotel-checkout-hp-hotel")
-	private WebElement inputCheckOut_H;
+	private WebElement inputCheckOutHotel;
 
 	@FindBy(id="package-checkin-hp-package")
-	private WebElement inputCheckIn_E;
+	private WebElement inputCheckInHotelPartial;
 
 	@FindBy(id="package-checkout-hp-package")
-	private WebElement inputCheckOut_E;
+	private WebElement inputCheckOutHotelPartial;
 
 	@FindBy(css="#partialHotelBooking-hp-package")
-	private WebElement chkBtnHotelPartofStay;
+	private WebElement chkBtnHotelPartOfStay;
 
 	@FindBy(id="tab-cruise-tab-hp")
 	private WebElement btnCruises;
@@ -118,16 +134,21 @@ public class TravelocityHomePage extends BasePage {
 	@FindBy(id="cruise-end-date-hp-cruise")
 	private WebElement inputCruiseLate;
 
-	@FindBy(id="cruise-adults-hp-cruise")
-	private WebElement drpQuantityPersonas_c;
+	@FindBy(css="section#WizardHero")
+	private WebElement frame;
 
-	@FindBy(css="div[class='datepicker-cal-month'] button[class='datepicker-cal-date']")
-	private List<WebElement> listaBotonesCalendario;
+	@FindBy(css="button[class*='new-date-picker-day']")
+	private List<WebElement> listBtnsCalendar;
+
+	@FindBy(css="a.error-link")
+	private List<WebElement>errorLink;
+
+	@FindBy(css="div[class='cols-nested'] label button[class='btn-primary btn-action gcw-submit '][data-gcw-change-submit-text='Search']")
+	private List<WebElement> listBtnSearchHotel;
 
 	public void clickFlights() {
 
-		Logger.printInfo("click en fligts");
-
+		Logger.printInfo("click in fligts");
 		getWait().until(ExpectedConditions.elementToBeClickable(btnFlights));
 		btnFlights.click();
 
@@ -135,789 +156,450 @@ public class TravelocityHomePage extends BasePage {
 
 	public boolean verifyPageOpen() {
 
-		boolean ispresent= elementoPresente(By.cssSelector("#fh-fh-hp-package")) != false && 
-				elementoPresente(By.cssSelector("#fh-fh-hp-package"))!=false?true:false;
-
+		boolean ispresent= isPresent(RbnFlightHotel)!=null?true:false;
 		return ispresent;
-
 	}
 
 	public boolean clickVacationPackages() {
 
-		boolean isPresentBtn = elementoPresente(By.cssSelector("#tab-package-tab-hp"));
-		if(isPresentBtn) {
+		if(isPresent(btnVacationPackages)!=null) {
 			getWait().until(ExpectedConditions.elementToBeClickable(btnVacationPackages));
 			btnVacationPackages.click();	
 
-			boolean isPresent = elementoPresente(By.cssSelector("#fh-fh-hp-package"));
-			WebElement btnFlightHotel = getDriver().findElement(By.cssSelector("#fh-fh-hp-package"));
-			if(!btnFlightHotel.isSelected()){
-				btnFlightHotel.click();
+			if(!RbnFlightHotel.isSelected()){
+				RbnFlightHotel.click();
 				return true;
 			}
-			else return true;
+			else {
+				return true;
+			}
 		}
 		return false;
-
 	}
 
 	public void clickRoundTrip() {
-		Logger.printInfo("click en RoundTrip");
-		String sb = isPresent(btnRoundtrip).getText().toString();
-		if(sb!=null)click(btnRoundtrip);
-	}
 
-	public WebElement buscarElemento(String par) {
-
-
-		switch (par) {
-		case "Flying from FH":
-
-			par= "Flying from";
-
-			Logger.printInfo("buscando elemento con texto: " + par);
-
-			By locator = By.xpath(String.format("//span[text()=\"%s\"]//following-sibling::input[@aria-autocomplete='list' and not(contains(@class,'disabled')) ]", par));
-			List<WebElement> list = getDriver().findElements(locator);
-			WebElement e= list.get(3);
-			Logger.printInfo("Se encontro el WebElement: " + e.toString());
-
-			return e;
-
-		case "Flying to FH":
-
-			par= "Flying to";
-
-			Logger.printInfo("buscando elemento con texto: " + par);
-
-			By locatorTo = By.xpath(String.format("//span[text()=\"%s\"]//following-sibling::input[@aria-autocomplete='list' and not(contains(@class,'disabled')) ]", par));
-			List<WebElement> myList = getDriver().findElements(locatorTo);
-			WebElement elemento= myList.get(2);
-			Logger.printInfo("Se encontro el WebElement: " + elemento.toString());
-
-			return elemento;
-
-
-		default:
-			break;
+		Logger.printInfo("click in RoundTrip");
+		if(isPresent(btnRoundtrip).getText().toString().equalsIgnoreCase("RoundTrip")){
+			click(btnRoundtrip);	
 		}
 
-
-		Logger.printInfo("buscando elemento con texto: " + par);
-
-		By locator = By.xpath(String.format("//span[text()=\"%s\"]//following-sibling::input[@aria-autocomplete='list' and not(contains(@class,'disabled')) ]", par));
-		List<WebElement> list = getDriver().findElements(locator);
-		Optional<WebElement> e = list.stream().findFirst();
-		Logger.printInfo("Se encontro el WebElement: " + e.toString());
-
-		return e.get();
-
 	}
 
-	public void crearObjetoContext(String param) {
+	private void createObjetContext(String text, String destination) {
 
 		FlightsDTO fly = new FlightsDTO();
 
-		switch (param) {
-
-		case "Las Vegas, NV (LAS-McCarran Intl.)":
-
-			fly.setFlightFrom(param);
-			CONTEXT.set("fly", fly);
-			break;
-
-		case "Los Angeles, California":
-
-			fly = CONTEXT.get("fly"); 
-			fly.setFlightTo(param);
-			CONTEXT.set("fly", fly);
-			break;
-		}
+		fly = CONTEXT.get("fly"); 
+		fly.setFlightTo(text);
+		fly.setFlyTo(destination);
+		CONTEXT.set("fly", fly);
 	}
 
-	//aqui se le puede enviar una cadena para saber si es from o to
-	public void seleccionarFromAndTo(WebElement e, String sb) {
 
-		Logger.printInfo("En el metodo de seleccionar: " + sb );
 
-		if(isPresent(e).getClass()!=null) {
-			click(e);
-			Logger.printInfo("click en el input" + e.getAttribute("class").toString());	
-		}
+	//	private void createObjetContext(String param, String fromTo) {
+	//
+	//		FlightsDTO fly = new FlightsDTO();
+	//
+	//		switch (param) {
+	//
+	//		case "Las Vegas, NV (LAS-McCarran Intl.)":
+	//
+	//			fly.setFlightFrom(param);
+	//			fly.setFlyFrom(fromTo);
+	//			CONTEXT.set("fly", fly);
+	//			break;
+	//
+	//		case "Los Angeles, California":
+	//
+	//			fly = CONTEXT.get("fly"); 
+	//			fly.setFlightTo(param);
+	//			fly.setFlyTo(fromTo);
+	//			CONTEXT.set("fly", fly);
+	//			break;
+	//		}
+	//	}
 
-		switch (sb) {
-		case "LAS":
-
-			String from= "Las Vegas, NV (LAS-McCarran Intl.)";
-			escribir(e, from);
-			darEnter(e);	
-			crearObjetoContext(from);
-			break;
-
-		case "LAX":
-
-			String to="Los Angeles, California";
-			//			String to="Australia Square, Sydney, New South Wales, Australia";
-			escribir(e, to);
-			darEnter(e);
-			crearObjetoContext(to);
-			break;
-
-		}
+	public void writeGeneric() {
 
 
 	}
 
-	public void seleccionarDepartureDate(String depRet) {
+	public void selectFromAndTo(String text) {
+
+		if(text.equalsIgnoreCase("LAS")) {
+
+			click(inputLeavingFrom);
+			click(inputLeavingTxt);
+			writing(inputLeavingTxt, text);
+			click(inputLeavingToSelect);
+		}
+
+
+		if(text.equalsIgnoreCase("LAX")) {
+			click(inputGoingTo);
+			click(inputGoingToTxt);
+			writing(inputGoingToTxt, text);
+			click(inputGoingToSelect);
+		}
+
+
+		// aqui buscar el elemento  para quitar el metodo findElementByText
+		//		WebElement element = findElementByText(text);
+
+
+		/*if(isPresent(element).getClass()!=null) {
+			click(element);
+			Logger.printInfo("click in input" + element.getAttribute("class").toString());	
+		}
+
+		writing(element, destination);
+		pressEnter(element);
+		createObjetContext(text, destination);*/
+
+
+		// borrar esto
+
+		//		switch (fromTo) {
+		//		case "LAS":
+		//
+		//			String from= "Las Vegas, NV (LAS-McCarran Intl.)";
+		//			writing(element, from);
+		//			pressEnter(element);	
+		//			createObjetContext(from, fromTo );
+		//			break;
+		//
+		//		case "LAX":
+		//
+		//			String to="Los Angeles, California";
+		//			writing(element, to);
+		//			pressEnter(element);
+		//			createObjetContext(to, fromTo);
+		//			break;
+		//
+		//		}
+
+	}
+
+	public void selectDateForFlight(String option, int monthFly) {
+
+		if(option.equalsIgnoreCase("Departure")) {
+			
+			Logger.printInfo("Opcion enviada: " + option);
+
+			click(inputCalendardDeptFlight);
+			clickingNextBtnCalendar(btnNextCalendar);
+			clickFutureDate(getFutureDate(monthFly));
+		}
+		if(option.equalsIgnoreCase("Return")) {
+			
+			clickingNextBtnCalendar(btnNextCalendar);
+			clickFutureDate(getFutureDate(monthFly));
+		}
+
+
+
+
+		// clikar sobre el selector q se debe armar con la fecha futura
+
+		//calcular la fecha de regreso 
+		//clickar sobre el selector q se acaba de armar con la fecha futura
+
+		//selectDateBetter(inputCalendardDeptFlight, inputCalendarRetFlight, true, monthFly );
+	}
+	
+	public void clickDoneBtnInCalendar() {
+		click(btnDoneCalendar);
+	}
+
+	private void clickFutureDate(String futureDate) {
+
+		String elementDateFuture = "button[aria-label='" + futureDate + "']";
+
+
+		try {
+			clickByElementJS(getDriver(), elementDateFuture);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void clickingNextBtnCalendar(WebElement element) {
+
+		click(element);
+	}
+
+	public void selectDayForFlightHotel() {
+
+		selectDateBetter(inputCalendarDepFlightHotel, inputCalendarRetFlightHotel, false, 20L );
+	}
+
+	public void selectDayForHotel() {
+
+		selectDateBetter(inputCheckInHotel, inputCheckOutHotel, false, 13L );
+	}
+
+	public void selectDayForFlightPartial() {
+
+		selectDateBetter(inputCalendarDepFlightHotel, inputCalendarRetFlightHotel, true, 2L );
+	}
+
+	public void selectDayForHotelPartial() {
+
+		writeInCalendarDirectPartial(inputCheckInHotelPartial, inputCheckOutHotelPartial, 1L );
+	}
+
+	public void selectDayForCruise() {
+
+		selectDateBetter(inputCruiseDepartureEarly, inputCruiseLate, true, 3L );
+	}
+
+	public void selectDateBetter(WebElement inputCalendarDeparture, WebElement inputCalendarReturn, boolean isMonth, Long quantity) {
+
+		String dateFuture = getFutureDate(quantity);
+		click(webElement);
+
+
+
+		selectDate(inputCalendarDeparture, date);
+		setDateInContext(date, true);
+
+		if(isMonth) {
+			date = date.plusMonths(quantity);
+		}
+		else {
+			date=date.plusDays(quantity);
+		}
+
+		selectDate(inputCalendarReturn, date);
+		setDateInContext(date, false);
+	}
+
+	/**
+	 * @param quantity
+	 * @return
+	 */
+	public String getFutureDate(int quantity) {
+
+		String departureDate ="";
+		LocalDate date = LocalDate.now();
+		date = date.plusMonths(quantity);
+		int futureDay = date.getDayOfMonth();
+		String monthArray[]= {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+		int indxMonth = date.getMonthValue()-1;
+		String strMonthSelected = monthArray[indxMonth];
+		int futureYear = date.getYear();
+
+		departureDate = strMonthSelected + " " + futureDay + ", " + futureYear;
+
+		System.out.println("cual es la fecha generada: " + departureDate);
+
+		return departureDate ;
+	}
+
+	private boolean writeInCalendarDirect(WebElement inputCalendar, LocalDate date) {
+
+		if( !btnNextCalendar.isDisplayed() ) {
+			String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
+			inputCalendar.sendKeys(del + date.getMonthValue()+ "/" + date.getDayOfMonth()+ "/" + date.getYear());
+			pressEscape(inputCalendar);
+			return false;
+		}
+		return true;
+	}
+
+	private void writeInCalendarDirectPartial(WebElement inputCalendar, WebElement inputCalendarReturn, Long quantity) {
+
+		LocalDate date = LocalDate.now();
+		date = date.plusMonths(4L);
+
+		String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
+		inputCalendar.sendKeys(del + date.getMonthValue()+ "/" + date.getDayOfMonth()+ "/" + date.getYear());
+		pressEscape(inputCalendar);
+
+		date = date.plusMonths(quantity);
+		del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
+		inputCalendarReturn.sendKeys(del + date.getMonthValue()+ "/" + date.getDayOfMonth()+ "/" + date.getYear());
+		pressEscape(inputCalendarReturn);
+
+	}
+
+	public void setDateInContext(LocalDate date, boolean isDeparture) {
 
 		FlightsDTO fly = new FlightsDTO();
 
-		LocalDate fechaFutura;
-		LocalDate fechaYa= LocalDate.now();
-		final int diaYa= fechaYa.getDayOfMonth();
-		int ianio;
+		String monthText= date.getMonth().getDisplayName(TextStyle.FULL, new Locale("en", "En"));
+		monthText= monthText.substring(0, 3);
+		String dateMonthDay= monthText+ " " + date.getDayOfMonth(); 
+
+		if(isDeparture) {
+
+			fly.setFlightDateDeparture(dateMonthDay);
+			CONTEXT.set("flyDepFH", fly);
+		}else {
+
+			fly = CONTEXT.get("flyDepFH"); 
+			fly.setFlightDateReturn(dateMonthDay);
+			CONTEXT.set("flyDepFH", fly);
+
+		}
+
+	}
+
+	private void selectDate(WebElement inputCalendar, LocalDate date) {
 
 
-		switch (depRet) {
-
-		case "Departure":
-
-			Logger.printInfo("Selecionando el calendario en: "+ depRet);
-
-			if(inputCalendarDeparture.isDisplayed()) inputCalendarDeparture.click();
-
-			fechaFutura = calcularFecha2(depRet);
-			Month mesFuturo = fechaFutura.getMonth();
-
-			final int idiaFuturo= fechaFutura.getDayOfMonth();
-			final int imesFuturoEnCalendario= fechaFutura.getMonthValue()-1;
-			ianio= fechaFutura.getYear();
 
 
-			if(isPresent(calendarioDiv)!=null && calendarioDiv.isDisplayed() ) {
+		/*boolean isBtnNextVisible=false;
 
-				boolean isPresent= elementoPresente(By.xpath("//button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']"));
+		if(isPresent(inputCalendar)!=null && inputCalendar.isDisplayed() ) {
 
-				List<WebElement> listaBtnDias = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				String mesDeListaBtnDias=listaBtnDias.stream()					
-						.filter(x-> diaYa == Integer.parseInt(x.getAttribute("data-day")))
-						.findFirst().get().getAttribute("data-month").toString();
-
-				int mesActual= Integer.parseInt(mesDeListaBtnDias);
-
-				if(!isPresent) {
-					String b = Keys.BACK_SPACE.toString();
-					String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
-					inputCheckOut_H.sendKeys(del + mesFuturo + "/" + idiaFuturo + "/" + ianio);
-
-					break;
-				}
-
-				while (imesFuturoEnCalendario>mesActual) {
-
-					mesActual=obtenerMes(imesFuturoEnCalendario);
-				}
-
-				listaBotonesCalendario.stream()					
-				.filter(x-> idiaFuturo == Integer.parseInt(x.getAttribute("data-day")))
-				.filter(x-> imesFuturoEnCalendario ==Integer.parseInt(x.getAttribute("data-month")))
-				.findFirst().get().click();
-				break;
-			}
-
-		case "Returning":
-
-			Logger.printInfo("Selecionando el calendario en: "+ depRet);
-
-			if(inputCalendarReturning.isDisplayed()) inputCalendarReturning.click();
-
-			fechaFutura = calcularFecha2(depRet);
-			mesFuturo = fechaFutura.getMonth();
-
-			int idiaFuturo2= fechaFutura.getDayOfMonth();
-			int imesFuturoEnCalendario2= fechaFutura.getMonthValue()-1;
-			ianio= fechaFutura.getYear();
-
+			inputCalendar.click();
 
 			if(isPresent(calendarioDiv)!=null && calendarioDiv.isDisplayed() ) {
 
-				boolean isPresent= elementoPresente(By.xpath("//button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']"));
+				isBtnNextVisible=writeInCalendarDirect(inputCalendar, date);
 
-				List<WebElement> listaBtnDias = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
+				if(isBtnNextVisible) {
 
-				String mesDeListaBtnDias=listaBtnDias.stream()					
-						.filter(x-> diaYa == Integer.parseInt(x.getAttribute("data-day")))
-						.findFirst().get().getAttribute("data-month").toString();
+					String yearFromList= listBtnsCalendar.stream()					
+							.filter(x-> date.getDayOfMonth() == Integer.parseInt(x.getAttribute("data-day")))
+							.findFirst().get().getAttribute("data-year").toString();
 
-				int mesActual= Integer.parseInt(mesDeListaBtnDias);
+					int currentYearInCalendar= Integer.parseInt(yearFromList);
 
-				if(!isPresent) {
-					String b = Keys.BACK_SPACE.toString();
-					String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
-					inputCheckOut_H.sendKeys(del + mesFuturo + "/" + idiaFuturo2 + "/" + ianio);
+					while (date.getYear()>currentYearInCalendar) {
 
-					break;
-				}
-
-				while (imesFuturoEnCalendario2>mesActual) {
-
-					mesActual=obtenerMes(imesFuturoEnCalendario2);
-				}
-
-				listaBotonesCalendario.stream()					
-				.filter(x-> idiaFuturo2 == Integer.parseInt(x.getAttribute("data-day")))
-				.filter(x-> imesFuturoEnCalendario2 ==Integer.parseInt(x.getAttribute("data-month")))
-				.findFirst().get().click();
-				break;
-
-			}
-
-
-		case "Departure2":
-
-
-			if(inputCalDep_FH.isDisplayed()) inputCalDep_FH.click();
-
-			LocalDate fechaFuturaDep = calcularFecha2("Departure2");
-
-			Month mesDepIng = fechaFuturaDep.getMonth();
-			String mesSBDepIng= mesDepIng.getDisplayName(TextStyle.FULL, new Locale("en", "En"));
-			mesSBDepIng= mesSBDepIng.substring(0, 3);
-			int idiasDep= fechaFuturaDep.getDayOfMonth();
-			ianio= fechaFuturaDep.getYear();
-
-			String dateDep_FH= mesSBDepIng+ " " + idiasDep; 
-
-			fly.setFlightDateDeparture(dateDep_FH);
-			CONTEXT.set("flyDep_FH", fly);
-
-			System.out.println("al inicio fecha salida " + mesSBDepIng);
-
-			int imesDep= fechaFuturaDep.getMonthValue()-1;
-
-			if(calendarioDiv.isDisplayed()) {
-
-				boolean isPresent= elementoPresente(By.xpath("//button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']"));
-
-				if(!isPresent) {
-					String b = Keys.BACK_SPACE.toString();
-					String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
-					inputCheckOut_H.sendKeys(del + mesDepIng + "/" + idiasDep + "/" + ianio);
-
-					break;
-				}
-
-				List<WebElement> listaBtnDias = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-				int mesActual= Integer.parseInt(listaBtnDias.get(0).getAttribute("data-month"));
-
-				while (imesDep>mesActual) {
-
-					mesActual=obtenerMes(imesDep);
-				}
-
-				List<WebElement> listaBtnDias2 = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				listaBtnDias2.stream()					
-				.filter(x-> idiasDep == Integer.parseInt(x.getAttribute("data-day")))
-				.filter(x-> imesDep ==Integer.parseInt(x.getAttribute("data-month")))
-				.findFirst().get().click();
-
-			}
-			break;
-
-		case "Returning2":
-
-			if(inputCalRet_FH.isDisplayed()) inputCalRet_FH.click();
-
-
-			if(calendarioDiv.isDisplayed()) {
-
-				boolean isPresent= elementoPresente(By.xpath("//button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']"));
-
-				fechaFutura= calcularFecha2("Returning2");
-
-				Month mesRetIng = fechaFutura.getMonth();
-				String mesSBRepIng= mesRetIng.getDisplayName(TextStyle.FULL, new Locale("en", "En"));
-				mesSBRepIng= mesSBRepIng.substring(0, 3);
-				int idias= fechaFutura.getDayOfMonth();
-
-				String dateRet_FH= mesSBRepIng+ " " + idias; 
-
-				fly = CONTEXT.get("flyDep_FH"); 
-				fly.setFlightDateReturn(dateRet_FH);
-				CONTEXT.set("flyDep_FH", fly);
-
-				int imes= fechaFutura.getMonthValue();
-				int imes2= fechaFutura.getMonthValue()-1;
-				ianio= fechaFutura.getYear();
-
-
-				if(!isPresent) {
-					String b = Keys.BACK_SPACE.toString();
-					String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
-					inputCalRet_FH.sendKeys(del + imes + "/" + idias + "/" + ianio);
-
-					break;
-				}
-
-				List<WebElement> listaBtnDias = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				String mesDeListaBtnDias=listaBtnDias.stream()					
-						.filter(x-> diaYa == Integer.parseInt(x.getAttribute("data-day")))
-						.findFirst().get().getAttribute("data-month").toString();
-
-				int mesActual= Integer.parseInt(mesDeListaBtnDias);
-
-
-				while (imes2>mesActual) {
-
-					mesActual=obtenerMes(imes2); 
-
-				}
-
-				List<WebElement> listaBtnDias2 = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				listaBtnDias2.stream()					
-				.filter(x-> idias == Integer.parseInt(x.getAttribute("data-day")))
-				.filter(x-> imes2 ==Integer.parseInt(x.getAttribute("data-month")))
-				.findFirst().get().click();
-
-			}
-			break;
-
-		case "Departure3":
-			if(inputCheckIn_H.isDisplayed()) inputCheckIn_H.click();
-
-			LocalDate fechaFuturaDep1 = calcularFecha2("Departure3");
-
-			Month mesDepIng1 = fechaFuturaDep1.getMonth();
-			String mesSBDepIng1= mesDepIng1.getDisplayName(TextStyle.FULL, new Locale("en", "En"));
-			mesSBDepIng1= mesSBDepIng1.substring(0, 3);
-			int idiasDep1= fechaFuturaDep1.getDayOfMonth();
-
-			int imesDep1= fechaFuturaDep1.getMonthValue()-1;
-			getWait().until(ExpectedConditions.visibilityOf(calendarioDiv));
-
-			if(isPresent(calendarioDiv)!=null) {
-				if( calendarioDiv.isDisplayed()) {
-
-					List<WebElement> listaBtnDias = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-					String mesDeListaBtnDias=listaBtnDias.stream()					
-							.filter(x-> diaYa == Integer.parseInt(x.getAttribute("data-day")))
-							.findFirst().get().getAttribute("data-month").toString();
-
-					int mesActual= Integer.parseInt(mesDeListaBtnDias);
-
-					while (imesDep1>mesActual) {
-
-						mesActual=obtenerMes(imesDep1);
-
+						currentYearInCalendar=getYear(date.getYear());
 					}
 
-					List<WebElement> listaBtnDias2 = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
+					String monthsFromList= listBtnsCalendar.stream()					
+							.filter(x-> date.getDayOfMonth() == Integer.parseInt(x.getAttribute("data-day")))
+							.findFirst().get().getAttribute("data-month").toString();
 
-					listaBtnDias2.stream()					
-					.filter(x-> idiasDep1 == Integer.parseInt(x.getAttribute("data-day")))
-					.filter(x-> imesDep1 ==Integer.parseInt(x.getAttribute("data-month")))
+					int currentMonth= Integer.parseInt(monthsFromList);
+
+					while (date.getMonthValue()-1>currentMonth) {
+
+						currentMonth=getMonth(date.getMonthValue()-1);
+					}
+
+					listBtnsCalendar.stream()					
+					.filter(x-> date.getDayOfMonth() == Integer.parseInt(x.getAttribute("data-day")))
+					.filter(x-> date.getMonthValue()-1 ==Integer.parseInt(x.getAttribute("data-month")))
+					.filter(x-> date.getYear() == Integer.parseInt(x.getAttribute("data-year")))
 					.findFirst().get().click();
 
+
 				}
 			}
-			break;
-
-		case "Returning3":
-
-			if(inputCheckOut_H.isDisplayed()) inputCheckOut_H.click();
-
-
-			if(isPresent(calendarioDiv)!=null && calendarioDiv.isDisplayed()) {
-
-				boolean isPresent= elementoPresente(By.xpath("//button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']"));
-
-				fechaFutura= calcularFecha2("Returning3");
-
-
-				Month mesRetIng = fechaFutura.getMonth();
-				String mesSBRepIng= mesRetIng.getDisplayName(TextStyle.FULL, new Locale("en", "En"));
-				mesSBRepIng= mesSBRepIng.substring(0, 3);
-				int idias= fechaFutura.getDayOfMonth();
-
-				int imes= fechaFutura.getMonthValue();
-				int imes2= fechaFutura.getMonthValue()-1;
-				ianio= fechaFutura.getYear();
-
-
-				if(!isPresent) {
-					String b = Keys.BACK_SPACE.toString();
-					String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
-					inputCheckOut_H.sendKeys(del + imes + "/" + idias + "/" + ianio);
-					btnHotel.click();
-
-					break;
-				}
-
-				List<WebElement> listaBtnDias = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				String mesDeListaBtnDias=listaBtnDias.stream()					
-						.filter(x-> diaYa == Integer.parseInt(x.getAttribute("data-day")))
-						.findFirst().get().getAttribute("data-month").toString();
-
-				int mesActual= Integer.parseInt(mesDeListaBtnDias);
-
-				while (imes2>mesActual) {
-
-					mesActual=obtenerMes(imes2);
-
-				}
-
-				List<WebElement> listaBtnDias2 = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				listaBtnDias2.stream()					
-				.filter(x-> idias == Integer.parseInt(x.getAttribute("data-day")))
-				.filter(x-> imes2 ==Integer.parseInt(x.getAttribute("data-month")))
-				.findFirst().get().click();
-
-			}
-			break;
-
-
-		case "Departure4a":
-
-			if(inputCalDep_FH.isDisplayed()) inputCalDep_FH.click();
-
-			LocalDate fechaFuturaDep4a = calcularFecha2("Departure4a");
-
-			Month mesDepIng4a = fechaFuturaDep4a.getMonth();
-			String mesSBDepIng4a= mesDepIng4a.getDisplayName(TextStyle.FULL, new Locale("en", "En"));
-			mesSBDepIng4a= mesSBDepIng4a.substring(0, 3);
-			int idiasDep4a= fechaFuturaDep4a.getDayOfMonth();
-			int imesDep4a= fechaFuturaDep4a.getMonthValue()-1;
-
-			if(isPresent(calendarioDiv)!=null && calendarioDiv.isDisplayed()) {
-
-				List<WebElement> listaBtnDias = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				String mesDeListaBtnDias=listaBtnDias.stream()					
-						.filter(x-> diaYa == Integer.parseInt(x.getAttribute("data-day")))
-						.findFirst().get().getAttribute("data-month").toString();
-
-				int mesActual= Integer.parseInt(mesDeListaBtnDias);
-
-				while (imesDep4a>mesActual) {
-
-					mesActual=obtenerMes(imesDep4a);
-				}
-
-				List<WebElement> listaBtnDias2 = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				listaBtnDias2.stream()					
-				.filter(x-> idiasDep4a == Integer.parseInt(x.getAttribute("data-day")))
-				.filter(x-> imesDep4a ==Integer.parseInt(x.getAttribute("data-month")))
-				.findFirst().get().click();
-
-				break;
-			}
-
-		case "Returning4a":
-
-			if(inputCalRet_FH.isDisplayed()) inputCalRet_FH.click();
-
-
-			if(isPresent(calendarioDiv)!=null && calendarioDiv.isDisplayed()) {
-
-				boolean isPresent= elementoPresente(By.xpath("//button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']"));
-
-				fechaFutura= calcularFecha2("Returning4a");
-
-
-				Month mesRetIng = fechaFutura.getMonth();
-				String mesSBRepIng= mesRetIng.getDisplayName(TextStyle.FULL, new Locale("en", "En"));
-				mesSBRepIng= mesSBRepIng.substring(0, 3);
-				int idias= fechaFutura.getDayOfMonth();
-
-
-				int imes= fechaFutura.getMonthValue();
-				int imes2= fechaFutura.getMonthValue()-1;
-				ianio= fechaFutura.getYear();
-
-
-				if(!isPresent) {
-					String b = Keys.BACK_SPACE.toString();
-					String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
-					inputCalRet_FH.sendKeys(del + imes + "/" + idias + "/" + ianio);
-					break;
-
-				}
-
-				List<WebElement> listaBtnDias = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				int mesActual= Integer.parseInt(listaBtnDias.get(0).getAttribute("data-month"));
-
-				while (imes2>mesActual) {
-
-					mesActual=obtenerMes(imes2);
-				}
-
-				List<WebElement> listaBtnDias2 = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				listaBtnDias2.stream()					
-				.filter(x-> idias == Integer.parseInt(x.getAttribute("data-day")))
-				.filter(x-> imes2 ==Integer.parseInt(x.getAttribute("data-month")))
-				.findFirst().get().click();
-
-			}
-			break;
-
-
-
-		case "Departure4b":
-
-			if(inputCheckIn_E.isDisplayed()) inputCheckIn_E.click();
-
-			LocalDate fechaFuturaDep4 = calcularFecha2("Departure4b");
-
-			Month mesDepIng4 = fechaFuturaDep4.getMonth();
-			String mesSBDepIng4= mesDepIng4.getDisplayName(TextStyle.FULL, new Locale("en", "En")).substring(0,3);
-			int idiasDep4= fechaFuturaDep4.getDayOfMonth();
-			int imesDep4= fechaFuturaDep4.getMonthValue()-1;
-
-			if(isPresent(calendarioDiv)!=null && calendarioDiv.isDisplayed()) {
-
-				List<WebElement> listaBtnDias = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				String mesDeListaBtnDias=listaBtnDias.stream()					
-						.filter(x-> idiasDep4 == Integer.parseInt(x.getAttribute("data-day")))
-						.findFirst().get().getAttribute("data-month").toString();
-
-				int mesActual= Integer.parseInt(mesDeListaBtnDias);
-
-				while (imesDep4>mesActual) {
-
-					mesActual=obtenerMes(imesDep4);
-				}
-
-				List<WebElement> listaBtnDias2 = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				listaBtnDias2.stream()					
-				.filter(x-> idiasDep4 == Integer.parseInt(x.getAttribute("data-day")))
-				.filter(x-> imesDep4 ==Integer.parseInt(x.getAttribute("data-month")))
-				.findFirst().get().click();
-
-			}
-			break;
-
-		case "Returning4b":
-
-			if(inputCheckOut_E.isDisplayed()) inputCheckOut_E.click();
-
-			if(isPresent(calendarioDiv)!=null && calendarioDiv.isDisplayed()) {
-
-				boolean isPresent= elementoPresente(By.xpath("//button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']"));
-				fechaFutura= calcularFecha2("Returning4b");
-
-				Month mesRetIng = fechaFutura.getMonth();
-				String mesSBRepIng= mesRetIng.getDisplayName(TextStyle.FULL, new Locale("en", "En"));
-				mesSBRepIng= mesSBRepIng.substring(0, 3);
-				int idias= fechaFutura.getDayOfMonth();
-
-				int imes= fechaFutura.getMonthValue();
-				int imes2= fechaFutura.getMonthValue()-1;
-				ianio= fechaFutura.getYear();
-
-				if(!isPresent) {
-					String b = Keys.BACK_SPACE.toString();
-					String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
-					inputCheckOut_H.sendKeys(del + imes + "/" + idias + "/" + ianio);
-					//					btnHotel.click();
-
-					break;
-				}
-
-				List<WebElement> listaBtnDias = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				String mesDeListaBtnDias=listaBtnDias.stream()					
-						.filter(x-> diaYa == Integer.parseInt(x.getAttribute("data-day")))
-						.findFirst().get().getAttribute("data-month").toString();
-
-				int mesActual= Integer.parseInt(mesDeListaBtnDias);
-
-
-				while (imes2>mesActual) {
-
-					mesActual=obtenerMes(imes2);
-					
-				}
-
-				List<WebElement> listaBtnDias2 = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month'][1]//button[@class='datepicker-cal-date']"));
-
-				listaBtnDias2.stream()					
-				.filter(x-> idias == Integer.parseInt(x.getAttribute("data-day")))
-				.filter(x-> imes2 ==Integer.parseInt(x.getAttribute("data-month")))
-				.findFirst().get().click();
-			}
-			break;
-
-
-		case "Departure5":
-
-			if(inputCruiseDepartureEarly.isDisplayed()) inputCruiseDepartureEarly.click();
-
-			fechaYa= LocalDate.now();
-			//			diaYa= fechaYa.getDayOfMonth();
-			LocalDate fechaFuturaDep5 = calcularFecha2("Departure5");
-
-			Month mesDepIng5 = fechaFuturaDep5.getMonth();
-			int idiasDep5= fechaFuturaDep5.getDayOfMonth();
-			int imesDep5= fechaFuturaDep5.getMonthValue()-1;
-			ianio= fechaFuturaDep5.getYear();
-
-			if(isPresent(calendarioDiv)!=null && calendarioDiv.isDisplayed()) {
-
-				boolean isPresent= elementoPresente(By.xpath("//button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']"));
-
-				List<WebElement> listaBtnDias = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				String mesDeListaBtnDias=listaBtnDias.stream()					
-						.filter(x-> diaYa == Integer.parseInt(x.getAttribute("data-day")))
-						.findFirst().get().getAttribute("data-month").toString();
-
-				int mesActual= Integer.parseInt(mesDeListaBtnDias);
-
-				if(!isPresent) {
-					String b = Keys.BACK_SPACE.toString();
-					String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
-					inputCheckOut_H.sendKeys(del + mesDepIng5 + "/" + idiasDep5 + "/" + ianio);
-
-					break;
-				}
-
-				while (imesDep5>mesActual) {
-
-					mesActual=obtenerMes(imesDep5);
-				}
-
-				listaBotonesCalendario.stream()					
-				.filter(x-> idiasDep5 == Integer.parseInt(x.getAttribute("data-day")))
-				.filter(x-> imesDep5 ==Integer.parseInt(x.getAttribute("data-month")))
-				.findFirst().get().click();
-
-			}
-			break;
-
-		case "Returning5":
-
-			if(inputCruiseLate.isDisplayed()) inputCruiseLate.click();
-
-			if(isPresent(calendarioDiv)!=null && calendarioDiv.isDisplayed()) {
-
-				boolean isPresent= elementoPresente(By.xpath("//button[@class='datepicker-paging datepicker-next btn-paging btn-secondary next']"));
-				fechaFutura= calcularFecha2("Returning5");
-
-				Month mesRetIng = fechaFutura.getMonth();
-				String mesSBRepIng= mesRetIng.getDisplayName(TextStyle.FULL, new Locale("en", "En")).substring(0,3);
-				int idias= fechaFutura.getDayOfMonth();
-
-				int imes= fechaFutura.getMonthValue();
-				int imesFuturo= fechaFutura.getMonthValue()-1;
-				int ianio5= fechaFutura.getYear();
-
-				if(!isPresent) {
-					String b = Keys.BACK_SPACE.toString();
-					String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
-					inputCheckOut_H.sendKeys(del + imes + "/" + idias + "/" + ianio5);
-
-					break;
-				}
-
-				List<WebElement> listaBtnDias = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				int mesActual= Integer.parseInt(listaBtnDias.get(0).getAttribute("data-month"));
-
-				while (imesFuturo>mesActual) {
-
-					mesActual=obtenerMes(imesFuturo);
-				}
-
-				List<WebElement> listaBtnDias2 = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-
-				listaBtnDias2.stream()					
-				.filter(x-> idias == Integer.parseInt(x.getAttribute("data-day")))
-				.filter(x-> imesFuturo ==Integer.parseInt(x.getAttribute("data-month")))
-				.findFirst().get().click();
-			}
-			break;
-
-		}
+		}*/
 
 	}
 
-	private int obtenerMes( int imesFuturoEnCalendario) {
+	private int getMonth( int iMonthFutureInCalendar) {
 
-		List<WebElement> listaBtnDias = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-		int mesActual= Integer.parseInt(listaBtnDias.get(0).getAttribute("data-month").toString());
+		int currentMonth= Integer.parseInt(listBtnsCalendar.get(0).getAttribute("data-month").toString());
 
-		if(Integer.parseInt(listaBtnDias.get(0).getAttribute("data-month").toString())==imesFuturoEnCalendario) {
-			return mesActual;
+		if(Integer.parseInt(listBtnsCalendar.get(0).getAttribute("data-month").toString())==iMonthFutureInCalendar) {
+			return currentMonth;
 		}
 
-		btnNextCalendar.click();
-		List<WebElement> listaBtnDias2 = getDriver().findElements(By.xpath("//div[@class='datepicker-cal-month']//button[@class='datepicker-cal-date']"));
-		mesActual= Integer.parseInt(listaBtnDias2.get(0).getAttribute("data-month").toString());
+		scrollToElement(btnNextCalendar);
 
-		return mesActual;
+		try {
+
+			clickByElementJS(getDriver(), btnNextCalendar);
+
+		} catch (InterruptedException e) {
+			Logger.printInfo("error at JavaScript action");
+			e.printStackTrace();
+		}
+
+		List<WebElement> listaBtnDias2 = getDriver().findElements(By.cssSelector("div.datepicker-cal-month button.datepicker-cal-date"));
+		currentMonth= Integer.parseInt(listaBtnDias2.get(0).getAttribute("data-month").toString());
+
+		return currentMonth;
 
 	}
 
-	public void clickBtnSearch(String param) {
+	private int getYear( int iYearFuture) {
 
-		switch (param) {
+		int iCurrentYear= Integer.parseInt(listBtnsCalendar.get(0).getAttribute("data-year").toString());
 
-		case "H":
-			List<WebElement> listaBtns = getDriver().findElements(By.xpath("//button[@class='btn-primary btn-action gcw-submit ' and span[contains(text(),'Search')]]"));
-			listaBtns.stream()					
-			.findFirst().get().click();
-			Logger.printInfo("click en el btn Search");
-			break;
-
-		case "FH":
-			btnSearch_FH.click();
-			break;
-
-		default:
-			break;
+		if(Integer.parseInt(listBtnsCalendar.get(0).getAttribute("data-year").toString())==iYearFuture) {
+			return iCurrentYear;
 		}
+
+		scrollToElement(btnNextCalendar);
+
+		try {
+
+			clickByElementJS(getDriver(), btnNextCalendar);
+
+		} catch (InterruptedException e) {
+			Logger.printInfo("error at JavaScript action");
+			e.printStackTrace();
+		}
+
+		List<WebElement> listBtnsyears = getDriver().findElements(By.cssSelector("div.datepicker-cal-month button.datepicker-cal-date"));
+		iCurrentYear= Integer.parseInt(listBtnsyears.get(0).getAttribute("data-year").toString());
+
+		return iCurrentYear;
 
 	}
 
-	public void selectRooms() {
+	public FlightsSearchPage clickBtnSearch(boolean param) {
 
-		Select drpRooms = new Select (getDriver().findElement(By.cssSelector("#package-rooms-hp-package , #hotel-rooms-hp-hotel")));
-		drpRooms.selectByVisibleText("1");
+		if(param) {
+			listBtnSearchFly.stream().findFirst().get().click();
+			verifyErrorDisplayFH();
+
+		} else {
+			btnSearchFH.click();
+		}
+
+		return new FlightsSearchPage(getDriver());
+	}
+
+	public void selectRoomsFlightHotel() {
+
+		selectRoomsInFlightHotel(drpRoomsFlightHotel);
+	}
+
+	public void selectRoomsHotel() {
+
+		selectRoomsInFlightHotel(drpRoomsHotel);
+	}
+
+	private void selectRoomsInFlightHotel(WebElement drpRoomGeneric) {
+
+		Select drpRoom = new Select (drpRoomGeneric);
+		drpRoom.selectByValue("1");
 
 		HotelDTO hotel = new HotelDTO();
 		hotel.setRooms("1");
-
 		CONTEXT.set("hotel", hotel);
-
 	}
 
-	public void selectQuantityAdults() {
+	public void selectQuantityAdults(String quantity) {
 
+		Logger.printInfo("In method selectQuantityAdults");
 		Select drpQuantityAdults = new Select (getDriver().findElement(By.cssSelector("#package-1-adults-hp-package, #hotel-1-adults-hp-hotel")));
-		drpQuantityAdults.selectByVisibleText("2");
+		drpQuantityAdults.selectByValue(quantity);
 
 		HotelDTO hotel = new HotelDTO();
 		hotel = CONTEXT.get("hotel");
-		hotel.setQuantityAdults("2");
+		hotel.setQuantityAdults(quantity);
 		CONTEXT.set("hotel", hotel);
 
 	}
 
-	public boolean clickBtnHotels_H() {
+	public boolean clickBtnHotels() {
 
-		Logger.printInfo("Metodo click btn hotel");
+		Logger.printInfo("Clicking btn hotel");
 
 		if(isPresent(btnHotel)!=null) {
 			btnHotel.click();
@@ -926,65 +608,107 @@ public class TravelocityHomePage extends BasePage {
 		return false;
 	}
 
-	public void reFillMontevideoUruguay_H() {
+	private void reFillTextInput(WebElement element) {
 
+		boolean isMontevideo = false;
 		String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
 		inputGoingTo.sendKeys(del + "Montevideo, Uruguay");
-		clickInFrame_H();
+		isMontevideo = validateFilled();
+		if(isMontevideo) {
+			clickInFrame();
+		}
+		else {
+			reFillMontevideoUruguay();
+		}
 	}
 
-	public void clickInFrame_H() {
+	private void reFillMontevideoUruguay() {
 
-		WebElement frame= getDriver().findElement(By.cssSelector("section#WizardHero"));
+		boolean isMontevideo = false;
+		String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
+		inputGoingTo.sendKeys(del + "Montevideo, Uruguay");
+		isMontevideo = validateFilled();
+		if(isMontevideo) {
+			clickInFrame();
+		}
+		else {
+			reFillMontevideoUruguay();
+		}
+	}
+
+	private boolean validateFilled() {
+
+		String text = inputGoingTo.getAttribute("value");
+		if(text.equalsIgnoreCase("Montevideo, Uruguay")) {
+			return true;
+		}
+		return false;
+
+
+	}
+
+	private void clickInFrame() {
+
 		frame.click();
 	}
 
-	public boolean fillGoingTo_H() {
+	public boolean fillGoingTo() {
 
 		if(isPresent(inputGoingTo)!=null) {
-			reFillMontevideoUruguay_H();
+			reFillMontevideoUruguay();
 			btnHotel.click();
 			return true;			
 		}
 		return false;
 	}
 
-	public void clickSearchBtn_H() {
+	public FlightsSearchPage clickSearchBtnHotel() {
 
-		List<WebElement> listBtnSearch= getDriver().findElements(By.cssSelector("div[class='cols-nested'] label button[class='btn-primary btn-action gcw-submit '][data-gcw-change-submit-text='Search']"));
-		WebElement ultimoBtn= listBtnSearch.stream().reduce((first, second) -> second).get();
+		boolean isError=false;
+		WebElement ultimoBtn= listBtnSearchHotel.stream().reduce((first, second) -> second).get();
 		ultimoBtn.click();
+		isError = verifyLongerTrip();
+		if(!isError) {
+			return new FlightsSearchPage(getDriver());
+		}
+		return null;
 	}
 
-	public boolean selectCheckBox_E() {
+	public boolean selectCheckBoxPartStay() {
 
-		Logger.printInfo("en el metodo de seleccionar el check box");
+		Logger.printInfo("In method check box");
 
-		if(isPresent(chkBtnHotelPartofStay)!=null) {
+		if(isPresent(chkBtnHotelPartOfStay)!=null) {
+			if(!chkBtnHotelPartOfStay.isSelected()) {
 
-			if(!chkBtnHotelPartofStay.isSelected()) {
-
-				chkBtnHotelPartofStay.click();
+				chkBtnHotelPartOfStay.click();
 				return true;
 			}
-			else return true;
+			else {
+				return true;
+			}
 		}
 		return false;
 	}
 
-	public boolean verifyErrorDisplay_E() {
+	public boolean verifyErrorDisplayFH() {
 
-		WebElement errorMsj= getDriver().findElement(By.cssSelector("a.error-link"));
-		boolean r1= errorMsj
-				.getText()
-				.equalsIgnoreCase("Your partial check-in and check-out dates must fall within your arrival and departure dates. Please review your dates.")?true:false;
-		return r1;
+		Long count= errorLink.stream().filter(x-> x.getText().contains("Your partial check-in and check-out")).count();
+		if(count>0) {
+			return true;	
+		}else {
+			return false;
+		}
 
 	}
 
 	public void clickBtnCruises() {
-		if(isPresent(btnCruises)!=null) {btnCruises.click();}
-		else {Logger.printInfo("no esta el elemento" + btnCruises.getClass());}
+
+		if(isPresent(btnCruises)!=null) {
+			btnCruises.click();
+		}else {
+			Logger.printInfo("Element not present" + btnCruises.getClass());
+		}
 	}
 
 	public boolean clickDropDownList() {
@@ -992,14 +716,42 @@ public class TravelocityHomePage extends BasePage {
 		getWait().until(ExpectedConditions.elementToBeClickable(dropDownListGoingTo));
 		Select drp = new Select(dropDownListGoingTo);
 		drp.selectByValue("europe");
-		String a = drp.getFirstSelectedOption().getText();
-		boolean r1= drp.getFirstSelectedOption().getText().equals("Europe")?true:false;
-		return r1;
+		boolean isSelectDrp= drp.getFirstSelectedOption().getText().equals("Europe")?true:false;
+		return isSelectDrp;
 	}
 
-	public void presionarEnter() {
+	public FlightsSearchPage pressEnterInCruise() {
 
-		inputCruiseLate.sendKeys(Keys.ENTER);
+		pressEnter(inputCruiseLate);
+		return new FlightsSearchPage(getDriver());
+	}
+
+	public boolean verifyLongerTrip() {
+
+		boolean isLonger=false;
+
+		if(elementoPresente(By.cssSelector("a.error-link"))) {
+			if(isPresent(errorLink.get(0))!=null) {
+
+				String text= errorLink.get(0).getText();
+
+				if(text.contains("Your length of stay cannot be longer than ")) {
+					return isLonger=true;
+				}
+			}
+			else {
+				isLonger=false;
+			}
+		}
+		return isLonger;
+
+	}
+
+	public FlightsSearchPage clickSearchButton() {
+		
+		click(btnSearch);
+		
+		return new FlightsSearchPage(getDriver());
 	}
 
 }

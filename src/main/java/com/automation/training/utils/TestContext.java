@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Wil
+ * @author wilson.angel
  */
 public enum TestContext {
 	

@@ -1,26 +1,10 @@
 package com.automation.training.pages;
 
-import java.awt.FlowLayout;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.Month;
-import java.time.format.TextStyle;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Predicate;
-import java.util.function.ToIntFunction;
 import java.util.regex.Pattern;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-import javax.swing.SingleSelectionModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,420 +12,540 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-import com.automation.dto.CruceroDTO;
+import com.automation.dto.CruiseDTO;
 import com.automation.dto.FlightsDTO;
 import com.automation.dto.HotelDTO;
 import com.automation.training.utils.Logger;
-import com.google.common.collect.Comparators;
 import static com.automation.training.utils.TestContext.CONTEXT;
 
 public class FlightsSearchPage extends BasePage {
 
-	@FindBy(xpath="//select[@id='sortDropdown']")
+
+
+
+	@FindBy(id="listings-sort")
 	private WebElement sortBy;
 
-	@FindBy(xpath="class='progress-bar'")
+	@FindBy(css="option[data-opt-id='ARRIVAL_DECREASING']")
+	private WebElement dropDownLastelement;
+
+	@FindBy(css="li[data-test-id='offer-listing']")
+	private List<WebElement> listFieldSet;
+
+	private String lstFieldSet= "li[data-test-id='offer-listing']";
+
+	@FindBy(css="div[data-test-id='journey-duration']")
+	private List<WebElement> listFlightDuration;
+
+	private String baggageFees = "div[data-test-id='baggage-fee-information']";
+	//flightBaggage fess
+	//div[data-test-id="baggage-fee-information"]
+
+	
+	@FindBy(css="button[data-icon='tool-close']")
+	private WebElement btnCloseBaggageFees;
+	
+
+
+
+	//--------
+
+	@FindBy(css="div.progress-bar")
 	private WebElement progresBar;
 
 	@FindBy(css="#flightModuleList li.flight-module.segment.offer-listing")
 	private List<WebElement> contenedor;
 
-	@FindBy(xpath="//li[@data-test-id='offer-listing']//span[@class='medium-bold']")
-	private List<WebElement> contenedorHorasDep;
+	@FindBy(css="li[data-test-id='offer-listing'] span[class='medium-bold']")
+	private List<WebElement> containerTimeDep;
+
 	@FindBy(xpath="//li[@data-test-id='offer-listing']//button[@data-test-id='select-button' and span/span[text()='Select']]")
 	private List<WebElement> listSelectBtns;
 
-	@FindBy(xpath="//li[@data-test-id='offer-listing']//button[@data-test-id='select-button' and span/span[text()='Select this fare']]")
-	private List<WebElement> listSelectFareBtns;
+	@FindBy(css="button.btn-secondary.btn-action.t-select-btn")
+	private List<WebElement> listSelectBtnGeneral;
 
-	@FindBy(css="span[class='title-city-text']")
+	@FindBy(xpath="//li[@data-test-id='offer-listing']//button[contains(@data-test-id, 'select-button-1') and span/span[text()='Select this fare']]")
+	private List<WebElement> listFareBtnsFinalLA;
+
+	@FindBy(className="title-city-text")
 	private WebElement Subtitulo;
 
 	@FindBy(css=".title-date-rtv")
 	private WebElement departureDate;
 
-	@FindBy(xpath="//li[@data-test-id='offer-listing']//span[@data-test-id='duration']")
-	private List<WebElement> listaFlightDuration;
+	//@FindBy(css="li[data-test-id='offer-listing']")
+	//private List<WebElement> listFieldSet;
+
+	@FindBy(css="span.show-flight-details")
+	private List<WebElement> listDetailsBagesFees;
+
+	//div[data-test-id="journey-duration"]
+	//@FindBy(xpath="//li[@data-test-id='offer-listing']//span[@data-test-id='duration']")
+	//private List<WebElement> listFlightDuration;
 
 	@FindBy(css="fieldset[class='sort-filter-bar control box']")
 	private WebElement sortOptions;
 
 	@FindBy(css="button[class='origin fakeLink']")
-	private WebElement btnOrigin_FH;
+	private WebElement btnOriginFlightHotel;
 
 	@FindBy(css="button[class='destination fakeLink']")
-	private List<WebElement> ListBtnDestination_FH;
+	private List<WebElement> listBtnDestination;
 
 	@FindBy(css="span[class='day-of-week']+span")
-	private List<WebElement> listFechas;
-
+	private List<WebElement> listDates;
 
 	@FindBy(css="h1[class='section-header-main']")
-	private WebElement subTitle_FH;
+	private WebElement subTitleFlightHotel;
 
 	@FindBy(css="div[class='flex-link-wrap']")
-	private List<WebElement> listaResultados_FH;
+	private List<WebElement> listResultsFH;
+
+	@FindBy(css="div[class='flex-link-wrap'] strong[class='star-rating rating-secondary star rating'] span[class^='icon icon-stars']")
+	private List<WebElement> listStars;
 
 	@FindBy(css="button[aria-label='Sort by: Price']")
-	private WebElement btnPrice_FH;
+	private WebElement btnPriceFlightHotel;
 
-	@FindBy(css="ul[class='hotel-price']") 
-	private List<WebElement> listaPreciosFH;
+	@FindBy(css="div.flex-card div[class='message-flag flex-flag']")
+	private List<WebElement> listDiscounts;
 
-	@FindBy(css="ul[class='hotel-price'] li[class~='actualPrice']")
-	private List<WebElement> listaPrecios_fh2;
+	@FindBy(css="div.flex-card")
+	private List<WebElement> listCruises;
+
+	@FindBy(css="ul[class='hotel-price'] li[class^='actualPrice']")
+	private List<WebElement> listPricesFlightHotel;
 
 	@FindBy(css="#uitk-live-announce")
 	private WebElement loaderFH;
 
 	@FindBy(css="div[class='uitk-card uitk-grid messaging-card all-x-padding-three all-y-padding-three'] a")
-	private List<WebElement> listaLinks_H;
+	private List<WebElement> listLinksHotels;
 
-	@FindBy(id="length-10-14-ember1337-label")
-	private WebElement radioBtnCruisesNights;
+	@FindBy(css="input[name='length-10-14']")
+	private List<WebElement> radioBtnCruisesNights;
 
 	@FindBy(css="div.flex-card")
-	private List<WebElement> listContenedorCruseros;
+	private List<WebElement> listContainerCruises;
+
+	@FindBy(css="div[data-test-id='flight-info']")
+	private List<WebElement> listFlightsVS;
+
+	@FindBy(id="covid-alert-refundability-0")
+	private WebElement modal;
+
+	@FindBy(css="img#interstitial-secondary-image")
+	private WebElement imagenEspera;
 
 
 	public FlightsSearchPage(WebDriver driver) {		
 		super(driver);
 	}
 
+	public boolean clickDropdownByValue(WebElement element, String data) {
+
+		Logger.printInfo("In dropdown list + From page" + getDriver().getTitle());
+
+		waitForElementToBeClickable(element);
+		waitForElementToBeClickable(dropDownLastelement);
+
+		//loaderFlightSearchPage();
+
+		if((isPresent(sortBy)!=null)
+				&& (sortBy.isEnabled())) {
+
+			waitForElementToBeClickable(sortBy);
+			Select drpSort = clickDropDown(data, sortBy);
+
+			return getTextInDropDownSelected(drpSort,data);
+		}
+		return false;
+
+	}
+
+	/**
+	 * @param data
+	 * @return
+	 */
+	public Select clickDropDown(String data,WebElement element) {
 
 
-	//SELECCIONA una opcion de un DropDownList
-	public boolean searchSorty() {
+		waitForElementToBeClickable(element);
 
-		Logger.printInfo("en el metodo de buscar el Sort By -  Estamos en la pagina +" + getDriver().getTitle());
+		Select drpSort = new Select(element);
+		drpSort.selectByVisibleText(data);
+		return drpSort;
+	}
+
+	/**
+	 * @param drpSort
+	 * @return
+	 */
+	public boolean getTextInDropDownSelected(Select drpSort, String data) {
+
+		waitForElementToBeClickable(dropDownLastelement);
+
+		WebElement optionSelected= drpSort.getFirstSelectedOption();
+
+		System.out.println("sort selects:  "+ optionSelected.getText());
+
+		return optionSelected.getText().equalsIgnoreCase(data)?true:false;
+
+	}
+
+
+	/*
+	 * public boolean selectDrpDurationShortest() {
+
+		Logger.printInfo("In dropdown list + From page" + getDriver().getTitle());
 
 		loaderFlightSearchPage();
 
+		if((isPresent(sortBy)!=null)
+				&& (sortBy.isEnabled())) {
 
-		if(elementoPresente(By.xpath("//select[@id='sortDropdown']")) && isPresent(sortBy)!=null && sortBy.isEnabled()) {
+			getWait().until(ExpectedConditions.elementToBeClickable(sortBy));
 
-			Select drpSort = new Select(getWait().until(ExpectedConditions.elementToBeClickable(getDriver().findElement(By.id("sortDropdown")))));
+			Select drpSort = new Select(sortBy);
 			drpSort.selectByVisibleText("Duration (Shortest)");
+			WebElement optionSelected= drpSort.getFirstSelectedOption();
 
-			if(drpSort.getClass()!=null)return true;
-			else return false;
+			if(optionSelected.getText().equalsIgnoreCase("Duration (Shortest)")) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
+		return false;
 
-		if(elementoPresente(By.xpath("//select[@id='sortDropdown']")) && isPresent(sortBy)!=null) {
-
-			Select drpSort = new Select(getWait().until(ExpectedConditions.elementToBeClickable(getDriver().findElement(By.id("sortDropdown")))));
-			drpSort.selectByVisibleText("Duration (Shortest)");
-			return true;
-		}
-		else return false;
 	}
 
-	//metodo q cuenta los resultados y los btns de seleccionar en cada uno
+	 */
+
+	public boolean verifyQuantityFlightDuration() {
+
+		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[data-test-id='offer-listing']")));
+
+		return listFieldSet.size()==listFlightDuration.size()?true:false;
+
+
+
+	}
+
 	public boolean searchResultsAndSelectBtn() {
 
-		elementoPresente(By.xpath("//li[@data-test-id='offer-listing']"));
+		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[data-test-id='offer-listing']")));
 
-		List<WebElement> listaContenedores = super.getDriver().findElements(By.xpath("//li[@data-test-id='offer-listing']"));
-		int cantidadContenedores= (int) listaContenedores.stream().count();
+		int quantityContainers= (int) listFieldSet.stream().count();
+		int quantityBtnsSelect= (int) listSelectBtns.stream().count();
 
-		int cantidadBtnsSelect= (int) listSelectBtns.stream().count();
-
-		if(cantidadContenedores==cantidadBtnsSelect) return true;
-		else return false;
-
+		if(quantityContainers==quantityBtnsSelect) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
-	/*	aqui valido que todos los resultados de vuelos tengan una duracion , ADEMAS DE:
-		aqui se arma el objeto y se pone en CONTEXTO para despues compararlo.*/
 	public boolean searchResultsAndFlightDuration() {
 
-		elementoPresente(By.xpath("//li[@data-test-id='offer-listing']"));
+		//li[data-test-id='offer-listing']
+		waitForPresenceOfAllElementsLocatedByCss(lstFieldSet);
+		//elementoPresente(By.xpath("//li[@data-test-id='offer-listing']"));
 
-		List<WebElement> listaContenedores = super.getDriver().findElements(By.xpath("//li[@data-test-id=\"offer-listing\"]"));
-		int cantidadContenedores= (int) listaContenedores.stream().count();
+		int quantityContainers= (int) listFieldSet.stream().count();
+		int quantityFlightDuration= (int) listFlightDuration.stream().count();
+		Logger.printInfo("Flights containers count: " + quantityContainers);
+		Logger.printInfo("Flights duration count: " + quantityFlightDuration);
 
-		int cantidadFlightDuration= (int) listaFlightDuration.stream().count();
-
-		if(cantidadContenedores==cantidadFlightDuration) return true;
-		else return false;
-
+		return (quantityContainers==quantityFlightDuration)?true:false;
 	}
 
-	public void getInfoDepartureFlight() {
+	public void getInfoDepartureFlight(int first) {
 
-		Logger.printInfo("en el metodo getInfoDepartureFlight");
+		Logger.printInfo("In method getInfoDepartureFlight");
+		elementoPresente(By.cssSelector("li[data-test-id='offer-listing'] span[class='medium-bold']"));
 
-		elementoPresente(By.cssSelector("li[data-test-id=\"offer-listing\"] span[class=\"medium-bold\"]"));
-		List<WebElement> contenedorHorasDep= getDriver().findElements(By.cssSelector("li[data-test-id=\"offer-listing\"] span[class=\"medium-bold\"]"));
-
-		String  primertiempo = listaFlightDuration.stream().findFirst().get().getText();
+		String  totalFlightDuration = listFlightDuration.stream().findFirst().get().getText();
 
 		FlightsDTO flyDep = new FlightsDTO();
 
-		flyDep.setFlightDurationTotalDeparture(primertiempo);
+		flyDep.setFlightDurationTotalDeparture(totalFlightDuration);
 
-		List<WebElement> listHDI = obtainsList(contenedorHorasDep, "HoraDepartureIni");
-		String horaSalidaInicial= listHDI.get(0).getText();
-		flyDep.setFlightTimeInitDeparture(horaSalidaInicial);
+		List<WebElement> listTimeDep = obtainsList(containerTimeDep, By.cssSelector("span[data-test-id='departure-time']"));
+		String timeDeparture= listTimeDep.get(first).getText();
 
-		elementoPresente(By.cssSelector("li[data-test-id='offer-listing'] span[class='medium-bold']"));
-		List<WebElement> contenedorHorasDepFin = getDriver().findElements(By.xpath("//li[@data-test-id='offer-listing']//span[@class='medium-bold']"));
+		flyDep.setFlightTimeInitDeparture(timeDeparture);
 
-		List<WebElement> listHDF = obtainsList(contenedorHorasDepFin, "HoraDepartureFin");
-		String horaSalidaFin= listHDF.get(0).getText();
-		flyDep.setFlightTimeEndDeparture(horaSalidaFin);
-		System.out.println("hora salida fin");
+		List<WebElement> listTimeArrival = obtainsList(containerTimeDep, By.cssSelector("span[data-test-id='arrival-time']"));
+		String timeArrival= listTimeArrival.get(first).getText();
+		flyDep.setFlightTimeEndDeparture(timeArrival);
 
-		String sbDepartureDate= departureDate.getText();
-		flyDep.setFlightDateDeparture(sbDepartureDate);
+		String departDate= departureDate.getText();
+		flyDep.setFlightDateDeparture(departDate);
 
 		CONTEXT.set("FlyDep", flyDep);
 	}
 
-	public void getInfoReturnFlight() {
+	public void getInfoReturnFlight(int third) {
 
 		FlightsDTO flyRet = new FlightsDTO();
 
-		List<WebElement> contenedorHorasRet = getDriver().findElements(By.cssSelector("li[data-test-id='offer-listing'] span[class='medium-bold']"));
-		String primertiempo= listaFlightDuration.get(2).getText();
+		String timeFlight= listFlightDuration.get(third).getText();
 
-		flyRet.setFlightDurationTotalReturn(primertiempo);
+		flyRet.setFlightDurationTotalReturn(timeFlight);
 
-		List<WebElement> listHRI = obtainsList(contenedorHorasRet, "HoraDepartureIni");
-		String horaReturnInicial= listHRI.get(2).getText();
-		flyRet.setFlightTimeInitDeparture(horaReturnInicial);
+		List<WebElement> listHRI = obtainsList(containerTimeDep, By.cssSelector("span[data-test-id='departure-time']"));
+		String timeReturnInit= listHRI.get(third).getText();
+		flyRet.setFlightTimeInitDeparture(timeReturnInit);
 
-		elementoPresente(By.cssSelector("li[data-test-id='offer-listing'] span[class='medium-bold']"));
-		List<WebElement> contenedorHorasRetFin = getDriver().findElements(By.cssSelector("li[data-test-id='offer-listing'] span[class='medium-bold']"));
-		List<WebElement> listHRF = obtainsList(contenedorHorasRetFin, "HoraReturnFin");
+		List<WebElement> listHRF = obtainsList(containerTimeDep, By.cssSelector("span[data-test-id='arrival-time']"));
 
-		String horaSalidaFin= listHRF.get(2).getText();
-		flyRet.setFlightTimeEndDeparture(horaSalidaFin);
+		String timeDepartureEnd= listHRF.get(third).getText();
+		flyRet.setFlightTimeEndDeparture(timeDepartureEnd);
 
-		String sbReturnDate= departureDate.getText();
-		flyRet.setFlightDateDeparture(sbReturnDate);
+		String returnDate= departureDate.getText();
+		flyRet.setFlightDateDeparture(returnDate);
 
 		CONTEXT.set("FlyRet", flyRet);
-		FlightsDTO fr = CONTEXT.get("FlyRet");
 
 	}
 
-	//metodo que cuenta los resultados y los detalles de cada resultado
 	public boolean searchResultsAndDetailsAndBags() {
-
-		getWait().until(ExpectedConditions.elementToBeClickable(getDriver().findElement(By.xpath("//li[@data-test-id='offer-listing']"))));
-
-		List<WebElement> listaContenedores = super.getDriver().findElements(By.xpath("//li[@data-test-id='offer-listing']"));
-		int cantidadContenedores= (int) listaContenedores.stream().count();
-
-		List<WebElement> listaDetailsAndBags = super.getDriver().findElements(By.xpath("//li[@data-test-id='offer-listing']//span[@class='show-flight-details']"));
-		int cantidadDetailsAndBags= (int) listaDetailsAndBags.stream().count();
-
-		if(cantidadContenedores==cantidadDetailsAndBags) return true;
-		else return false;
-
-	}
-
-
-	//metodo que busca en una lista de horas y verifica que esten en orden
-	@SuppressWarnings("unchecked")
-	public boolean selectFromSortList() {
-
-		Logger.printInfo("en el metodo SelectFromSortList");
-
-		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//li[@data-test-id='offer-listing']//span[@class='duration-emphasis']")));
-
-		//		List<WebElement> listaDuration = obtainsDurationSpans(contenedor, "verifyListahoras");
-		List<WebElement> listaDuration = obtainsList(contenedor, "verifyListahoras");
-
-		List<String> duracion = listaDuration.stream().map(x-> x.getText()).collect(Collectors.toList());
-
-		List<Integer> listadoNumeros = new ArrayList<>();
-
-		for (String horas : duracion) {
-
-			String[] vectorH= horas.split(" ");
-
-			vectorH[0]= vectorH[0].replace("h", "");
-			Integer hora= Integer.parseInt(vectorH[0])*60;
-
-			vectorH[1]=vectorH[1].replace("m", "");
-			listadoNumeros.add(hora+Integer.parseInt(vectorH[1]));
-
-		}
-
-
-		for (int i = 0; i < listadoNumeros.size()-1; i++) {
-
-			if(listadoNumeros.get(i)<=listadoNumeros.get(i+1)) {
-				System.out.println("Lista ordenada");				
-				return true;
-			}
-
-			else if (listadoNumeros.get(i)>listadoNumeros.get(i+1)) {
-				System.out.println("Lista Des ordenada");
-				return false;				
-			}
-
-		}
-		return false;
-
-	}
-
-	//Metodo que selecciona el primer vuelo a Los Angeles y el tercero de Regreso
-	public boolean clickSelectButtonToLosAngeles() {
-
-		Logger.printInfo("En el metodo Select Button");
-//		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.xpath("//li[@data-test-id='offer-listing']"), By.xpath("//button[@data-test-id='select-button' and span/span[text()='Select']]")));
-
-		List<WebElement> listaBtnsSelect = getDriver().findElements(By.xpath("//li[@data-test-id='offer-listing']//button[@data-test-id='select-button' and span/span[text()='Select']]"));
-
 		
-		if(isPresent(Subtitulo)!=null && Subtitulo.getText().equalsIgnoreCase("Select your departure to Los Angeles")) {
+		int quantityDetailsAndBags=0;
+		
+		Logger.printInfo("------ searchResultsAndDetailsAndBags ---------");
+		waitForPresenceOfAllElementsLocatedByCss(lstFieldSet);
+
+		int quantityContainers= (int) listFieldSet.stream().count();
+		Logger.printInfo("Flights Quantity: " + quantityContainers);
+
+		quantityDetailsAndBags= clickFielSetAndClose(listFieldSet);
+		Logger.printInfo("quantityDetailsAndBags: " + quantityDetailsAndBags );
+
+		//int quantityDetailsAndBags= (int) listDetailsBagesFees.stream().count();
+
+		if(quantityContainers==quantityDetailsAndBags) { 
+			return true;
+		}
+		else {
+			return false;
+		}
+
+	}
+
+	int countBaggageFees=1;
+	private int clickFielSetAndClose(List<WebElement> listFieldSet) {
+
+	
+		for (int i = 0; i < listFieldSet.size()-1; i++) {
+
+			listFieldSet.get(i).click();
+			waitForPresenceOfAllElementsLocatedByCss(baggageFees);
+			int countBaggageFees = countBaggageFees(baggageFees);
 			
-//			if(
-
-			Logger.printInfo("Buscando los ticketes en los Angeles");
-
-			getInfoDepartureFlight();
-			listaBtnsSelect.stream().findFirst().get().click();
-			return buscarSelectThisfareLosAngeles();
+			Logger.printInfo("count Baggage Fees:  " + countBaggageFees);
+			closeBaggageFees(btnCloseBaggageFees);
+			
 		}
-		return false;
+		return countBaggageFees;
+
 
 	}
 
-	public boolean buscarSelectThisfareLosAngeles() {
+	private void closeBaggageFees(WebElement btnBaggageClose) {
+		
+		waitForElementToBeClickable(btnBaggageClose);
+		btnBaggageClose.click();
+		
+	}
 
-		Logger.printInfo("En el metodo Select this fare");
+	//int countBaggageFees=1;
+	
+	private int countBaggageFees(String baggageFees) {
+		
+		//int countBaggageFees=1;
+		return (getDriver().findElement(By.cssSelector(baggageFees))!=null)?countBaggageFees++:countBaggageFees--;
+	}
 
-		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//li[@data-test-id='offer-listing']//button[@data-test-id='select-button' and span/span[text()='Select']]")));
+	public boolean verifyTimeIsSorted() {
 
-		if(Subtitulo.getText().equalsIgnoreCase("Select your departure to Los Angeles")) {
+		Logger.printInfo("In method SelectFromSortList");
+		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[data-test-id='offer-listing'] span[class='duration-emphasis']")));
 
-			Logger.printInfo("Buscando opciones en Los Angeles");
+		List<WebElement> listDuration = obtainsList(contenedor, By.cssSelector("span.duration-emphasis"));
+		List<String> duration = listDuration.stream().map(x-> x.getText()).collect(Collectors.toList());
+		List<Integer> listNumbers = getCleanList(duration);
+		List<Integer> listNumbersCopy = new ArrayList<>(listNumbers);
 
-			getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.xpath("//div[@class='basic-economy-tray uitk-grid']"), By.xpath("//button[@data-test-id='select-button' and span/span[text()='Select this fare']]")));
+		return  compareListsLowToHight(listNumbers, listNumbersCopy);
 
-			if(elementoPresente(By.xpath("//div[@class='basic-economy-tray uitk-grid']//button[@data-test-id='select-button' and span/span[text()='Select this fare']]"))) {
+	}
 
-				List<WebElement> listaBtns = getDriver().findElements(By.xpath("//div[@class='basic-economy-tray uitk-grid']//button[@data-test-id='select-button' and span/span[text()='Select this fare']]"));
+	private List<Integer> getCleanList(List<String> duration) {
 
-				listaBtns.stream().findFirst().get().click();
-				Logger.printInfo("click en el boton Select this Fare");
-				return true;
-			}
-			else
-			{
-				Logger.printInfo("no hay boton extra para clikar");
-				return true;
-			}
+		List<Integer> listNumbers = new ArrayList<>();
+
+		for (String hours : duration) {
+
+			String[] vectorTime= hours.split(" ");
+
+			vectorTime[0]= vectorTime[0].replace("h", "");
+			Integer time= Integer.parseInt(vectorTime[0])*60;
+
+			vectorTime[1]=vectorTime[1].replace("m", "");
+			listNumbers.add(time+Integer.parseInt(vectorTime[1]));
+
+		}
+		return listNumbers;
+	}
+
+	public boolean verifyTicketExistGeneral(String position, boolean isLAS) {
+
+
+		int pos = Integer.parseInt(position)-1;
+		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[data-test-id='offer-listing'] button[data-test-id='select-button']")));
+
+		if(isLAS 
+				&& (isPresent(Subtitulo)!=null) 
+				&& (Subtitulo.getText().equalsIgnoreCase("Select your departure to Los Angeles"))) {
+
+			return verifyTicketExistInList(listSelectBtns, pos);
+		}
+
+		if(!isLAS 
+				&& (Subtitulo.getText().equalsIgnoreCase("Select your return to Las Vegas"))) { 
+
+			return verifyTicketExistInList(listSelectBtns, pos);
 		}
 		return false;
 	}
 
-	public boolean selectLasVegasTicket() {
+	public void getInfoFlight(String position, boolean isDeparture) {
 
-		if(Subtitulo.getText().equalsIgnoreCase("Select your return to Las Vegas")) {
+		int pos = Integer.parseInt(position)-1;
 
-			Logger.printInfo("Buscando ticketes para Las vegas");
+		if(isDeparture) {
+			getInfoDepartureFlight(pos);
+		}
+		else {
+			getInfoReturnFlight(pos);	
+		}
 
-			if(elementoPresente(By.xpath("//li[@data-test-id='offer-listing']//button[@data-test-id='select-button' and span/span[text()='Select']]"))!=true) {
 
-				Logger.printInfo("no hay Boton select");
+	}
 
+	public boolean selectTicketGeneral(String position) {
+
+		int pos = Integer.parseInt(position)-1;
+
+		boolean isSelectedTicket = selectTicket(listSelectBtns,pos);
+
+		if(isSelectedTicket) {
+			modalInFlightSearch();
+		}
+		return isSelectedTicket;
+
+
+	}
+
+	public FlightInformationPage selectFaresBtnGeneral(String position, boolean isLAS) {
+
+		int pos = Integer.parseInt(position)-1;
+
+		if(isLAS) {
+			selectFareBtn(listFareBtnsFinalLA, pos);	
+		}else {
+			boolean isPresentBtn= selectFareBtn(listFareBtnsFinalLA, pos);
+
+			if(isPresentBtn) {
+				return new FlightInformationPage(getDriver());	
+			}else {
+				return null;
 			}
+		}
+		return null;
 
 
-			try {
 
-				getWait().until(ExpectedConditions.elementToBeClickable(listSelectBtns.get(2)));
+	} 
 
-			} catch (IndexOutOfBoundsException e) {
-				Logger.printInfo("The system doesn't display a third ticket");
-				return false;
-			}
+	public boolean selectTicketToLasVegas(String thirdResult) {
 
-			if(elementoPresente(By.xpath("//li[@data-test-id='offer-listing']//button[@data-test-id='select-button' and span/span[text()='Select']]"))) {
+		int third = Integer.parseInt(thirdResult)-1;
+		selectFareBtn(listFareBtnsFinalLA, third);
+		return false;
+	}
 
-				getInfoReturnFlight();
+	private boolean selectFareBtn(List<WebElement>listFareBtnsFinalLA,  int position) {
+
+		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("div button.btn-secondary.btn-action.t-select-btn")));
+
+		if(isPresent(listFareBtnsFinalLA.get(position))!=null) {
+
+			if(listFareBtnsFinalLA.get(position).isDisplayed()) {
 
 				try {
-
-					//aqui se selecciona el 3er resultado
-					listSelectBtns.get(2).click();
-
+					listFareBtnsFinalLA.get(position).click();
+					return true;
 				} catch (IndexOutOfBoundsException e) {
 					Logger.printInfo("The system doesn't display a third ticket");
 					return false;
 				}
 
-				getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//li[@data-test-id='offer-listing']//button[@data-test-id='select-button' and span/span[text()='Select this fare']]")));
-				if(elementoPresente(By.xpath("//div[@class='basic-economy-tray uitk-grid']//button[@data-test-id='select-button' and span/span[text()='Select this fare']]"))) {
-
-					if(listSelectFareBtns.get(2).isDisplayed()) {
-
-						try {
-
-							//aqui se selecciona el 3er resultado
-							listSelectFareBtns.get(2).click();
-							return true;
-
-						} catch (IndexOutOfBoundsException e) {
-							Logger.printInfo("The system doesn't display a third ticket");
-							return false;
-						}
-					}else {
-						//						listSelectFareBtns.get(listSelectFareBtns.size()-1).click();
-						return true;
-					}
-				}
+			}else {
+				return true;
 			}
-
 		}
-		return false;
+		return true;
 	}
 
-	private boolean selectLasVegasEspecial() {
+	private boolean selectTicket(List<WebElement> listSelect, int position){
 
-		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("div[class='grid-container standard-padding ']"), By.cssSelector("a[data-test-id='select-button']")));
-		List<WebElement> listaTicketesLAX= getDriver().findElements(By.cssSelector("div[class='grid-container standard-padding '] a[data-test-id='select-button']"));
-		listaTicketesLAX.get(listaTicketesLAX.size()-1).click();
-		getInfoReturnFlight();
-		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//li[@data-test-id='offer-listing']//button[@data-test-id='select-button' and span/span[text()='Select this fare']]")));
+		try {
+			getWait().until(ExpectedConditions.elementToBeClickable(listSelect.get(position)));
+			listSelect.get(position).click();
+		} catch (IndexOutOfBoundsException e) {
+			Logger.printInfo("The system doesn't display a ticket");
 
-		if(listSelectFareBtns.get(listSelectFareBtns.size()-1).isDisplayed()) {
-			listSelectFareBtns.get(listSelectFareBtns.size()-1).click();
-			return true;
+			return false;
 		}
-		
-		return false;
 
+		return true;
 	}
 
+	private boolean verifyTicketExistInList(List<WebElement> list, int position) {
 
-	public boolean verifySortOptionsFH() {
+		try {
+			getWait().until(ExpectedConditions.elementToBeClickable(list.get(position)));
+		} catch (IndexOutOfBoundsException e) {
+			Logger.printInfo("The system doesn't display a third ticket");
+			return false;
+		}
+		return true;
+	}
 
-		Logger.printInfo("Verificando que tenga resultados");
-		System.out.println("esta si o no?"+elementoPresente(By.cssSelector("fieldset[class='sort-filter-bar control box']")));
+	public boolean verifySortOptionsFlightHotel() {
+
+		Logger.printInfo("Checking element");
 		return elementoPresente(By.cssSelector("fieldset[class='sort-filter-bar control box']"));
-
 	}
 
 	public boolean verifyLoaderVisible() {
 
-		elementoPresente(By.cssSelector("#uitk-live-announce"));
+		isPresent(loaderFH);
 
-		WebElement loader= getDriver().findElement(By.cssSelector("#uitk-live-announce"));
+		if(loaderFH.getAttribute("aria-live").equalsIgnoreCase("polite")) {
+			return true;
+		}
 
-		if(loader.getAttribute("aria-live").equalsIgnoreCase("polite")) return true;
+		boolean loaderVisible=false;
 
-		boolean result=false;
-
-		while (result!= false){
-			Logger.printInfo("Atributo:" + loader.getAttribute("aria-live"));
-			result= verify();
-			System.out.println("booleana "+ result);
+		while (loaderVisible!= false){
+			Logger.printInfo("Attribute:" + loaderFH.getAttribute("aria-live"));
+			loaderVisible= verify();
 		} 
 
 		return true;
@@ -450,20 +554,20 @@ public class FlightsSearchPage extends BasePage {
 
 	public boolean loaderFlightSearchPage() {
 
-		if(elementoPresente(By.xpath("//div[@class='progress-bar']"))) {
+		if(elementoPresente(By.cssSelector("div.progress-bar"))) {
+			if(isPresent(progresBar)!=null) {
 
-			WebElement progressBars= getDriver().findElement(By.xpath("//div[@class='progress-bar']"));
+				if(	!progresBar.isDisplayed()) {
+					Logger.printInfo("NO visible");
+					return true;
+				}
+				else {
+					Logger.printInfo("NO visible");
+					getWait().until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='progress-bar']")));
+					return true;
+				}
 
-			if(	!progressBars.isDisplayed()) {
-				System.out.println("NO esta visible");
-				return true;
 			}
-			else {
-				System.out.println("si visible");
-				getWait().until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='progress-bar']")));
-				return true;
-			}
-
 		}
 		return false;
 	}
@@ -471,127 +575,145 @@ public class FlightsSearchPage extends BasePage {
 	private boolean verify() {
 
 		WebElement loader= getDriver().findElement(By.cssSelector("#uitk-live-announce"));
-		boolean result = loader.getAttribute("aria-live").equalsIgnoreCase("polite")?true:false;
-		return result;
+		boolean loaderVisible = loader.getAttribute("aria-live").equalsIgnoreCase("polite")?true:false;
+		return loaderVisible;
 
 	}
 
 	public boolean verifyInfoFlight() {
 
-		if(isPresent(btnOrigin_FH)!=null) {
+		if(isPresent(btnOriginFlightHotel)!=null) {
 
+			String originFly = btnOriginFlightHotel.getText();
+			String destinationFly = listBtnDestination.get(1).getText().toString();
 
-			String originFly = btnOrigin_FH.getText();
-			String destinationFly = ListBtnDestination_FH.get(1).getText().toString();
+			String fromExpected= cleanCommaText(originFly, true);
+			String toExpected= cleanCommaText(destinationFly, false);
 
-			String[] vectorFrom = originFly.split(",");
-			String fromExpected= vectorFrom[0].replace(" ", "");
-
-			String[] vectorTo = destinationFly.split("\\(");
-			//		String[] vectorTo = destinationFly.split(",");
-			String toExpected= vectorTo[0].replace(" ", "");
-
-			String fechaSalidaExpected = listFechas.get(0).getText().toString();
-			String fechaLlegadaExpected = listFechas.get(1).getText().toString();
+			String dateDepartureExpected = listDates.get(0).getText().toString();
+			String dateArrivalExpected = listDates.get(1).getText().toString();
 
 			FlightsDTO flightInfo = new FlightsDTO();
 
-			flightInfo = CONTEXT.get("flyDep_FH");
-			String fechaSalidaIngresada = flightInfo.getFlightDateDeparture();
-			String fechaRetornoIngresada= flightInfo.getFlightDateReturn();
-
-			//------
+			flightInfo = CONTEXT.get("flyDepFH");
+			String dateDepartureFilled = flightInfo.getFlightDateDeparture();
+			String dateArrivalFilled = flightInfo.getFlightDateReturn();
 
 			FlightsDTO fly = CONTEXT.get("fly");
 			String flightFrom = fly.getFlightFrom();
 
-			String[] vectorFF = flightFrom.split(",");
-			flightFrom= vectorFF[0].replace(" ", "");
+			flightFrom= cleanCommaText(flightFrom, true);
 
 			String flightTo = fly.getFlightTo();
-			String[] vectorFT = flightTo.split(",");
-			flightTo= vectorFT[0].replace(" ", "");
+			flightTo= cleanCommaText(flightTo, true);
 
-			boolean resultDestiniFrom = flightFrom.equalsIgnoreCase(fromExpected)?true:false;
-			boolean resultDestiniTo = flightTo.equalsIgnoreCase(toExpected)?true:false;
+			boolean isSameFrom = flightFrom.equalsIgnoreCase(fromExpected)?true:false;
+			boolean isSameTo = flightTo.equalsIgnoreCase(toExpected)?true:false;
 
-			boolean resultDateDep= fechaSalidaIngresada.equalsIgnoreCase(fechaSalidaExpected);
-			boolean resultDateRet= fechaRetornoIngresada.equalsIgnoreCase(fechaLlegadaExpected);
+			boolean isSameDateDeparture= dateDepartureFilled.equalsIgnoreCase(dateDepartureExpected);
+			boolean isSameDateArrival= dateArrivalFilled.equalsIgnoreCase(dateArrivalExpected);
 
-			boolean resultadoFinal= !resultDestiniFrom && !resultDestiniTo && !resultDateDep && !resultDateRet?false:true;
+			boolean isSameInfo= !isSameFrom && !isSameTo && !isSameDateDeparture && !isSameDateArrival?false:true;
 
-			System.out.println(resultadoFinal);
+			Logger.printInfo("is the same ? " +isSameInfo);
 
-			return resultadoFinal;
+			return isSameInfo;
 		}
 		return false;
 	}
 
-	public boolean verifyTitle() {
-		String subTitle= subTitle_FH.getText().trim();
-		boolean result= subTitle_FH.getText().equalsIgnoreCase(subTitle)?true:false;
-		return result;
+	private String cleanCommaText(String originFly, boolean isOptionComma) {
+
+		if(isOptionComma) {
+			String[] vectorFrom = originFly.split(",");
+			String fromExpected= vectorFrom[0].replace(" ", "");
+			return fromExpected;
+		}
+		else {
+			String[] vectorTo = originFly.split("\\(");
+			String toExpected= vectorTo[0].replace(" ", "");
+			return toExpected;
+
+		}
 	}
 
-	public boolean verifyResults() {
+	public boolean verifyTitleFlightHotel() {
 
-		boolean result= listaResultados_FH.size()>0?true:false;
-		return result;
+		String subTitle= getText(subTitleFlightHotel).trim();
+		boolean isSameTitle= subTitleFlightHotel.getText().equalsIgnoreCase(subTitle)?true:false;
+		return isSameTitle;
+	}
+
+	public boolean verifyResultsFlightHotel() {
+
+		boolean isPresentResults= listResultsFH.size()>0?true:false;
+		return isPresentResults;
 	}
 
 	public boolean verifyResultSorteByPrice() {
 
-		btnPrice_FH.click();
+		btnPriceFlightHotel.click();
 		verifyLoaderVisible();
 		getDriver().navigate().refresh();
 		verifyLoaderVisible();
 
 		getWait().until(ExpectedConditions.textMatches(By.cssSelector("ul[class='hotel-price'] li[class^='actualPrice']"), Pattern.compile("[$?]+([0-9])")));
-		List<WebElement> listaPrecios= getDriver().findElements(By.cssSelector("ul[class='hotel-price'] li[class^='actualPrice']"));
 
-		List<String> sbListaPrecios = listaPrecios.stream().map(x-> x.getText().replace("$", "").replace(",", "")).collect(Collectors.toList());
-		List<Integer> listaPreciosInt = sbListaPrecios.stream().map(x-> Integer.parseInt(x)).collect(Collectors.toList());
-		List<Integer> listaPreciosIntCopy =  sbListaPrecios.stream().map(x-> Integer.parseInt(x)).collect(Collectors.toList());
+		List<String> sbListPrices = listPricesFlightHotel.stream().map(x-> x.getText().replace("$", "").replace(",", "")).collect(Collectors.toList());
+		List<Integer> listPricesInt = sbListPrices.stream().map(x-> Integer.parseInt(x)).collect(Collectors.toList());
+		List<Integer> listPricesIntCopy =  sbListPrices.stream().map(x-> Integer.parseInt(x)).collect(Collectors.toList());
 
-		return equalLists(listaPreciosInt, listaPreciosIntCopy);
-		//		Collections.sort(listaPreciosInt, (x,y)-> x.compareTo(y));
+		return compareListsLowToHight(listPricesInt, listPricesIntCopy);
 
 	}
 
-	public boolean selectFirstResultWith3Starts() {
+	public int obtainPositionOf3StarsHotel() {
 
 		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("#resultsContainer"), By.cssSelector("strong[class='star-rating rating-secondary star rating'] span[class^='icon icon-stars']")));
 
-		List<WebElement> listaResultados = getDriver().findElements(By.cssSelector("div[class='flex-link-wrap']"));
-		List<WebElement> listaEstrellas = getDriver().findElements(By.cssSelector("div[class='flex-link-wrap'] strong[class='star-rating rating-secondary star rating'] span[class^='icon icon-stars']"));
-
 		int ipos=0;
-		for (WebElement i : listaEstrellas) {
-			System.out.println(i.getAttribute("title"));
-			if( i.getAttribute("title").equals("3.0")|i.getAttribute("title").equals("3.5")|i.getAttribute("title").equals("4.0")|i.getAttribute("title").equals("4.5")) {
-				ipos= listaEstrellas.indexOf(i);
-				System.out.println("Posicion encontrada" + ipos);
-//				ipos=ipos+1;
+		for (WebElement i : listStars) {
+			Logger.printInfo("attribute: " + i.getAttribute("title"));
+
+			if( (i.getAttribute("title").equals("3.0"))
+					|(i.getAttribute("title").equals("3.5"))
+					|(i.getAttribute("title").equals("4.0"))
+					|(i.getAttribute("title").equals("4.5"))) {
+				ipos= listStars.indexOf(i);
 				break;
 			}
 		}
-		WebElement hotelSeleccionado= listaResultados.get(ipos);
-		System.out.println(hotelSeleccionado.getText());
-		obtain3StartsHotelInfo(hotelSeleccionado);
-		listaResultados.get(ipos).findElement(By.cssSelector("a.flex-link")).click();
 
-		return true;
+		return ipos;	
+
+
 	}
 
-	private void obtain3StartsHotelInfo(WebElement hotelSeleccionado) {
+	public FlightInformationPage selectFirstResultWith3Starts(int position) {
 
-//		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(hotelSeleccionado, By.cssSelector("span[class^='icon icon-stars']")));
+		getWait().until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a.flex-link")));
 
-		String hotelName= hotelSeleccionado.findElement(By.cssSelector("h4[data-automation='hotel-name']")).getText();
-		String value= hotelSeleccionado.findElement(By.cssSelector("li[class^='actualPrice price']")).getText();// tener encuenta q la cadena va con signo pesos
-		//		String stars= hotelSeleccionado.findElement(By.cssSelector("span[class^='icon icon-stars']")).getAttribute("title"); //3.0
-		String stars= hotelSeleccionado.findElement(By.cssSelector("strong[class='star-rating rating-secondary star rating'] span[class^='icon icon-stars']")).getAttribute("title"); //3.0
+		try {
+			listResultsFH.get(position).findElement(By.cssSelector("a.flex-link")).click();
 
+			waitFlightInformationPageGenral(imagenEspera);
+
+			return new FlightInformationPage(getDriver());
+
+		} catch (IndexOutOfBoundsException e) {
+			Logger.printInfo("The system doesn't display the Hotel");
+			return null;
+		}
+	}
+
+	public void obtain3StartsHotelInfo(int position) {
+
+		WebElement hotelSelected= listResultsFH.get(position);
+		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(hotelSelected, By.cssSelector("span[class^='icon icon-stars']")));
+
+		String hotelName= hotelSelected.findElement(By.cssSelector("h4[data-automation='hotel-name']")).getText();
+		String value= hotelSelected.findElement(By.cssSelector("li[class^='actualPrice price']")).getText();
+		String stars= hotelSelected.findElement(By.cssSelector("strong[class='star-rating rating-secondary star rating'] span[class^='icon icon-stars']")).getAttribute("title"); 
 
 		HotelDTO hotel = new HotelDTO();
 		hotel = CONTEXT.get("hotel");
@@ -600,106 +722,141 @@ public class FlightsSearchPage extends BasePage {
 		hotel.setValue(value);
 		hotel.setStars(stars);
 
-
 		CONTEXT.set("hotel", hotel);
 	}
 
-	public boolean findSponsoredSection_H() {
+	public boolean findSponsoredSectionHotels() {
 
 		if(!elementoPresente(By.cssSelector("div[class='uitk-card uitk-grid messaging-card all-x-padding-three all-y-padding-three']"))) {
-			Logger.printInfo("la seccion no esta disponible");
+			Logger.printInfo("The section is not available");
 			return false;
 		}
 
-		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("div[class='uitk-card uitk-grid messaging-card all-x-padding-three all-y-padding-three']"), By.cssSelector("a")));
+		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(listLinksHotels.get(0), By.cssSelector("a")));
 
-		if(isPresent(listaLinks_H.get(0))!=null){
-
-			listaLinks_H.stream().filter(x-> x.getText().equalsIgnoreCase("Sign in")).findFirst().get().click();
+		if(isPresent(listLinksHotels.get(0))!=null){
 			return true;
+		} else {
+			return false;	
 		}
-		return false;
+
 	}
 
-	public boolean verifyFilterRadioButton_C() {
-		getWait().until(ExpectedConditions.elementToBeClickable(radioBtnCruisesNights));
+	public boolean verifyFilterRadioButton() {
 
+		getWait().until(ExpectedConditions.elementToBeClickable(radioBtnCruisesNights.get(1)));
 		Logger.printInfo("Verify filter");
-		if(isPresent(radioBtnCruisesNights)!=null) {
+
+		if(isPresent(radioBtnCruisesNights.get(1))!=null) {
 			return true;
+		} else { 
+			return false;	
 		}
-		return false;
+
 	}
 
-	public boolean verifyCruisesWithDiscountsAndWithOut_C() {
+	public boolean verifyCruisesWithDiscountsAndWithOut() {
 
-		boolean r1=false;
-		int quantityCruisesWithOutDiscount = listContenedorCruseros.size();
+		boolean isSameDiscount;
+		int quantityCruisesWithOutDiscount = listContainerCruises.size();
 		int quantityCruisesWithDiscount= getDriver().findElements(By.cssSelector("div.flex-card div[class^='message-']")).size();
 
-		return r1= quantityCruisesWithDiscount>0 && quantityCruisesWithOutDiscount>0? true:false;
-
+		return isSameDiscount= quantityCruisesWithDiscount>0 && quantityCruisesWithOutDiscount>0? true:false;
 	}
 
-	public void selectCruiseWithMoreDiscount_C() {
+	public FlightInformationPage selectCruiseWithMoreDiscount() {
 
 		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("div.flex-card"), By.cssSelector("div[class='flex-content']")));
+		getDiscountFromList(listDiscounts);
 
-		List<WebElement> listaDescuentos = getDriver().findElements(By.cssSelector("div.flex-card div[class='message-flag flex-flag']"));
-
-		obtenerDescuentoCadena(listaDescuentos);
-
+		return new FlightInformationPage(getDriver());
 	}
 
-	private void obtenerDescuentoCadena(List<WebElement> listaDescuentos) {
+	private void getDiscountFromList(List<WebElement> listDiscounts) {
 
-		String DescuentoMax = listaDescuentos.stream()
-				.map(x-> x.getText().replaceAll("[A-Z\\D\\s]", ""))
-				.map(x-> Integer.parseInt(x))
-				.max((i, j) -> i.compareTo(j))
-				.toString();
+		Integer maxValue=0;
+		WebElement elementMax = null;
 
-		List<WebElement> listaDescuentosOriginal = getDriver().findElements(By.cssSelector("div.flex-card div[class='message-flag flex-flag']"));
+		for (WebElement cruise : listContainerCruises) {
 
-		Optional<String> nonEmptyOptional = Optional.ofNullable(DescuentoMax); 
-		String  imax=nonEmptyOptional.orElse("50");
-		imax= imax.replaceAll("[A-Z\\D\\s]", "");
+			if(childElementIsPresent(cruise, By.cssSelector(".message-flag.flex-flag"))) {
 
-		int ipos=0;
-		for (WebElement i : listaDescuentosOriginal) {
-			System.out.println(i.getText() + "VS" + imax);
-			if( i.getText().contains(imax)) {
+				Integer value = Integer.parseInt(cruise.findElement(By.cssSelector("div[class='message-flag flex-flag']")).getText().replaceAll("[A-Z\\D\\s]", ""));
 
-				ipos= listaDescuentos.indexOf(i);
-				System.out.println("posicion en la lista" + ipos);
-				break;
+				if(value > maxValue) {
+
+					maxValue = value;
+					elementMax= cruise;
+				}
+
 			}
+		}         
+
+		obtainCruiseInfo(elementMax);
+		elementMax.findElement(By.cssSelector("a[id^='selectSailingButton']")).click();
+
+	}
+
+	private void obtainCruiseInfo(WebElement cruiseSelected) {
+
+		String cruiseName= cruiseSelected.findElement(By.cssSelector("div.title-on-ship-image")).getText();
+		String cruiseValue= cruiseSelected.findElement(By.cssSelector("span.card-price")).getText();
+		String cruiseFrom= cruiseSelected.findElement(By.cssSelector("div.card-content-detail.departure-city")).getText(); 
+		String cruiseDateDeparture= cruiseSelected.findElement(By.cssSelector("div.card-content-detail.sailing-dates")).getText();
+
+
+		CruiseDTO cruise= new CruiseDTO();
+
+		cruise.setName(cruiseName);
+		cruise.setValue(cruiseValue);
+		cruise.setFrom(cruiseFrom);
+		cruise.setDateDeparture(cruiseDateDeparture);
+
+		CONTEXT.set("cruise", cruise);
+	}
+
+	public boolean verifyFlightFromToVsSelected(String from, String To) {
+
+		String texto=listFlightsVS.get(0).getText();
+		if(texto.contains(from) && texto.contains(To)){
+			return true;
+		} else {
+			return false;
 		}
+	}
 
-		List<WebElement> listaCruceros = getDriver().findElements(By.cssSelector("div.flex-card"));
-		WebElement cruceroSeleccionado= listaCruceros.get(ipos); 
-		obtainCruiseInfo(cruceroSeleccionado);
-		listaCruceros.get(ipos).findElement(By.cssSelector("a[id^='selectSailingButton']")).click();
+	public SignInPage clickOnSponsoredSectionHotel() {
+
+		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("div[class='uitk-card uitk-grid messaging-card all-x-padding-three all-y-padding-three']"), By.cssSelector("a")));
+
+		if(isPresent(listLinksHotels.get(0))!=null){
+
+			listLinksHotels.stream().filter(x-> x.getText().equalsIgnoreCase("Sign in")).findFirst().get().click();
+			return new SignInPage(getDriver());
+		} else {
+			return null;	
+		}
+	}
+
+	public void waitCruisesPage() {
+
+		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("div.flex-card"), By.cssSelector("div[class='flex-content']")));
+	}
+
+	public void waitForPageLoaded() {
+
+		System.out.println("ya llegue");
 
 
 	}
 
-	private void obtainCruiseInfo(WebElement cruceroSeleccionado) {
+	public boolean selectDropDownSort(String data) {
 
-		String cruceroName= cruceroSeleccionado.findElement(By.cssSelector("div.title-on-ship-image")).getText();// 7 night Europe Cruise
-		String cruceroValue= cruceroSeleccionado.findElement(By.cssSelector("span.card-price")).getText();// $599
-		String cruceroSaliendoDe= cruceroSeleccionado.findElement(By.cssSelector("div.subtitle-on-ship-image")).getText(); //Departing from Civitavecchia, Italy
-		String cruceroFechaSalida= cruceroSeleccionado.findElement(By.cssSelector("span.departing-on")).getText(); //Jul 1, 2020
+		return clickDropdownByValue(sortBy, data);
 
-		CruceroDTO crucero= new CruceroDTO();
-
-		crucero.setName(cruceroName);
-		crucero.setValue(cruceroValue);
-		crucero.setFrom(cruceroSaliendoDe);
-		crucero.setDateDeparture(cruceroFechaSalida);
-
-		CONTEXT.set("crucero", crucero);
 	}
+
+
 
 }
 
