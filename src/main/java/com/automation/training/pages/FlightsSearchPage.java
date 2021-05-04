@@ -41,19 +41,24 @@ public class FlightsSearchPage extends BasePage {
 	//flightBaggage fess
 	//div[data-test-id="baggage-fee-information"]
 
-	
+
 	@FindBy(css="button[data-icon='tool-close']")
 	private WebElement btnCloseBaggageFees;
-	
+
+	private String progressBar="div.uitk-loading-bar-current";
 
 
 
 	//--------
 
-	@FindBy(css="div.progress-bar")
+	@FindBy(css="div.uitk-loading-bar-current")
 	private WebElement progresBar;
+	
 
-	@FindBy(css="#flightModuleList li.flight-module.segment.offer-listing")
+
+
+	//@FindBy(css="#flightModuleList li.flight-module.segment.offer-listing") //div.uitk-card-content-section.uitk-card-content-section-padded
+	@FindBy(css="div.uitk-card-content-section.uitk-card-content-section-padded") //
 	private List<WebElement> contenedor;
 
 	@FindBy(css="li[data-test-id='offer-listing'] span[class='medium-bold']")
@@ -146,18 +151,16 @@ public class FlightsSearchPage extends BasePage {
 	public boolean clickDropdownByValue(WebElement element, String data) {
 
 		Logger.printInfo("In dropdown list + From page" + getDriver().getTitle());
-
+		
+		waitLoaderDisAppear(progressBar);
 		waitForElementToBeClickable(element);
 		waitForElementToBeClickable(dropDownLastelement);
-
-		//loaderFlightSearchPage();
 
 		if((isPresent(sortBy)!=null)
 				&& (sortBy.isEnabled())) {
 
-			waitForElementToBeClickable(sortBy);
+			
 			Select drpSort = clickDropDown(data, sortBy);
-
 			return getTextInDropDownSelected(drpSort,data);
 		}
 		return false;
@@ -173,8 +176,11 @@ public class FlightsSearchPage extends BasePage {
 
 		waitForElementToBeClickable(element);
 
+
 		Select drpSort = new Select(element);
-		drpSort.selectByVisibleText(data);
+		waitForElementToBeClickable(dropDownLastelement);
+		drpSort.selectByValue(data);
+
 		return drpSort;
 	}
 
@@ -186,11 +192,8 @@ public class FlightsSearchPage extends BasePage {
 
 		waitForElementToBeClickable(dropDownLastelement);
 
-		WebElement optionSelected= drpSort.getFirstSelectedOption();
-
-		System.out.println("sort selects:  "+ optionSelected.getText());
-
-		return optionSelected.getText().equalsIgnoreCase(data)?true:false;
+		String optionSelected= drpSort.getFirstSelectedOption().getAttribute("value").toString();
+		return optionSelected.equalsIgnoreCase(data)?true:false;
 
 	}
 
@@ -250,10 +253,11 @@ public class FlightsSearchPage extends BasePage {
 
 	public boolean searchResultsAndFlightDuration() {
 
-		//li[data-test-id='offer-listing']
-		waitForPresenceOfAllElementsLocatedByCss(lstFieldSet);
-		//elementoPresente(By.xpath("//li[@data-test-id='offer-listing']"));
-
+		
+		waitLoaderDisAppear(progressBar);
+		waitForElementToBeClickable(listFieldSet.get(listFieldSet.size()-1));
+		waitForPageToBeLoaded(getDriver(), 20);
+		
 		int quantityContainers= (int) listFieldSet.stream().count();
 		int quantityFlightDuration= (int) listFlightDuration.stream().count();
 		Logger.printInfo("Flights containers count: " + quantityContainers);
@@ -313,19 +317,14 @@ public class FlightsSearchPage extends BasePage {
 	}
 
 	public boolean searchResultsAndDetailsAndBags() {
-		
+
 		int quantityDetailsAndBags=0;
-		
+
 		Logger.printInfo("------ searchResultsAndDetailsAndBags ---------");
 		waitForPresenceOfAllElementsLocatedByCss(lstFieldSet);
 
 		int quantityContainers= (int) listFieldSet.stream().count();
-		Logger.printInfo("Flights Quantity: " + quantityContainers);
-
 		quantityDetailsAndBags= clickFielSetAndClose(listFieldSet);
-		Logger.printInfo("quantityDetailsAndBags: " + quantityDetailsAndBags );
-
-		//int quantityDetailsAndBags= (int) listDetailsBagesFees.stream().count();
 
 		if(quantityContainers==quantityDetailsAndBags) { 
 			return true;
@@ -339,16 +338,16 @@ public class FlightsSearchPage extends BasePage {
 	int countBaggageFees=1;
 	private int clickFielSetAndClose(List<WebElement> listFieldSet) {
 
-	
+
 		for (int i = 0; i < listFieldSet.size()-1; i++) {
 
 			listFieldSet.get(i).click();
 			waitForPresenceOfAllElementsLocatedByCss(baggageFees);
 			int countBaggageFees = countBaggageFees(baggageFees);
-			
+
 			Logger.printInfo("count Baggage Fees:  " + countBaggageFees);
 			closeBaggageFees(btnCloseBaggageFees);
-			
+
 		}
 		return countBaggageFees;
 
@@ -356,16 +355,16 @@ public class FlightsSearchPage extends BasePage {
 	}
 
 	private void closeBaggageFees(WebElement btnBaggageClose) {
-		
+
 		waitForElementToBeClickable(btnBaggageClose);
 		btnBaggageClose.click();
-		
+
 	}
 
 	//int countBaggageFees=1;
-	
+
 	private int countBaggageFees(String baggageFees) {
-		
+
 		//int countBaggageFees=1;
 		return (getDriver().findElement(By.cssSelector(baggageFees))!=null)?countBaggageFees++:countBaggageFees--;
 	}
@@ -373,9 +372,12 @@ public class FlightsSearchPage extends BasePage {
 	public boolean verifyTimeIsSorted() {
 
 		Logger.printInfo("In method SelectFromSortList");
-		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[data-test-id='offer-listing'] span[class='duration-emphasis']")));
 
-		List<WebElement> listDuration = obtainsList(contenedor, By.cssSelector("span.duration-emphasis"));
+		waitLoaderDisAppear(progressBar);
+		waitForElementToBeClickable(listFieldSet.get(listFieldSet.size()-1));
+		waitForPageToBeLoaded(getDriver(), 20);
+
+		List<WebElement> listDuration = obtainsList(contenedor, By.cssSelector("div[data-test-id='journey-duration']"));
 		List<String> duration = listDuration.stream().map(x-> x.getText()).collect(Collectors.toList());
 		List<Integer> listNumbers = getCleanList(duration);
 		List<Integer> listNumbersCopy = new ArrayList<>(listNumbers);
@@ -389,6 +391,8 @@ public class FlightsSearchPage extends BasePage {
 		List<Integer> listNumbers = new ArrayList<>();
 
 		for (String hours : duration) {
+			
+			Logger.printInfo("List hours not sorted: " + hours);
 
 			String[] vectorTime= hours.split(" ");
 
@@ -843,19 +847,18 @@ public class FlightsSearchPage extends BasePage {
 		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("div.flex-card"), By.cssSelector("div[class='flex-content']")));
 	}
 
-	public void waitForPageLoaded() {
-
-		System.out.println("ya llegue");
-
-
-	}
-
 	public boolean selectDropDownSort(String data) {
 
 		return clickDropdownByValue(sortBy, data);
 
 	}
 
+	
+	
+	public void refresh() {
+		getDriver().navigate().refresh();
+		
+	}
 
 
 }

@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 3 failed tests</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-Test_suite_Travelocity">
-              <span class="suite-name border-failed">Test suite Travelocity</span>
+              <span class="suite-name border-passed">Test suite Travelocity</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -91,31 +91,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">4 methods, 3 failed,   1 passed</span>
-                  </li>
-                  <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Test_suite_Travelocity" class="hide-methods failed suite-Test_suite_Travelocity"> (hide)</a> <!-- hide-methods failed suite-Test_suite_Travelocity -->
-                      <a href="#" panel-name="suite-Test_suite_Travelocity" class="show-methods failed suite-Test_suite_Travelocity"> (show)</a> <!-- show-methods failed suite-Test_suite_Travelocity -->
-                    </span>
-                    <div class="method-list-content failed suite-Test_suite_Travelocity">
-                      <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Test_suite_Travelocity" title="com.automation.training.tests.TravelocityTestsOne" hash-for-method="test2DropDownSorting(Arrival (Earliest))">test2DropDownSorting(Arrival (Earliest))</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Test_suite_Travelocity" title="com.automation.training.tests.TravelocityTestsOne" hash-for-method="test2DropDownSorting(Departure (Earliest))">test2DropDownSorting(Departure (Earliest))</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Test_suite_Travelocity" title="com.automation.training.tests.TravelocityTestsOne" hash-for-method="test2DropDownSorting(Duration (Shortest))">test2DropDownSorting(Duration (Shortest))</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content failed suite-Test_suite_Travelocity -->
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -126,7 +102,7 @@
                     <div class="method-list-content passed suite-Test_suite_Travelocity">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Test_suite_Travelocity" title="com.automation.training.tests.TravelocityTestsOne" hash-for-method="test2DropDownSorting(Price (Lowest))">test2DropDownSorting(Price (Lowest))</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Test_suite_Travelocity" title="com.automation.training.tests.TravelocityTestsOne" hash-for-method="test3SortingByDurationShorter">test3SortingByDurationShorter</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Test_suite_Travelocity -->
@@ -141,149 +117,6 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Test_suite_Travelocity" class="panel Test_suite_Travelocity">
-          <div class="suite-Test_suite_Travelocity-class-failed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">com.automation.training.tests.TravelocityTestsOne</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="test2DropDownSorting(Arrival (Earliest))">
-                  </a> <!-- test2DropDownSorting(Arrival (Earliest)) -->
-                  <span class="method-name">test2DropDownSorting</span>
-                  <span class="parameters">(Arrival (Earliest))</span>
-                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator &apos;By.cssSelector: a[aria-controls*=&apos;flight&apos;]&apos; (tried for 30 second(s) with 500 milliseconds interval)
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
-	at com.automation.training.pages.TravelocityHomePage.clickFlights(TravelocityHomePage.java:152)
-	at com.automation.training.tests.TravelocityTestsOne.test2DropDownSorting(TravelocityTestsOne.java:86)
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;css selector&quot;,&quot;selector&quot;:&quot;a[aria-controls*=&apos;flight&apos;]&quot;}
-  (Session info: chrome=90.0.4430.93)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;CO-IT005951&apos;, ip: &apos;192.168.42.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_261&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 90.0.4430.93, chrome: {chromedriverVersion: 90.0.4430.24 (4c6d850f087da..., userDataDir: C:\Users\WILSON~1.ANG\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:55251}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: bbcbbac7128fac871ab64624eeb9c4db
-*** Element info: {Using=css selector, value=a[aria-controls*=&apos;flight&apos;]}
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:420)
-	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:431)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at com.sun.proxy.$Proxy11.isDisplayed(Unknown Source)
-	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:314)
-	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:43)
-	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:300)
-	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:297)
-	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:670)
-	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:666)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
-	... 27 more
-... Removed 28 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="test2DropDownSorting(Departure (Earliest))">
-                  </a> <!-- test2DropDownSorting(Departure (Earliest)) -->
-                  <span class="method-name">test2DropDownSorting</span>
-                  <span class="parameters">(Departure (Earliest))</span>
-                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator &apos;By.cssSelector: a[aria-controls*=&apos;flight&apos;]&apos; (tried for 30 second(s) with 500 milliseconds interval)
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
-	at com.automation.training.pages.TravelocityHomePage.clickFlights(TravelocityHomePage.java:152)
-	at com.automation.training.tests.TravelocityTestsOne.test2DropDownSorting(TravelocityTestsOne.java:86)
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;css selector&quot;,&quot;selector&quot;:&quot;a[aria-controls*=&apos;flight&apos;]&quot;}
-  (Session info: chrome=90.0.4430.93)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;CO-IT005951&apos;, ip: &apos;192.168.42.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_261&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 90.0.4430.93, chrome: {chromedriverVersion: 90.0.4430.24 (4c6d850f087da..., userDataDir: C:\Users\WILSON~1.ANG\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:55251}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: bbcbbac7128fac871ab64624eeb9c4db
-*** Element info: {Using=css selector, value=a[aria-controls*=&apos;flight&apos;]}
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:420)
-	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:431)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at com.sun.proxy.$Proxy11.isDisplayed(Unknown Source)
-	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:314)
-	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:43)
-	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:300)
-	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:297)
-	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:670)
-	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:666)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
-	... 27 more
-... Removed 28 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="test2DropDownSorting(Duration (Shortest))">
-                  </a> <!-- test2DropDownSorting(Duration (Shortest)) -->
-                  <span class="method-name">test2DropDownSorting</span>
-                  <span class="parameters">(Duration (Shortest))</span>
-                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator &apos;By.cssSelector: a[aria-controls*=&apos;flight&apos;]&apos; (tried for 30 second(s) with 500 milliseconds interval)
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
-	at com.automation.training.pages.TravelocityHomePage.clickFlights(TravelocityHomePage.java:152)
-	at com.automation.training.tests.TravelocityTestsOne.test2DropDownSorting(TravelocityTestsOne.java:86)
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;css selector&quot;,&quot;selector&quot;:&quot;a[aria-controls*=&apos;flight&apos;]&quot;}
-  (Session info: chrome=90.0.4430.93)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;CO-IT005951&apos;, ip: &apos;192.168.42.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_261&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 90.0.4430.93, chrome: {chromedriverVersion: 90.0.4430.24 (4c6d850f087da..., userDataDir: C:\Users\WILSON~1.ANG\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:55251}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: bbcbbac7128fac871ab64624eeb9c4db
-*** Element info: {Using=css selector, value=a[aria-controls*=&apos;flight&apos;]}
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:420)
-	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:431)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at com.sun.proxy.$Proxy11.isDisplayed(Unknown Source)
-	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:314)
-	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:43)
-	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:300)
-	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:297)
-	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:670)
-	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:666)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
-	... 27 more
-... Removed 28 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Test_suite_Travelocity-class-failed -->
           <div class="suite-Test_suite_Travelocity-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -292,10 +125,9 @@ Session ID: bbcbbac7128fac871ab64624eeb9c4db
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="test2DropDownSorting(Price (Lowest))">
-                  </a> <!-- test2DropDownSorting(Price (Lowest)) -->
-                  <span class="method-name">test2DropDownSorting</span>
-                  <span class="parameters">(Price (Lowest))</span>
+                  <a name="test3SortingByDurationShorter">
+                  </a> <!-- test3SortingByDurationShorter -->
+                  <span class="method-name">test3SortingByDurationShorter</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -325,7 +157,7 @@ Session ID: bbcbbac7128fac871ab64624eeb9c4db
     &lt;classes&gt;
       &lt;class name=&quot;com.automation.training.tests.TravelocityTestsOne&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;test2DropDownSorting&quot;/&gt;
+          &lt;include name=&quot;test3SortingByDurationShorter&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- com.automation.training.tests.TravelocityTestsOne --&gt;
     &lt;/classes&gt;
@@ -367,28 +199,16 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(4);
+data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'test2DropDownSorting')
+data.setCell(0, 1, 'test3SortingByDurationShorter')
 data.setCell(0, 2, 'com.automation.training.tests.TravelocityTestsOne')
-data.setCell(0, 3, 30388);
-data.setCell(1, 0, 1)
-data.setCell(1, 1, 'test2DropDownSorting')
-data.setCell(1, 2, 'com.automation.training.tests.TravelocityTestsOne')
-data.setCell(1, 3, 30383);
-data.setCell(2, 0, 2)
-data.setCell(2, 1, 'test2DropDownSorting')
-data.setCell(2, 2, 'com.automation.training.tests.TravelocityTestsOne')
-data.setCell(2, 3, 30355);
-data.setCell(3, 0, 3)
-data.setCell(3, 1, 'test2DropDownSorting')
-data.setCell(3, 2, 'com.automation.training.tests.TravelocityTestsOne')
-data.setCell(3, 3, 30207);
+data.setCell(0, 3, 7745);
 window.suiteTableData['Test_suite_Travelocity']= { tableData: data, tableDiv: 'times-div-Test_suite_Travelocity'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <span class="suite-total-time">Total running time: 7 seconds</span>
               <div id="times-div-Test_suite_Travelocity">
               </div> <!-- times-div-Test_suite_Travelocity -->
             </div> <!-- times-div -->
@@ -400,59 +220,176 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="reporter-method-div">
-              <span class="reporter-method-name">test2DropDownSorting(Price (Lowest))</span>
+              <span class="reporter-method-name">test3SortingByDurationShorter</span>
               <div class="reporter-method-output-div">
-                <span class="reporter-method-output">[INFO 2021-05-02] click in fligts</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] click in RoundTrip</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: a[aria-controls*='roundtrip']]</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: button[aria-label*='Leaving from']]</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> id: location-field-leg1-origin]</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Writing: Las</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: div[data-stid*='origin'] li[data-index='0'] button]</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: button[aria-label='Going to']]</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> id: location-field-leg1-destination]</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Writing: Lax</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: div[data-stid*='destination'] li[data-index='0'] button]</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Opcion enviada: Departure</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> id: d1-btn]</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: button[data-stid='date-picker-paging']:nth-child(2)]</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Click: [[ChromeDriver: chrome on WINDOWS (bbcbbac7128fac871ab64624eeb9c4db)] -> css selector: button[data-stid='date-picker-paging']:nth-child(2)]</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Click: Proxy element for: DefaultElementLocator 'By.cssSelector: button[data-stid='apply-date-picker'] >span'</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] Click: Proxy element for: DefaultElementLocator 'By.cssSelector: button[data-testid='submit-button']'</span>
-                <span class="reporter-method-output">[INFO 2021-05-02] In dropdown list + From pageLAS to LAX flights</span>
-              </div> <!-- reporter-method-output-div -->
-            </div> <!-- reporter-method-div -->
-            <div class="reporter-method-div">
-              <span class="reporter-method-name">test2DropDownSorting(Arrival (Earliest))</span>
-              <div class="reporter-method-output-div">
-                <span class="reporter-method-output">[INFO 2021-05-02] click in fligts</span>
-              </div> <!-- reporter-method-output-div -->
-            </div> <!-- reporter-method-div -->
-            <div class="reporter-method-div">
-              <span class="reporter-method-name">test2DropDownSorting(Departure (Earliest))</span>
-              <div class="reporter-method-output-div">
-                <span class="reporter-method-output">[INFO 2021-05-02] click in fligts</span>
-              </div> <!-- reporter-method-output-div -->
-            </div> <!-- reporter-method-div -->
-            <div class="reporter-method-div">
-              <span class="reporter-method-name">test2DropDownSorting(Duration (Shortest))</span>
-              <div class="reporter-method-output-div">
-                <span class="reporter-method-output">[INFO 2021-05-02] click in fligts</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] In dropdown list + From pageLAS to LAX flights</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] In method SelectFromSortList</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 1m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 5m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 8m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 8m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 9m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 9m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 10m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 12m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 14m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 15m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 15m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 15m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 15m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 15m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 15m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 15m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 18m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 18m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 18m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 21m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 1h 23m (Nonstop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 3h 28m (1 stop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 3h 30m (1 stop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 4h 5m (1 stop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours not sorted: 4h 28m (1 stop)</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] List hours sorted: -1</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[0]:61</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[0]:61</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[1]:65</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[1]:65</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[2]:68</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[2]:68</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[3]:68</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[3]:68</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[4]:69</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[4]:69</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[5]:69</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[5]:69</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[6]:70</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[6]:70</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[7]:72</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[7]:72</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[8]:74</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[8]:74</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[9]:75</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[9]:75</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[10]:75</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[10]:75</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[11]:75</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[11]:75</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[12]:75</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[12]:75</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[13]:75</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[13]:75</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[14]:75</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[14]:75</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[15]:75</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[15]:75</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[16]:78</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[16]:78</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[17]:78</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[17]:78</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[18]:78</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[18]:78</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[19]:81</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[19]:81</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[20]:83</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[20]:83</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[21]:208</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[21]:208</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[22]:210</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[22]:210</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] a[23]:245</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] b[23]:245</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] IF value is cero is same position  0</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted</span>
+                <span class="reporter-method-output">[INFO 2021-05-04] The list is sorted ? true</span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Test_suite_Travelocity" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">2 ignored methods</span>
+            <span class="header-content">4 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
               <span class="ignored-class-name">com.automation.training.tests.TravelocityTestsOne</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">test2dsearchResultsAndDetailsAndBags</span>
+                <span class="ignored-method-name">test2CFlightDurationIsPresentOnEveryResult</span>
                 <br/>
                 <span class="ignored-method-name">testTravelocityFromToAndDataPicker</span>
+                <br/>
+                <span class="ignored-method-name">test2DsearchResultsAndDetailsAndBags</span>
+                <br/>
+                <span class="ignored-method-name">test2ADropDownSorting</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -470,30 +407,12 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <span class="method-name">test2DropDownSorting(Price (Lowest))</span>
-                <span class="method-start">19525 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">test2DropDownSorting(Departure (Earliest))</span>
-                <span class="method-start">49883 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">test2DropDownSorting(Arrival (Earliest))</span>
-                <span class="method-start">80269 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">test2DropDownSorting(Duration (Shortest))</span>
-                <span class="method-start">110479 ms</span>
+                <span class="method-name">test3SortingByDurationShorter</span>
+                <span class="method-start">8053 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">afterSuite</span>
-                <span class="method-start">140868 ms</span>
+                <span class="method-start">15800 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

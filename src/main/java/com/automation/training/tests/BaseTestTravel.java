@@ -34,7 +34,7 @@ public abstract class BaseTestTravel {
 
 	@AfterClass(alwaysRun=true)
 	public void afterSuite() {
-		travelocityHomePage.dispose();
+		//travelocityHomePage.dispose();
 	}
 	
 	public TravelocityHomePage getTravelocityHomePage() {

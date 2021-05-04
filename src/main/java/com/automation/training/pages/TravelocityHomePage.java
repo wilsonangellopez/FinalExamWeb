@@ -54,10 +54,10 @@ public class TravelocityHomePage extends BasePage {
 
 	@FindBy(css="button[data-stid='apply-date-picker'] >span")
 	private WebElement btnDoneCalendar;
-	
+
 	@FindBy(css="button[data-testid='submit-button']")
 	private WebElement btnSearch;
-	
+
 
 
 	//---
@@ -285,7 +285,7 @@ public class TravelocityHomePage extends BasePage {
 	public void selectDateForFlight(String option, int monthFly) {
 
 		if(option.equalsIgnoreCase("Departure")) {
-			
+
 			Logger.printInfo("Opcion enviada: " + option);
 
 			click(inputCalendardDeptFlight);
@@ -293,22 +293,13 @@ public class TravelocityHomePage extends BasePage {
 			clickFutureDate(getFutureDate(monthFly));
 		}
 		if(option.equalsIgnoreCase("Return")) {
-			
+
 			clickingNextBtnCalendar(btnNextCalendar);
 			clickFutureDate(getFutureDate(monthFly));
 		}
 
-
-
-
-		// clikar sobre el selector q se debe armar con la fecha futura
-
-		//calcular la fecha de regreso 
-		//clickar sobre el selector q se acaba de armar con la fecha futura
-
-		//selectDateBetter(inputCalendardDeptFlight, inputCalendarRetFlight, true, monthFly );
 	}
-	
+
 	public void clickDoneBtnInCalendar() {
 		click(btnDoneCalendar);
 	}
@@ -332,17 +323,17 @@ public class TravelocityHomePage extends BasePage {
 
 	public void selectDayForFlightHotel() {
 
-		selectDateBetter(inputCalendarDepFlightHotel, inputCalendarRetFlightHotel, false, 20L );
+		//selectDateBetter(inputCalendarDepFlightHotel, inputCalendarRetFlightHotel, false, 20L );
 	}
 
 	public void selectDayForHotel() {
 
-		selectDateBetter(inputCheckInHotel, inputCheckOutHotel, false, 13L );
+		//selectDateBetter(inputCheckInHotel, inputCheckOutHotel, false, 13L );
 	}
 
 	public void selectDayForFlightPartial() {
 
-		selectDateBetter(inputCalendarDepFlightHotel, inputCalendarRetFlightHotel, true, 2L );
+		//selectDateBetter(inputCalendarDepFlightHotel, inputCalendarRetFlightHotel, true, 2L );
 	}
 
 	public void selectDayForHotelPartial() {
@@ -352,10 +343,10 @@ public class TravelocityHomePage extends BasePage {
 
 	public void selectDayForCruise() {
 
-		selectDateBetter(inputCruiseDepartureEarly, inputCruiseLate, true, 3L );
+		//selectDateBetter(inputCruiseDepartureEarly, inputCruiseLate, true, 3L );
 	}
 
-	public void selectDateBetter(WebElement inputCalendarDeparture, WebElement inputCalendarReturn, boolean isMonth, Long quantity) {
+	/*public void selectDateBetter(WebElement inputCalendarDeparture, WebElement inputCalendarReturn, boolean isMonth, Long quantity) {
 
 		String dateFuture = getFutureDate(quantity);
 		click(webElement);
@@ -374,7 +365,7 @@ public class TravelocityHomePage extends BasePage {
 
 		selectDate(inputCalendarReturn, date);
 		setDateInContext(date, false);
-	}
+	}*/
 
 	/**
 	 * @param quantity
@@ -748,9 +739,15 @@ public class TravelocityHomePage extends BasePage {
 	}
 
 	public FlightsSearchPage clickSearchButton() {
-		
+
 		click(btnSearch);
-		
+
+		return new FlightsSearchPage(getDriver());
+	}
+
+	public FlightsSearchPage reDirect() {
+
+		getDriver().get("https://www.travelocity.com/Flights-Search?leg1=from%3ALas%20Vegas%2C%20NV%20%28LAS-McCarran%20Intl.%29%2Cto%3ALos%20Angeles%2C%20CA%20%28LAX-Los%20Angeles%20Intl.%29%2Cdeparture%3A7%2F3%2F2021TANYT&leg2=from%3ALos%20Angeles%2C%20CA%20%28LAX-Los%20Angeles%20Intl.%29%2Cto%3ALas%20Vegas%2C%20NV%20%28LAS-McCarran%20Intl.%29%2Cdeparture%3A8%2F3%2F2021TANYT&mode=search&options=carrier%3A%2A%2Ccabinclass%3A%2Cmaxhops%3A1%2Cnopenalty%3AN&passengers=adults%3A1%2Cchildren%3A0%2Cinfantinlap%3AN&sortOrder=INCREASING&sortType=DURATION&trip=roundtrip");
 		return new FlightsSearchPage(getDriver());
 	}
 

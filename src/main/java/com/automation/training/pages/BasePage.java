@@ -65,18 +65,18 @@ public abstract class BasePage {
 		webElement.click();
 		Logger.printInfo("Click: " + webElement);
 	}
-	
+
 	protected void waitForElementToBeClickable(WebElement element) {
-		
+
 		getWait().until(ExpectedConditions.elementToBeClickable(element));
 	}
-	
+
 	protected void click(String element) {
-		
+
 		getWait().until(ExpectedConditions.elementToBeClickable(By.cssSelector(element)));
 		getDriver().findElement(By.cssSelector(element)).click();
 		Logger.printInfo("Click: " + element );
-		
+
 	}
 
 	protected void writing(WebElement webElement, String orgDes) {
@@ -217,30 +217,30 @@ public abstract class BasePage {
 		return contenedor.stream().map(f-> f.findElement(selector)).collect(Collectors.toList());
 	}
 
-	
+
 	protected void waitForPresenceOfAllElementsLocatedByCss(String selector) {
 		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(selector)));
 		//getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[data-test-id='offer-listing']")));
 	}
-	
+
 	protected void clickByElementJS(WebDriver driver, WebElement element) throws InterruptedException {
 		Actions act = new Actions(driver);
 		getWait().until(ExpectedConditions.elementToBeClickable(element));
-//		Thread.sleep(500);
+		//		Thread.sleep(500);
 		// aqui manejar un wait del elemento tradicional 
 		act.moveToElement(element).click().build().perform();
 		Thread.sleep(500);
 
 	}
-	
+
 	protected void clickByElementJS(WebDriver driver, String element) throws InterruptedException {
-		
-		
+
+
 		Actions act = new Actions(driver);
 		getWait().until(ExpectedConditions.elementToBeClickable(By.cssSelector(element)));
-		
+
 		WebElement elem = getDriver().findElement(By.cssSelector(element));
-//		Thread.sleep(500);
+		//		Thread.sleep(500);
 		// aqui manejar un wait del elemento tradicional 
 		act.moveToElement(elem).click().build().perform();
 		Thread.sleep(500);
@@ -381,4 +381,8 @@ public abstract class BasePage {
 		return true;
 	}
 
+	public void waitLoaderDisAppear(String loader) {
+
+		getWait().until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(loader)));
+	}
 }

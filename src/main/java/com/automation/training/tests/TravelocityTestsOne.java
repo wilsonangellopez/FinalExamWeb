@@ -43,7 +43,7 @@ public class TravelocityTestsOne extends BaseTestTravel {
 		//flightsSearchPage = travelocityHomePage.clickBtnSearch(true);
 
 		//assertTrue(flightsSearchPage.selectDrpDurationShortest(), "The Result flight page dont have sort button"); metodo actualizado
-		/*assertTrue(flightsSearchPage.searchResultsAndSelectBtn(), "The results dont have select buttons");
+		assertTrue(flightsSearchPage.searchResultsAndSelectBtn(), "The results dont have select buttons");
 		assertTrue(flightsSearchPage.searchResultsAndFlightDuration(), "The results dont have the flight duration");
 		assertTrue(flightsSearchPage.searchResultsAndDetailsAndBags(), "The results dont have the Flight details and Bagges feees");
 
@@ -74,14 +74,28 @@ public class TravelocityTestsOne extends BaseTestTravel {
 		assertThat(checkOutPage.getMiddleName(middleName), CoreMatchers.is(middleName));
 		assertThat(checkOutPage.getLastName(lastName), CoreMatchers.is(lastName));
 		assertThat(checkOutPage.getPhoneNumber(phoneNumber), CoreMatchers.is(phoneNumber));
-		assertTrue(checkOutPage.verifyTotalPriceTrip(), "The price is diferent");*/
+		assertTrue(checkOutPage.verifyTotalPriceTrip(), "The price is diferent");/**/
 
 	}
 
-
-
 	@Test(dataProvider="dataP", priority=2)
-	public void test2DropDownSorting(String dataP) {	
+	public void test2ADropDownSorting(String dataP) {	
+		
+		flightsSearchPage= travelocityHomePage.reDirect();
+		assertTrue(flightsSearchPage.selectDropDownSort(dataP), "The option doesn't have information");
+				
+
+	}
+	
+	@Test(priority=3)
+	public void test2CFlightDurationIsPresentOnEveryResult() {	
+		
+		flightsSearchPage= travelocityHomePage.reDirect();
+		assertTrue(flightsSearchPage.searchResultsAndFlightDuration(), "The results don't have the flight duration");
+	}
+	
+	@Test(priority=4, dataProvider="dataShort")
+	public void test2DsearchResultsAndDetailsAndBags(String dataShort) {
 		
 		travelocityHomePage.clickFlights();
 		travelocityHomePage.clickRoundTrip();
@@ -92,31 +106,18 @@ public class TravelocityTestsOne extends BaseTestTravel {
 		travelocityHomePage.selectDateForFlight("Return",3);
 		travelocityHomePage.clickDoneBtnInCalendar();
 		flightsSearchPage= travelocityHomePage.clickSearchButton();
-
-		flightsSearchPage.waitForPageLoaded();
-		assertTrue(flightsSearchPage.selectDropDownSort(dataP), "The option doesn't have information");
-				
-
-	}
-
-
-	@Test(priority=3)
-	@Parameters({"from", "to"})
-	public void test2dsearchResultsAndDetailsAndBags(String from,
-			String to) {
 		
-		travelocityHomePage.clickFlights();
-		travelocityHomePage.clickRoundTrip();
-		travelocityHomePage.selectFromAndTo(from);
-		travelocityHomePage.selectFromAndTo(to);
-
-		travelocityHomePage.selectDateForFlight("Departure",2);
-		travelocityHomePage.selectDateForFlight("Return",3);
-		travelocityHomePage.clickDoneBtnInCalendar();
-		flightsSearchPage= travelocityHomePage.clickSearchButton();
-		
-		assertTrue(flightsSearchPage.selectDropDownSort("Duration (Shortest)"), "The option doesn't have information");
+		assertTrue(flightsSearchPage.selectDropDownSort(dataShort), "The option doesn't have information");
 		assertTrue(flightsSearchPage.searchResultsAndDetailsAndBags(), "The results dont have the Flight details and Bagges feees");
+		
+	}
+	
+	@Test(priority=2)
+	public void test3SortingByDurationShorter() {	
+		
+		flightsSearchPage= travelocityHomePage.reDirect();
+		assertTrue(flightsSearchPage.selectDropDownSort("DURATION_INCREASING"), "The option doesn't have information");
+		assertTrue(flightsSearchPage.verifyTimeIsSorted(),"The List isn't in order from low to hight");
 		
 	}
 
@@ -124,23 +125,22 @@ public class TravelocityTestsOne extends BaseTestTravel {
 	@DataProvider(name="dataP")
 	public Object[] dataProvider() {
 		Object[] dataP= new Object[4];
-		dataP[0]="Price (Lowest)";
-		dataP[1]="Departure (Earliest)";
-		dataP[2]="Arrival (Earliest)";
-		dataP[3]="Duration (Shortest)";
+		dataP[0]="DURATION_INCREASING";
+		dataP[1]="PRICE_INCREASING";
+		dataP[2]="DEPARTURE_INCREASING";
+		dataP[3]="ARRIVAL_INCREASING";
+		
 
 		return dataP;
 	}	
-
-	@DataProvider(name="dataShortes")
+	
+	@DataProvider(name="dataShort")
 	public Object[] dataProviderShortes() {
-		Object[] data= new Object[1];
-
-		data[0]="Duration (Shortest)";
-
-		return data;
+		Object[] dataShort= new Object[1];
+		dataShort[0]="DURATION_INCREASING";
+		
+		return dataShort;
 	}	
-
 
 
 }

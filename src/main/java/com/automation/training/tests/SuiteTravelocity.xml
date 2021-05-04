@@ -24,10 +24,12 @@
 	 			<class name="com.automation.training.tests.TravelocityTestsOne">
 	 			<methods>
 	 			
+	 			
 	 			<!-- <include name="testTravelocityFromToAndDataPicker"></include> -->
-	 			<include name="test2DropDownSorting"></include>
+	 			<include name="test3SortingByDurationShorter"></include>
 	 			<!--  <exclude name="test2DropDownSorting"></exclude>-->
 	 			<!--  <exclude name="test2dsearchResultsAndDetailsAndBags"></exclude>-->
+	 			<!--  <exclude name="test2CFlightDurationIsPresentOnEveryResult"></exclude>-->
 	 			
 	 			 </methods>  
 	 			</class> 

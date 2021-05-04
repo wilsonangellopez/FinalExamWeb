@@ -16,8 +16,8 @@
     <classes>
       <class name="com.automation.training.tests.TravelocityTestsOne">
         <methods>
-          <include name="test2DropDownSorting" invocation-numbers="1 2 3"/>
           <include name="beforeSuite"/>
+          <include name="test3SortingByDurationShorter"/>
           <include name="afterSuite"/>
         </methods>
       </class> <!-- com.automation.training.tests.TravelocityTestsOne -->
