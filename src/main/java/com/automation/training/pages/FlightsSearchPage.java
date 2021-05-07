@@ -410,11 +410,14 @@ public class FlightsSearchPage extends BasePage {
 
 
 		int pos = Integer.parseInt(position)-1;
-		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[data-test-id='offer-listing'] button[data-test-id='select-button']")));
+		//getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[data-test-id='offer-listing'] button[data-test-id='select-button']")));
+		waitLoaderDisAppear(progressBar);
+		waitForElementToBeClickable(listFieldSet.get(listFieldSet.size()-1));
+		waitForPageToBeLoaded(getDriver(), 30);
 
 		if(isLAS 
 				&& (isPresent(Subtitulo)!=null) 
-				&& (Subtitulo.getText().equalsIgnoreCase("Select your departure to Los Angeles"))) {
+				&& (getDriver().getTitle().contains("LAS to LAX "))) {
 
 			return verifyTicketExistInList(listSelectBtns, pos);
 		}

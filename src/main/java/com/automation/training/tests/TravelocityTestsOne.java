@@ -120,6 +120,22 @@ public class TravelocityTestsOne extends BaseTestTravel {
 		assertTrue(flightsSearchPage.verifyTimeIsSorted(),"The List isn't in order from low to hight");
 		
 	}
+	
+	@Test(priority=2)
+	@Parameters({"firstResult"})
+	public void test4SelectFirstResult(String firstResult) {	
+		
+		flightsSearchPage= travelocityHomePage.reDirect();
+		assertTrue(flightsSearchPage.selectDropDownSort("DURATION_INCREASING"), "The option doesn't have information");
+		assertTrue(flightsSearchPage.verifyTimeIsSorted(),"The List isn't in order from low to hight");
+		
+		assertTrue(flightsSearchPage.verifyTicketExistGeneral(firstResult, true),"The ticket is not Displayed");
+		flightsSearchPage.getInfoFlight(firstResult, true);
+		assertTrue(flightsSearchPage.selectTicketGeneral(firstResult),"The button select is not available");
+		flightsSearchPage.selectFaresBtnGeneral(firstResult, true);
+		
+	}
+
 
 
 	@DataProvider(name="dataP")
