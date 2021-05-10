@@ -1,25 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="8" total="12" passed="4">
+<testng-results skipped="0" failed="0" ignored="8" total="9" passed="1">
   <reporter-output>
     <line>
-      <![CDATA[[INFO 2021-05-09] In dropdown list + From pageLAS to LAX flights]]>
+      <![CDATA[[INFO 2021-05-10] click in fligts]]>
     </line>
     <line>
-      <![CDATA[[INFO 2021-05-09] In dropdown list + From pageLAS to LAX flights]]>
+      <![CDATA[[INFO 2021-05-10] click in RoundTrip]]>
     </line>
     <line>
-      <![CDATA[[INFO 2021-05-09] In dropdown list + From pageLAS to LAX flights]]>
+      <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> css selector: a[aria-controls*='roundtrip']]]]>
     </line>
     <line>
-      <![CDATA[[INFO 2021-05-09] In dropdown list + From pageLAS to LAX flights]]>
+      <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> css selector: button[aria-label*='Leaving from']]]]>
+    </line>
+    <line>
+      <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> id: location-field-leg1-origin]]]>
+    </line>
+    <line>
+      <![CDATA[[INFO 2021-05-10] Writing: LAS]]>
+    </line>
+    <line>
+      <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> css selector: div[data-stid*='origin'] li[data-index='0'] button]]]>
+    </line>
+    <line>
+      <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> css selector: button[aria-label='Going to']]]]>
+    </line>
+    <line>
+      <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> id: location-field-leg1-destination]]]>
+    </line>
+    <line>
+      <![CDATA[[INFO 2021-05-10] Writing: LAX]]>
+    </line>
+    <line>
+      <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> css selector: div[data-stid*='destination'] li[data-index='0'] button]]]>
+    </line>
+    <line>
+      <![CDATA[[INFO 2021-05-10] Opcion enviada: LAS]]>
+    </line>
+    <line>
+      <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> id: d1-btn]]]>
+    </line>
+    <line>
+      <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> css selector: button[data-stid='date-picker-paging']:nth-child(2)]]]>
+    </line>
+    <line>
+      <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> css selector: button[data-stid='date-picker-paging']:nth-child(2)]]]>
+    </line>
+    <line>
+      <![CDATA[[INFO 2021-05-10] Click: Proxy element for: DefaultElementLocator 'By.cssSelector: button[data-stid='apply-date-picker'] >span']]>
+    </line>
+    <line>
+      <![CDATA[[INFO 2021-05-10] Click: Proxy element for: DefaultElementLocator 'By.cssSelector: button[data-testid='submit-button']']]>
     </line>
   </reporter-output>
-  <suite name="Test suite Travelocity" duration-ms="46743" started-at="2021-05-10T04:22:37Z" finished-at="2021-05-10T04:23:24Z">
+  <suite name="Test suite Travelocity" duration-ms="22453" started-at="2021-05-10T05:27:13Z" finished-at="2021-05-10T05:27:36Z">
     <groups>
     </groups>
-    <test name="Travelocity tests" duration-ms="46743" started-at="2021-05-10T04:22:37Z" finished-at="2021-05-10T04:23:24Z">
+    <test name="Travelocity tests" duration-ms="22453" started-at="2021-05-10T05:27:13Z" finished-at="2021-05-10T05:27:36Z">
       <class name="com.automation.training.tests.TravelocityTestsOne">
-        <test-method status="PASS" signature="beforeSuite(java.lang.String)[pri:0, instance:com.automation.training.tests.TravelocityTestsOne@5f9d02cb]" name="beforeSuite" is-config="true" duration-ms="9977" started-at="2021-05-09T23:22:37Z" finished-at="2021-05-09T23:22:47Z">
+        <test-method status="PASS" signature="beforeSuite(java.lang.String)[pri:0, instance:com.automation.training.tests.TravelocityTestsOne@5f9d02cb]" name="beforeSuite" is-config="true" duration-ms="13028" started-at="2021-05-10T00:27:13Z" finished-at="2021-05-10T00:27:26Z">
           <params>
             <param index="0">
               <value>
@@ -30,63 +69,114 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method status="PASS" signature="test2ADropDownSorting(java.lang.String)[pri:2, instance:com.automation.training.tests.TravelocityTestsOne@5f9d02cb]" name="test2ADropDownSorting" duration-ms="11544" started-at="2021-05-09T23:22:47Z" data-provider="dataP" finished-at="2021-05-09T23:22:59Z">
+        <test-method status="PASS" signature="testTravelocityFromToAndDataPicker(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:1, instance:com.automation.training.tests.TravelocityTestsOne@5f9d02cb]" name="testTravelocityFromToAndDataPicker" duration-ms="8587" started-at="2021-05-10T00:27:26Z" finished-at="2021-05-10T00:27:35Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[DURATION_INCREASING]]>
+                <![CDATA[LAS]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[LAX]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Wilson]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Angel]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Lopez]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[3174253892]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[1]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[3]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[Las Vegas, NV (LAS-McCarran Intl.)]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[Los Angeles, California]]>
               </value>
             </param>
           </params>
           <reporter-output>
             <line>
-              <![CDATA[[INFO 2021-05-09] In dropdown list + From pageLAS to LAX flights]]>
+              <![CDATA[[INFO 2021-05-10] click in fligts]]>
             </line>
-          </reporter-output>
-        </test-method> <!-- test2ADropDownSorting -->
-        <test-method status="PASS" signature="test2ADropDownSorting(java.lang.String)[pri:2, instance:com.automation.training.tests.TravelocityTestsOne@5f9d02cb]" name="test2ADropDownSorting" duration-ms="8293" started-at="2021-05-09T23:22:59Z" data-provider="dataP" finished-at="2021-05-09T23:23:07Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[PRICE_INCREASING]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
             <line>
-              <![CDATA[[INFO 2021-05-09] In dropdown list + From pageLAS to LAX flights]]>
+              <![CDATA[[INFO 2021-05-10] click in RoundTrip]]>
             </line>
-          </reporter-output>
-        </test-method> <!-- test2ADropDownSorting -->
-        <test-method status="PASS" signature="test2ADropDownSorting(java.lang.String)[pri:2, instance:com.automation.training.tests.TravelocityTestsOne@5f9d02cb]" name="test2ADropDownSorting" duration-ms="7888" started-at="2021-05-09T23:23:07Z" data-provider="dataP" finished-at="2021-05-09T23:23:15Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[DEPARTURE_INCREASING]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
             <line>
-              <![CDATA[[INFO 2021-05-09] In dropdown list + From pageLAS to LAX flights]]>
+              <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> css selector: a[aria-controls*='roundtrip']]]]>
             </line>
-          </reporter-output>
-        </test-method> <!-- test2ADropDownSorting -->
-        <test-method status="PASS" signature="test2ADropDownSorting(java.lang.String)[pri:2, instance:com.automation.training.tests.TravelocityTestsOne@5f9d02cb]" name="test2ADropDownSorting" duration-ms="8187" started-at="2021-05-09T23:23:15Z" data-provider="dataP" finished-at="2021-05-09T23:23:23Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[ARRIVAL_INCREASING]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
             <line>
-              <![CDATA[[INFO 2021-05-09] In dropdown list + From pageLAS to LAX flights]]>
+              <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> css selector: button[aria-label*='Leaving from']]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> id: location-field-leg1-origin]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-10] Writing: LAS]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> css selector: div[data-stid*='origin'] li[data-index='0'] button]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> css selector: button[aria-label='Going to']]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> id: location-field-leg1-destination]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-10] Writing: LAX]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> css selector: div[data-stid*='destination'] li[data-index='0'] button]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-10] Opcion enviada: LAS]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> id: d1-btn]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> css selector: button[data-stid='date-picker-paging']:nth-child(2)]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-10] Click: [[ChromeDriver: chrome on WINDOWS (ec62397d33444c2e94794e972eaecbc4)] -> css selector: button[data-stid='date-picker-paging']:nth-child(2)]]]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-10] Click: Proxy element for: DefaultElementLocator 'By.cssSelector: button[data-stid='apply-date-picker'] >span']]>
+            </line>
+            <line>
+              <![CDATA[[INFO 2021-05-10] Click: Proxy element for: DefaultElementLocator 'By.cssSelector: button[data-testid='submit-button']']]>
             </line>
           </reporter-output>
-        </test-method> <!-- test2ADropDownSorting -->
-        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.automation.training.tests.TravelocityTestsOne@5f9d02cb]" name="afterSuite" is-config="true" duration-ms="829" started-at="2021-05-09T23:23:23Z" finished-at="2021-05-09T23:23:24Z">
+        </test-method> <!-- testTravelocityFromToAndDataPicker -->
+        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.automation.training.tests.TravelocityTestsOne@5f9d02cb]" name="afterSuite" is-config="true" duration-ms="819" started-at="2021-05-10T00:27:35Z" finished-at="2021-05-10T00:27:36Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterSuite -->

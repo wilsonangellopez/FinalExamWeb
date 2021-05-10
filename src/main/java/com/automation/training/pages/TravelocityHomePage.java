@@ -60,91 +60,21 @@ public class TravelocityHomePage extends BasePage {
 
 
 
-	//---
-
-	@FindBy(css="#tab-package-tab-hp")
-	private WebElement btnVacationPackages;
-
-	@FindBy(css="#fh-fh-hp-package")
-	private WebElement RbnFlightHotel;
 
 	@FindBy(css="a[aria-controls*='roundtrip']")
 	private WebElement btnRoundtrip;
 
-	@FindBy(css="button.btn-primary.btn-action.gcw-submit")
-	private List<WebElement> listBtnSearchFly;
-
-	//	@FindBy(id="flight-departing-hp-flight") //d1-btn
-	@FindBy(id="d1-btn") //
+	@FindBy(id="d1-btn")
 	private WebElement inputCalendardDeptFlight;
-
-	@FindBy(id="flight-returning-hp-flight")
-	private WebElement inputCalendarRetFlight;
-
-	@FindBy(id="package-departing-hp-package")
-	private WebElement inputCalendarDepFlightHotel;
-
-	@FindBy(id="package-returning-hp-package")
-	private WebElement inputCalendarRetFlightHotel;
-
-	@FindBy(className="datepicker-cal-month")
-	private WebElement calendarioDiv;
 
 	@FindBy(css="button[data-stid='date-picker-paging']:nth-child(2)")
 	private WebElement btnNextCalendar;
 
-	@FindBy(css="caption.datepicker-cal-month-header")
-	private WebElement MesesCalendar;
-
-	@FindBy(id="search-button-hp-package")
-	private WebElement btnSearchFH;
-
-	@FindBy(id="package-rooms-hp-package")
-	private WebElement drpRoomsFlightHotel;
-
-	@FindBy(id="hotel-rooms-hp-hotel")
-	private WebElement drpRoomsHotel;
-
-
-
-	@FindBy(id="hotel-checkin-hp-hotel")
-	private WebElement inputCheckInHotel;
-
-	@FindBy(id="hotel-checkout-hp-hotel")
-	private WebElement inputCheckOutHotel;
-
-	@FindBy(id="package-checkin-hp-package")
-	private WebElement inputCheckInHotelPartial;
-
-	@FindBy(id="package-checkout-hp-package")
-	private WebElement inputCheckOutHotelPartial;
-
-	@FindBy(css="#partialHotelBooking-hp-package")
-	private WebElement chkBtnHotelPartOfStay;
-
-	@FindBy(id="tab-cruise-tab-hp")
-	private WebElement btnCruises;
 
 	@FindBy(id="cruise-destination-hp-cruise")
 	private WebElement dropDownListGoingTo;
 
-	@FindBy(id="cruise-start-date-hp-cruise")
-	private WebElement inputCruiseDepartureEarly;
 
-	@FindBy(id="cruise-end-date-hp-cruise")
-	private WebElement inputCruiseLate;
-
-	@FindBy(css="section#WizardHero")
-	private WebElement frame;
-
-	@FindBy(css="button[class*='new-date-picker-day']")
-	private List<WebElement> listBtnsCalendar;
-
-	@FindBy(css="a.error-link")
-	private List<WebElement>errorLink;
-
-	@FindBy(css="div[class='cols-nested'] label button[class='btn-primary btn-action gcw-submit '][data-gcw-change-submit-text='Search']")
-	private List<WebElement> listBtnSearchHotel;
 
 	/*
 	 * Method to click flight button
@@ -225,7 +155,6 @@ public class TravelocityHomePage extends BasePage {
 
 		String elementDateFuture = "button[aria-label='" + futureDate + "']";
 
-
 		try {
 			clickByElementJS(getDriver(), elementDateFuture);
 		} catch (InterruptedException e) {
@@ -238,53 +167,9 @@ public class TravelocityHomePage extends BasePage {
 		click(element);
 	}
 
-	public void selectDayForFlightHotel() {
-
-		//selectDateBetter(inputCalendarDepFlightHotel, inputCalendarRetFlightHotel, false, 20L );
-	}
-
-	public void selectDayForHotel() {
-
-		//selectDateBetter(inputCheckInHotel, inputCheckOutHotel, false, 13L );
-	}
-
-	public void selectDayForFlightPartial() {
-
-		//selectDateBetter(inputCalendarDepFlightHotel, inputCalendarRetFlightHotel, true, 2L );
-	}
-
-	public void selectDayForHotelPartial() {
-
-		writeInCalendarDirectPartial(inputCheckInHotelPartial, inputCheckOutHotelPartial, 1L );
-	}
-
-	public void selectDayForCruise() {
-
-		//selectDateBetter(inputCruiseDepartureEarly, inputCruiseLate, true, 3L );
-	}
-
-	/*public void selectDateBetter(WebElement inputCalendarDeparture, WebElement inputCalendarReturn, boolean isMonth, Long quantity) {
-
-		String dateFuture = getFutureDate(quantity);
-		click(webElement);
-
-
-
-		selectDate(inputCalendarDeparture, date);
-		setDateInContext(date, true);
-
-		if(isMonth) {
-			date = date.plusMonths(quantity);
-		}
-		else {
-			date=date.plusDays(quantity);
-		}
-
-		selectDate(inputCalendarReturn, date);
-		setDateInContext(date, false);
-	}*/
 
 	/**
+	 * Method to create the future date 
 	 * @param quantity
 	 * @return
 	 */
@@ -306,319 +191,6 @@ public class TravelocityHomePage extends BasePage {
 		return departureDate ;
 	}
 
-	private boolean writeInCalendarDirect(WebElement inputCalendar, LocalDate date) {
-
-		if( !btnNextCalendar.isDisplayed() ) {
-			String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
-			inputCalendar.sendKeys(del + date.getMonthValue()+ "/" + date.getDayOfMonth()+ "/" + date.getYear());
-			pressEscape(inputCalendar);
-			return false;
-		}
-		return true;
-	}
-
-	private void writeInCalendarDirectPartial(WebElement inputCalendar, WebElement inputCalendarReturn, Long quantity) {
-
-		LocalDate date = LocalDate.now();
-		date = date.plusMonths(4L);
-
-		String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
-		inputCalendar.sendKeys(del + date.getMonthValue()+ "/" + date.getDayOfMonth()+ "/" + date.getYear());
-		pressEscape(inputCalendar);
-
-		date = date.plusMonths(quantity);
-		del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
-		inputCalendarReturn.sendKeys(del + date.getMonthValue()+ "/" + date.getDayOfMonth()+ "/" + date.getYear());
-		pressEscape(inputCalendarReturn);
-
-	}
-
-	public void setDateInContext(LocalDate date, boolean isDeparture) {
-
-		FlightsDTO fly = new FlightsDTO();
-
-		String monthText= date.getMonth().getDisplayName(TextStyle.FULL, new Locale("en", "En"));
-		monthText= monthText.substring(0, 3);
-		String dateMonthDay= monthText+ " " + date.getDayOfMonth(); 
-
-		if(isDeparture) {
-
-			fly.setFlightDateDeparture(dateMonthDay);
-			CONTEXT.set("flyDepFH", fly);
-		}else {
-
-			fly = CONTEXT.get("flyDepFH"); 
-			fly.setFlightDateReturn(dateMonthDay);
-			CONTEXT.set("flyDepFH", fly);
-
-		}
-
-	}
-
-	private void selectDate(WebElement inputCalendar, LocalDate date) {
-
-
-
-
-		/*boolean isBtnNextVisible=false;
-
-		if(isPresent(inputCalendar)!=null && inputCalendar.isDisplayed() ) {
-
-			inputCalendar.click();
-
-			if(isPresent(calendarioDiv)!=null && calendarioDiv.isDisplayed() ) {
-
-				isBtnNextVisible=writeInCalendarDirect(inputCalendar, date);
-
-				if(isBtnNextVisible) {
-
-					String yearFromList= listBtnsCalendar.stream()					
-							.filter(x-> date.getDayOfMonth() == Integer.parseInt(x.getAttribute("data-day")))
-							.findFirst().get().getAttribute("data-year").toString();
-
-					int currentYearInCalendar= Integer.parseInt(yearFromList);
-
-					while (date.getYear()>currentYearInCalendar) {
-
-						currentYearInCalendar=getYear(date.getYear());
-					}
-
-					String monthsFromList= listBtnsCalendar.stream()					
-							.filter(x-> date.getDayOfMonth() == Integer.parseInt(x.getAttribute("data-day")))
-							.findFirst().get().getAttribute("data-month").toString();
-
-					int currentMonth= Integer.parseInt(monthsFromList);
-
-					while (date.getMonthValue()-1>currentMonth) {
-
-						currentMonth=getMonth(date.getMonthValue()-1);
-					}
-
-					listBtnsCalendar.stream()					
-					.filter(x-> date.getDayOfMonth() == Integer.parseInt(x.getAttribute("data-day")))
-					.filter(x-> date.getMonthValue()-1 ==Integer.parseInt(x.getAttribute("data-month")))
-					.filter(x-> date.getYear() == Integer.parseInt(x.getAttribute("data-year")))
-					.findFirst().get().click();
-
-
-				}
-			}
-		}*/
-
-	}
-
-	private int getMonth( int iMonthFutureInCalendar) {
-
-		int currentMonth= Integer.parseInt(listBtnsCalendar.get(0).getAttribute("data-month").toString());
-
-		if(Integer.parseInt(listBtnsCalendar.get(0).getAttribute("data-month").toString())==iMonthFutureInCalendar) {
-			return currentMonth;
-		}
-
-		scrollToElement(btnNextCalendar);
-
-		try {
-
-			clickByElementJS(getDriver(), btnNextCalendar);
-
-		} catch (InterruptedException e) {
-			Logger.printInfo("error at JavaScript action");
-			e.printStackTrace();
-		}
-
-		List<WebElement> listaBtnDias2 = getDriver().findElements(By.cssSelector("div.datepicker-cal-month button.datepicker-cal-date"));
-		currentMonth= Integer.parseInt(listaBtnDias2.get(0).getAttribute("data-month").toString());
-
-		return currentMonth;
-
-	}
-
-	private int getYear( int iYearFuture) {
-
-		int iCurrentYear= Integer.parseInt(listBtnsCalendar.get(0).getAttribute("data-year").toString());
-
-		if(Integer.parseInt(listBtnsCalendar.get(0).getAttribute("data-year").toString())==iYearFuture) {
-			return iCurrentYear;
-		}
-
-		scrollToElement(btnNextCalendar);
-
-		try {
-
-			clickByElementJS(getDriver(), btnNextCalendar);
-
-		} catch (InterruptedException e) {
-			Logger.printInfo("error at JavaScript action");
-			e.printStackTrace();
-		}
-
-		List<WebElement> listBtnsyears = getDriver().findElements(By.cssSelector("div.datepicker-cal-month button.datepicker-cal-date"));
-		iCurrentYear= Integer.parseInt(listBtnsyears.get(0).getAttribute("data-year").toString());
-
-		return iCurrentYear;
-
-	}
-
-	public FlightsSearchPage clickBtnSearch(boolean param) {
-
-		if(param) {
-			listBtnSearchFly.stream().findFirst().get().click();
-			verifyErrorDisplayFH();
-
-		} else {
-			btnSearchFH.click();
-		}
-
-		return new FlightsSearchPage(getDriver());
-	}
-
-	public void selectRoomsFlightHotel() {
-
-		selectRoomsInFlightHotel(drpRoomsFlightHotel);
-	}
-
-	public void selectRoomsHotel() {
-
-		selectRoomsInFlightHotel(drpRoomsHotel);
-	}
-
-	private void selectRoomsInFlightHotel(WebElement drpRoomGeneric) {
-
-		Select drpRoom = new Select (drpRoomGeneric);
-		drpRoom.selectByValue("1");
-
-		HotelDTO hotel = new HotelDTO();
-		hotel.setRooms("1");
-		CONTEXT.set("hotel", hotel);
-	}
-
-	public void selectQuantityAdults(String quantity) {
-
-		Logger.printInfo("In method selectQuantityAdults");
-		Select drpQuantityAdults = new Select (getDriver().findElement(By.cssSelector("#package-1-adults-hp-package, #hotel-1-adults-hp-hotel")));
-		drpQuantityAdults.selectByValue(quantity);
-
-		HotelDTO hotel = new HotelDTO();
-		hotel = CONTEXT.get("hotel");
-		hotel.setQuantityAdults(quantity);
-		CONTEXT.set("hotel", hotel);
-
-	}
-
-	public boolean clickBtnHotels() {
-
-		Logger.printInfo("Clicking btn hotel");
-
-		if(isPresent(btnHotel)!=null) {
-			btnHotel.click();
-			return true;
-		}
-		return false;
-	}
-
-	private void reFillTextInput(WebElement element) {
-
-		boolean isMontevideo = false;
-		String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
-		inputGoingTo.sendKeys(del + "Montevideo, Uruguay");
-		isMontevideo = validateFilled();
-		if(isMontevideo) {
-			clickInFrame();
-		}
-		else {
-			reFillMontevideoUruguay();
-		}
-	}
-
-	private void reFillMontevideoUruguay() {
-
-		boolean isMontevideo = false;
-		String del = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE; 
-		inputGoingTo.sendKeys(del + "Montevideo, Uruguay");
-		isMontevideo = validateFilled();
-		if(isMontevideo) {
-			clickInFrame();
-		}
-		else {
-			reFillMontevideoUruguay();
-		}
-	}
-
-	private boolean validateFilled() {
-
-		String text = inputGoingTo.getAttribute("value");
-		if(text.equalsIgnoreCase("Montevideo, Uruguay")) {
-			return true;
-		}
-		return false;
-
-
-	}
-
-	private void clickInFrame() {
-
-		frame.click();
-	}
-
-	public boolean fillGoingTo() {
-
-		if(isPresent(inputGoingTo)!=null) {
-			reFillMontevideoUruguay();
-			btnHotel.click();
-			return true;			
-		}
-		return false;
-	}
-
-	public FlightsSearchPage clickSearchBtnHotel() {
-
-		boolean isError=false;
-		WebElement ultimoBtn= listBtnSearchHotel.stream().reduce((first, second) -> second).get();
-		ultimoBtn.click();
-		isError = verifyLongerTrip();
-		if(!isError) {
-			return new FlightsSearchPage(getDriver());
-		}
-		return null;
-	}
-
-	public boolean selectCheckBoxPartStay() {
-
-		Logger.printInfo("In method check box");
-
-		if(isPresent(chkBtnHotelPartOfStay)!=null) {
-			if(!chkBtnHotelPartOfStay.isSelected()) {
-
-				chkBtnHotelPartOfStay.click();
-				return true;
-			}
-			else {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean verifyErrorDisplayFH() {
-
-		Long count= errorLink.stream().filter(x-> x.getText().contains("Your partial check-in and check-out")).count();
-		if(count>0) {
-			return true;	
-		}else {
-			return false;
-		}
-
-	}
-
-	public void clickBtnCruises() {
-
-		if(isPresent(btnCruises)!=null) {
-			btnCruises.click();
-		}else {
-			Logger.printInfo("Element not present" + btnCruises.getClass());
-		}
-	}
-
 	public boolean clickDropDownList() {
 
 		getWait().until(ExpectedConditions.elementToBeClickable(dropDownListGoingTo));
@@ -626,33 +198,6 @@ public class TravelocityHomePage extends BasePage {
 		drp.selectByValue("europe");
 		boolean isSelectDrp= drp.getFirstSelectedOption().getText().equals("Europe")?true:false;
 		return isSelectDrp;
-	}
-
-	public FlightsSearchPage pressEnterInCruise() {
-
-		pressEnter(inputCruiseLate);
-		return new FlightsSearchPage(getDriver());
-	}
-
-	public boolean verifyLongerTrip() {
-
-		boolean isLonger=false;
-
-		if(elementoPresente(By.cssSelector("a.error-link"))) {
-			if(isPresent(errorLink.get(0))!=null) {
-
-				String text= errorLink.get(0).getText();
-
-				if(text.contains("Your length of stay cannot be longer than ")) {
-					return isLonger=true;
-				}
-			}
-			else {
-				isLonger=false;
-			}
-		}
-		return isLonger;
-
 	}
 
 	/*
