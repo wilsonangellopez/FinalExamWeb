@@ -28,3 +28,7 @@ Verify trip details in the new page, by: a. Trip total price is present b. Depar
 
 Test7 & 8 - SuiteTravelocityTest7_8.xml
 Press Continue Booking button. 8. Verify the “Who’s travelling” page is opened by choosing at least 5 validations to be performed.
+
+Some notes:
+1. The calendar is tested only in the first suite to gain speed for the rest of the tests.
+2. The rest of the test will start at the flight search page directly.
