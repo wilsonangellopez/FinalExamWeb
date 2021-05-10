@@ -146,37 +146,20 @@ public class TravelocityHomePage extends BasePage {
 	@FindBy(css="div[class='cols-nested'] label button[class='btn-primary btn-action gcw-submit '][data-gcw-change-submit-text='Search']")
 	private List<WebElement> listBtnSearchHotel;
 
+	/*
+	 * Method to click flight button
+	 */
 	public void clickFlights() {
 
 		Logger.printInfo("click in fligts");
 		getWait().until(ExpectedConditions.elementToBeClickable(btnFlights));
 		btnFlights.click();
-
 	}
 
-	public boolean verifyPageOpen() {
 
-		boolean ispresent= isPresent(RbnFlightHotel)!=null?true:false;
-		return ispresent;
-	}
-
-	public boolean clickVacationPackages() {
-
-		if(isPresent(btnVacationPackages)!=null) {
-			getWait().until(ExpectedConditions.elementToBeClickable(btnVacationPackages));
-			btnVacationPackages.click();	
-
-			if(!RbnFlightHotel.isSelected()){
-				RbnFlightHotel.click();
-				return true;
-			}
-			else {
-				return true;
-			}
-		}
-		return false;
-	}
-
+	/*
+	 * Method to click btn RoundTrip
+	 */
 	public void clickRoundTrip() {
 
 		Logger.printInfo("click in RoundTrip");
@@ -186,46 +169,9 @@ public class TravelocityHomePage extends BasePage {
 
 	}
 
-	private void createObjetContext(String text, String destination) {
-
-		FlightsDTO fly = new FlightsDTO();
-
-		fly = CONTEXT.get("fly"); 
-		fly.setFlightTo(text);
-		fly.setFlyTo(destination);
-		CONTEXT.set("fly", fly);
-	}
-
-
-
-	//	private void createObjetContext(String param, String fromTo) {
-	//
-	//		FlightsDTO fly = new FlightsDTO();
-	//
-	//		switch (param) {
-	//
-	//		case "Las Vegas, NV (LAS-McCarran Intl.)":
-	//
-	//			fly.setFlightFrom(param);
-	//			fly.setFlyFrom(fromTo);
-	//			CONTEXT.set("fly", fly);
-	//			break;
-	//
-	//		case "Los Angeles, California":
-	//
-	//			fly = CONTEXT.get("fly"); 
-	//			fly.setFlightTo(param);
-	//			fly.setFlyTo(fromTo);
-	//			CONTEXT.set("fly", fly);
-	//			break;
-	//		}
-	//	}
-
-	public void writeGeneric() {
-
-
-	}
-
+	/*
+	 * Method to write departure and returning
+	 */
 	public void selectFromAndTo(String text) {
 
 		if(text.equalsIgnoreCase("LAS")) {
@@ -244,47 +190,14 @@ public class TravelocityHomePage extends BasePage {
 			click(inputGoingToSelect);
 		}
 
-
-		// aqui buscar el elemento  para quitar el metodo findElementByText
-		//		WebElement element = findElementByText(text);
-
-
-		/*if(isPresent(element).getClass()!=null) {
-			click(element);
-			Logger.printInfo("click in input" + element.getAttribute("class").toString());	
-		}
-
-		writing(element, destination);
-		pressEnter(element);
-		createObjetContext(text, destination);*/
-
-
-		// borrar esto
-
-		//		switch (fromTo) {
-		//		case "LAS":
-		//
-		//			String from= "Las Vegas, NV (LAS-McCarran Intl.)";
-		//			writing(element, from);
-		//			pressEnter(element);	
-		//			createObjetContext(from, fromTo );
-		//			break;
-		//
-		//		case "LAX":
-		//
-		//			String to="Los Angeles, California";
-		//			writing(element, to);
-		//			pressEnter(element);
-		//			createObjetContext(to, fromTo);
-		//			break;
-		//
-		//		}
-
 	}
 
+	/*
+	 * Method to select some date from data picker-Calendar
+	 */
 	public void selectDateForFlight(String option, int monthFly) {
 
-		if(option.equalsIgnoreCase("Departure")) {
+		if(option.equalsIgnoreCase("LAS")) {
 
 			Logger.printInfo("Opcion enviada: " + option);
 
@@ -292,13 +205,17 @@ public class TravelocityHomePage extends BasePage {
 			clickingNextBtnCalendar(btnNextCalendar);
 			clickFutureDate(getFutureDate(monthFly));
 		}
-		if(option.equalsIgnoreCase("Return")) {
+		if(option.equalsIgnoreCase("LAX")) {
 
 			clickingNextBtnCalendar(btnNextCalendar);
 			clickFutureDate(getFutureDate(monthFly));
 		}
 
 	}
+
+	/*
+	 * Methd to click done button in calendar
+	 */
 
 	public void clickDoneBtnInCalendar() {
 		click(btnDoneCalendar);
@@ -738,6 +655,9 @@ public class TravelocityHomePage extends BasePage {
 
 	}
 
+	/*
+	 * Method to click btn search
+	 */
 	public FlightsSearchPage clickSearchButton() {
 
 		click(btnSearch);
@@ -745,9 +665,14 @@ public class TravelocityHomePage extends BasePage {
 		return new FlightsSearchPage(getDriver());
 	}
 
+
+	/*
+	 * Method to redirect to flight search page 
+	 */
 	public FlightsSearchPage reDirect() {
 
-		getDriver().get("https://www.travelocity.com/Flights-Search?leg1=from%3ALas%20Vegas%2C%20NV%20%28LAS-McCarran%20Intl.%29%2Cto%3ALos%20Angeles%2C%20CA%20%28LAX-Los%20Angeles%20Intl.%29%2Cdeparture%3A7%2F3%2F2021TANYT&leg2=from%3ALos%20Angeles%2C%20CA%20%28LAX-Los%20Angeles%20Intl.%29%2Cto%3ALas%20Vegas%2C%20NV%20%28LAS-McCarran%20Intl.%29%2Cdeparture%3A8%2F3%2F2021TANYT&mode=search&options=carrier%3A%2A%2Ccabinclass%3A%2Cmaxhops%3A1%2Cnopenalty%3AN&passengers=adults%3A1%2Cchildren%3A0%2Cinfantinlap%3AN&sortOrder=INCREASING&sortType=DURATION&trip=roundtrip");
+		getDriver().get("https://www.travelocity.com/Flights-Search?leg1=from%3ALas%20Vegas%2C%20NV%20%28LAS-McCarran%20Intl.%29%2Cto%3ALos%20Angeles%2C%20CA%20%28LAX-Los%20Angeles%20Intl.%29%2Cdeparture%3A8%2F6%2F2021TANYT&leg2=from%3ALos%20Angeles%2C%20CA%20%28LAX-Los%20Angeles%20Intl.%29%2Cto%3ALas%20Vegas%2C%20NV%20%28LAS-McCarran%20Intl.%29%2Cdeparture%3A8%2F31%2F2021TANYT&mode=search&options=carrier%3A%2A%2Ccabinclass%3A%2Cmaxhops%3A1%2Cnopenalty%3AN&pageId=0&passengers=adults%3A1%2Cchildren%3A0%2Cinfantinlap%3AN&trip=roundtrip");
+		getDriver().navigate().refresh();
 		return new FlightsSearchPage(getDriver());
 	}
 

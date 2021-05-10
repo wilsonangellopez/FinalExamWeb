@@ -32,49 +32,11 @@ public class TravelocityTestsOne extends BaseTestTravel {
 		travelocityHomePage.clickRoundTrip();
 		travelocityHomePage.selectFromAndTo(from);
 		travelocityHomePage.selectFromAndTo(to);
-		//travelocityHomePage.selectFromAndTo(travelocityHomePage.findElement("Flying from"),OriginFlight);
-		//travelocityHomePage.selectFromAndTo(travelocityHomePage.findElement("Flying to"),DestinationFlight);
 
-		travelocityHomePage.selectDateForFlight("Departure",2);
-		travelocityHomePage.selectDateForFlight("Return",3);
+		travelocityHomePage.selectDateForFlight(from,2);
+		travelocityHomePage.selectDateForFlight(to,3);
 		travelocityHomePage.clickDoneBtnInCalendar();
 		flightsSearchPage= travelocityHomePage.clickSearchButton();
-
-		//flightsSearchPage = travelocityHomePage.clickBtnSearch(true);
-
-		//assertTrue(flightsSearchPage.selectDrpDurationShortest(), "The Result flight page dont have sort button"); metodo actualizado
-		assertTrue(flightsSearchPage.searchResultsAndSelectBtn(), "The results dont have select buttons");
-		assertTrue(flightsSearchPage.searchResultsAndFlightDuration(), "The results dont have the flight duration");
-		assertTrue(flightsSearchPage.searchResultsAndDetailsAndBags(), "The results dont have the Flight details and Bagges feees");
-
-		assertTrue(flightsSearchPage.verifyFlightFromToVsSelected(from, to), "The system display differents in Origin / Destination tickets");
-		assertTrue(flightsSearchPage.verifyTimeIsSorted(),"The List isn't in order from low to hight");
-
-		assertTrue(flightsSearchPage.verifyTicketExistGeneral(firstResult, true),"The ticket is not Displayed");
-		flightsSearchPage.getInfoFlight(firstResult, true);
-		assertTrue(flightsSearchPage.selectTicketGeneral(firstResult),"The button select is not available");
-		flightsSearchPage.selectFaresBtnGeneral(firstResult, true);
-
-		assertTrue(flightsSearchPage.verifyTicketExistGeneral(thirdResult, false),"The ticket is not Displayed");
-		flightsSearchPage.getInfoFlight(thirdResult, false);
-		assertTrue(flightsSearchPage.selectTicketGeneral(thirdResult),"The button select is not available");
-		flightInformationPage = flightsSearchPage.selectFaresBtnGeneral(thirdResult, false);
-
-		flightInformationPage.changeTab("Trip Detail | Travelocity");
-
-		assertTrue(flightInformationPage.verifyTripTotalPrice(), "The page dont contain total Price");
-		assertTrue(flightInformationPage.verifyDepartureReturnInfoFlight(), "Flight information have diferences");
-		assertTrue(flightInformationPage.verifyPriceGuaranteeText(),"The page dont contain the text price guarante");
-		checkOutPage= flightInformationPage.selectBtnContinueBooking();
-
-
-		assertThat(checkOutPage.getPageTitleCheckOutPage(), CoreMatchers.is("Travelocity: Payment"));
-		assertThat(checkOutPage.getSubTitle(), CoreMatchers.is("Who's traveling?"));
-		assertThat(checkOutPage.getFirstName(name), CoreMatchers.is(name));
-		assertThat(checkOutPage.getMiddleName(middleName), CoreMatchers.is(middleName));
-		assertThat(checkOutPage.getLastName(lastName), CoreMatchers.is(lastName));
-		assertThat(checkOutPage.getPhoneNumber(phoneNumber), CoreMatchers.is(phoneNumber));
-		assertTrue(checkOutPage.verifyTotalPriceTrip(), "The price is diferent");/**/
 
 	}
 
@@ -83,8 +45,6 @@ public class TravelocityTestsOne extends BaseTestTravel {
 		
 		flightsSearchPage= travelocityHomePage.reDirect();
 		assertTrue(flightsSearchPage.selectDropDownSort(dataP), "The option doesn't have information");
-				
-
 	}
 	
 	@Test(priority=3)
@@ -97,46 +57,150 @@ public class TravelocityTestsOne extends BaseTestTravel {
 	@Test(priority=4, dataProvider="dataShort")
 	public void test2DsearchResultsAndDetailsAndBags(String dataShort) {
 		
-		travelocityHomePage.clickFlights();
-		travelocityHomePage.clickRoundTrip();
-		travelocityHomePage.selectFromAndTo("Las");
-		travelocityHomePage.selectFromAndTo("Lax");
-
-		travelocityHomePage.selectDateForFlight("Departure",2);
-		travelocityHomePage.selectDateForFlight("Return",3);
-		travelocityHomePage.clickDoneBtnInCalendar();
-		flightsSearchPage= travelocityHomePage.clickSearchButton();
+		flightsSearchPage= travelocityHomePage.reDirect();
 		
 		assertTrue(flightsSearchPage.selectDropDownSort(dataShort), "The option doesn't have information");
 		assertTrue(flightsSearchPage.searchResultsAndDetailsAndBags(), "The results dont have the Flight details and Bagges feees");
 		
 	}
 	
-	@Test(priority=2)
-	public void test3SortingByDurationShorter() {	
+	@Test(priority=5,dataProvider="dataShort")
+	public void test3SortingByDurationShorter(String dataShort) {	
 		
 		flightsSearchPage= travelocityHomePage.reDirect();
-		assertTrue(flightsSearchPage.selectDropDownSort("DURATION_INCREASING"), "The option doesn't have information");
+		assertTrue(flightsSearchPage.selectDropDownSort(dataShort), "The option doesn't have information");
 		assertTrue(flightsSearchPage.verifyTimeIsSorted(),"The List isn't in order from low to hight");
-		
 	}
 	
-	@Test(priority=2)
-	@Parameters({"firstResult"})
-	public void test4SelectFirstResult(String firstResult) {	
+	@Test(priority=6)
+	@Parameters({"from", "to","firstResult","thirdResult", "name","middleName", "lastName", "phoneNumber","DURATION_INCREASING"})
+	public void test4SelectFirstResult(String from,
+			String to,
+			String firstResult,
+			String thirdResult,
+			String name, 
+			String middleName,
+			String lastName,
+			String phoneNumber,
+			String durationIncreasing) {	
 		
 		flightsSearchPage= travelocityHomePage.reDirect();
-		assertTrue(flightsSearchPage.selectDropDownSort("DURATION_INCREASING"), "The option doesn't have information");
+		
+		assertTrue(flightsSearchPage.selectDropDownSort(durationIncreasing), "The option doesn't have information");
 		assertTrue(flightsSearchPage.verifyTimeIsSorted(),"The List isn't in order from low to hight");
 		
 		assertTrue(flightsSearchPage.verifyTicketExistGeneral(firstResult, true),"The ticket is not Displayed");
-		flightsSearchPage.getInfoFlight(firstResult, true);
-		assertTrue(flightsSearchPage.selectTicketGeneral(firstResult),"The button select is not available");
-		flightsSearchPage.selectFaresBtnGeneral(firstResult, true);
+		assertTrue(flightsSearchPage.selectTicketByPosition(firstResult),"The button select is not available");
+	
 		
 	}
-
-
+	
+	@Test(priority=7)
+	@Parameters({"from", "to","firstResult","thirdResult", "name","middleName", "lastName", "phoneNumber","DURATION_INCREASING"})
+	public void test5SelectThirdResult(String from,
+			String to,
+			String firstResult,
+			String thirdResult,
+			String name, 
+			String middleName,
+			String lastName,
+			String phoneNumber,
+			String durationIncreasing) {		
+		
+		flightsSearchPage= travelocityHomePage.reDirect();
+		assertTrue(flightsSearchPage.selectDropDownSort(durationIncreasing), "The option doesn't have information");
+		assertTrue(flightsSearchPage.verifyTimeIsSorted(),"The List isn't in order from low to hight");
+		
+		assertTrue(flightsSearchPage.verifyTicketExistGeneral(firstResult, true),"The ticket is not Displayed");
+		assertTrue(flightsSearchPage.selectTicketByPosition(firstResult),"The button select is not available");
+		assertTrue(flightsSearchPage.selectTicketByPosition(thirdResult),"The button select is not available");
+	
+		
+	}
+	
+	
+	@Test(priority=8)
+	@Parameters({"from", "to","firstResult","thirdResult", "name","middleName", "lastName", "phoneNumber","DURATION_INCREASING"})
+	public void test6VerifyTripDetails(String from,
+			String to,
+			String firstResult,
+			String thirdResult,
+			String name, 
+			String middleName,
+			String lastName,
+			String phoneNumber,
+			String durationIncreasing) {	
+		
+		flightsSearchPage= travelocityHomePage.reDirect();
+		assertTrue(flightsSearchPage.selectDropDownSort(durationIncreasing), "The option doesn't have information");
+		assertTrue(flightsSearchPage.verifyTimeIsSorted(),"The List isn't in order from low to hight");
+		
+		assertTrue(flightsSearchPage.verifyTicketExistGeneral(firstResult, true),"The ticket is not Displayed");
+		assertTrue(flightsSearchPage.selectTicketByPosition(firstResult),"The button select is not available");
+		assertTrue(flightsSearchPage.selectTicketByPosition(thirdResult),"The button select is not available");
+		
+		flightInformationPage = flightsSearchPage.goToFlightInformation();
+		
+		flightInformationPage.changeTab("Flight details | Travelocity");
+		assertTrue(flightInformationPage.getTotalPrice(), "The page doesn't display ticket price");
+		assertTrue(flightInformationPage.getPlaceDepartureReturning(from), "The system doesn't display Departure info");
+		assertTrue(flightInformationPage.getPlaceDepartureReturning(to), "The system doesn't display Return info");
+		
+	}
+	
+	
+	@Test(priority=9)
+	@Parameters({"from", "to","firstResult","thirdResult", "name","middleName", "lastName", "phoneNumber","DURATION_INCREASING"})
+	public void test7_8(String from,
+			String to,
+			String firstResult,
+			String thirdResult,
+			String name, 
+			String middleName,
+			String lastName,
+			String phoneNumber,
+			String durationIncreasing) {	
+		
+		flightsSearchPage= travelocityHomePage.reDirect();
+		assertTrue(flightsSearchPage.selectDropDownSort(durationIncreasing), "The option doesn't have information");
+		assertTrue(flightsSearchPage.verifyTimeIsSorted(),"The List isn't in order from low to hight");
+		
+		assertTrue(flightsSearchPage.verifyTicketExistGeneral(firstResult, true),"The ticket is not Displayed");
+		assertTrue(flightsSearchPage.selectTicketByPosition(firstResult),"The button select is not available");
+		assertTrue(flightsSearchPage.selectTicketByPosition(thirdResult),"The button select is not available");
+		
+		flightInformationPage = flightsSearchPage.goToFlightInformation();
+		
+		flightInformationPage.changeTab("Flight details | Travelocity");
+		assertTrue(flightInformationPage.getTotalPrice(), "The page doesn't display ticket price");
+		assertTrue(flightInformationPage.getPlaceDepartureReturning(from), "The system doesn't display Departure info");
+		assertTrue(flightInformationPage.getPlaceDepartureReturning(to), "The system doesn't display Return info");
+		flightInformationPage.getTimeDepartureReturning(from);
+		flightInformationPage.getTimeDepartureReturning(to);
+		flightInformationPage.getDateDepartureReturning(from);
+		flightInformationPage.getDateDepartureReturning(to);
+		
+		
+		checkOutPage= flightInformationPage.selectBtnContinueBooking();
+		
+		checkOutPage.waitCheckOutPage();
+		assertThat(checkOutPage.getPageTitleCheckOutPage(), CoreMatchers.is("Travelocity: Payment"));
+		assertThat(checkOutPage.getSubTitle(), CoreMatchers.is("Who's traveling?"));
+		assertThat(checkOutPage.getFirstName(name), CoreMatchers.is(name));
+		assertThat(checkOutPage.getMiddleName(middleName), CoreMatchers.is(middleName));
+		assertThat(checkOutPage.getLastName(lastName), CoreMatchers.is(lastName));
+		assertThat(checkOutPage.getPhoneNumber(phoneNumber), CoreMatchers.is(phoneNumber));
+		assertTrue(checkOutPage.verifyTotalPriceTrip(),"The price is not the same that the user selects");
+		assertTrue(checkOutPage.verifyFromToFlight(from),"The system not load the same information for departure");
+		assertTrue(checkOutPage.verifyFromToFlight(to),"The system not load the same information for returning");
+		assertTrue(checkOutPage.verifyTimeFlight(from), "The system not load the same information for time departure");
+		assertTrue(checkOutPage.verifyTimeFlight(to), "The system not load the same information for time returning");
+		assertTrue(checkOutPage.verifyDatesFlights(from), "The system not load the same information for date departure");
+		assertTrue(checkOutPage.verifyDatesFlights(to), "The system not load the same information for date returning");
+		
+	}
+	
+	
 
 	@DataProvider(name="dataP")
 	public Object[] dataProvider() {

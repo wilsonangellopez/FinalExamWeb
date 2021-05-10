@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <parameter name="lastName" value="Lopez"/>
+  <parameter name="phoneNumber" value="3174253892"/>
+  <parameter name="thirdResult" value="3"/>
+  <parameter name="OriginFlight" value="Las Vegas, NV (LAS-McCarran Intl.)"/>
+  <parameter name="name" value="Wilson"/>
+  <parameter name="firstResult" value="1"/>
+  <parameter name="from" value="LAS"/>
+  <parameter name="middleName" value="Angel"/>
+  <parameter name="to" value="LAX"/>
+  <parameter name="DestinationFlight" value="Los Angeles, California"/>
+  <parameter name="DURATION_INCREASING" value="DURATION_INCREASING"/>
   <test name="Default test(failed)">
     <classes>
       <class name="com.automation.training.tests.TravelocityTestsOne">
         <methods>
-          <include name="testTravelocity"/>
+          <include name="test3SortingByDurationShorter" invocation-numbers="0"/>
+          <include name="test5SelectThirdResult" invocation-numbers="0"/>
           <include name="afterSuite"/>
-          <include name="test2" invocation-numbers="0 1 2 3"/>
+          <include name="test2CFlightDurationIsPresentOnEveryResult"/>
+          <include name="testTravelocityFromToAndDataPicker" invocation-numbers="0"/>
+          <include name="test2DsearchResultsAndDetailsAndBags" invocation-numbers="0"/>
+          <include name="test2ADropDownSorting" invocation-numbers="0 1 2 3"/>
+          <include name="test4SelectFirstResult" invocation-numbers="0"/>
+          <include name="test7_8" invocation-numbers="0"/>
+          <include name="test6VerifyTripDetails" invocation-numbers="0"/>
         </methods>
       </class> <!-- com.automation.training.tests.TravelocityTestsOne -->
     </classes>

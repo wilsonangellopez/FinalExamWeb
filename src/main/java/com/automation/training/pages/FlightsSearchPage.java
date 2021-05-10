@@ -38,120 +38,41 @@ public class FlightsSearchPage extends BasePage {
 	private List<WebElement> listFlightDuration;
 
 	private String baggageFees = "div[data-test-id='baggage-fee-information']";
-	//flightBaggage fess
-	//div[data-test-id="baggage-fee-information"]
-
 
 	@FindBy(css="button[data-icon='tool-close']")
 	private WebElement btnCloseBaggageFees;
 
 	private String progressBar="div.uitk-loading-bar-current";
 
+	@FindBy(css="button[data-test-id='select-button']")
+	private WebElement btnContinueDeparture;
 
+	@FindBy(css="img[class=large-logo]")
+	private WebElement logo;
 
-	//--------
-
-	@FindBy(css="div.uitk-loading-bar-current")
-	private WebElement progresBar;
-	
-
-
-
-	//@FindBy(css="#flightModuleList li.flight-module.segment.offer-listing") //div.uitk-card-content-section.uitk-card-content-section-padded
-	@FindBy(css="div.uitk-card-content-section.uitk-card-content-section-padded") //
-	private List<WebElement> contenedor;
-
-	@FindBy(css="li[data-test-id='offer-listing'] span[class='medium-bold']")
-	private List<WebElement> containerTimeDep;
-
-	@FindBy(xpath="//li[@data-test-id='offer-listing']//button[@data-test-id='select-button' and span/span[text()='Select']]")
+	@FindBy(css="button[data-test-id='select-link']")
 	private List<WebElement> listSelectBtns;
 
-	@FindBy(css="button.btn-secondary.btn-action.t-select-btn")
-	private List<WebElement> listSelectBtnGeneral;
+	@FindBy(css="button[data-test-id='select-link']:nth-child(3)")
+	private List<WebElement> listBtnTickets;
 
-	@FindBy(xpath="//li[@data-test-id='offer-listing']//button[contains(@data-test-id, 'select-button-1') and span/span[text()='Select this fare']]")
-	private List<WebElement> listFareBtnsFinalLA;
 
-	@FindBy(className="title-city-text")
-	private WebElement Subtitulo;
+	@FindBy(css="div[data-test-id='journey-duration']")
+	private List<WebElement> listDuration;
 
-	@FindBy(css=".title-date-rtv")
-	private WebElement departureDate;
-
-	//@FindBy(css="li[data-test-id='offer-listing']")
-	//private List<WebElement> listFieldSet;
-
-	@FindBy(css="span.show-flight-details")
-	private List<WebElement> listDetailsBagesFees;
-
-	//div[data-test-id="journey-duration"]
-	//@FindBy(xpath="//li[@data-test-id='offer-listing']//span[@data-test-id='duration']")
-	//private List<WebElement> listFlightDuration;
-
-	@FindBy(css="fieldset[class='sort-filter-bar control box']")
-	private WebElement sortOptions;
-
-	@FindBy(css="button[class='origin fakeLink']")
-	private WebElement btnOriginFlightHotel;
-
-	@FindBy(css="button[class='destination fakeLink']")
-	private List<WebElement> listBtnDestination;
-
-	@FindBy(css="span[class='day-of-week']+span")
-	private List<WebElement> listDates;
-
-	@FindBy(css="h1[class='section-header-main']")
-	private WebElement subTitleFlightHotel;
-
-	@FindBy(css="div[class='flex-link-wrap']")
-	private List<WebElement> listResultsFH;
-
-	@FindBy(css="div[class='flex-link-wrap'] strong[class='star-rating rating-secondary star rating'] span[class^='icon icon-stars']")
-	private List<WebElement> listStars;
-
-	@FindBy(css="button[aria-label='Sort by: Price']")
-	private WebElement btnPriceFlightHotel;
-
-	@FindBy(css="div.flex-card div[class='message-flag flex-flag']")
-	private List<WebElement> listDiscounts;
-
-	@FindBy(css="div.flex-card")
-	private List<WebElement> listCruises;
-
-	@FindBy(css="ul[class='hotel-price'] li[class^='actualPrice']")
-	private List<WebElement> listPricesFlightHotel;
-
-	@FindBy(css="#uitk-live-announce")
-	private WebElement loaderFH;
-
-	@FindBy(css="div[class='uitk-card uitk-grid messaging-card all-x-padding-three all-y-padding-three'] a")
-	private List<WebElement> listLinksHotels;
-
-	@FindBy(css="input[name='length-10-14']")
-	private List<WebElement> radioBtnCruisesNights;
-
-	@FindBy(css="div.flex-card")
-	private List<WebElement> listContainerCruises;
-
-	@FindBy(css="div[data-test-id='flight-info']")
-	private List<WebElement> listFlightsVS;
-
-	@FindBy(id="covid-alert-refundability-0")
-	private WebElement modal;
-
-	@FindBy(css="img#interstitial-secondary-image")
-	private WebElement imagenEspera;
 
 
 	public FlightsSearchPage(WebDriver driver) {		
 		super(driver);
 	}
 
+	/**
+	 * Method to select the dropdown
+	 */
 	public boolean clickDropdownByValue(WebElement element, String data) {
 
 		Logger.printInfo("In dropdown list + From page" + getDriver().getTitle());
-		
+
 		waitLoaderDisAppear(progressBar);
 		waitForElementToBeClickable(element);
 		waitForElementToBeClickable(dropDownLastelement);
@@ -159,7 +80,7 @@ public class FlightsSearchPage extends BasePage {
 		if((isPresent(sortBy)!=null)
 				&& (sortBy.isEnabled())) {
 
-			
+
 			Select drpSort = clickDropDown(data, sortBy);
 			return getTextInDropDownSelected(drpSort,data);
 		}
@@ -168,14 +89,13 @@ public class FlightsSearchPage extends BasePage {
 	}
 
 	/**
+	 * Method to select the dropdown 
 	 * @param data
-	 * @return
+	 * @return the element selecteed
 	 */
 	public Select clickDropDown(String data,WebElement element) {
 
-
 		waitForElementToBeClickable(element);
-
 
 		Select drpSort = new Select(element);
 		waitForElementToBeClickable(dropDownLastelement);
@@ -185,8 +105,9 @@ public class FlightsSearchPage extends BasePage {
 	}
 
 	/**
-	 * @param drpSort
-	 * @return
+	 * Method to obtain text from the dropdown selected
+	 * @param drpSort, data
+	 * @return text selectd
 	 */
 	public boolean getTextInDropDownSelected(Select drpSort, String data) {
 
@@ -197,67 +118,25 @@ public class FlightsSearchPage extends BasePage {
 
 	}
 
-
-	/*
-	 * public boolean selectDrpDurationShortest() {
-
-		Logger.printInfo("In dropdown list + From page" + getDriver().getTitle());
-
-		loaderFlightSearchPage();
-
-		if((isPresent(sortBy)!=null)
-				&& (sortBy.isEnabled())) {
-
-			getWait().until(ExpectedConditions.elementToBeClickable(sortBy));
-
-			Select drpSort = new Select(sortBy);
-			drpSort.selectByVisibleText("Duration (Shortest)");
-			WebElement optionSelected= drpSort.getFirstSelectedOption();
-
-			if(optionSelected.getText().equalsIgnoreCase("Duration (Shortest)")) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		return false;
-
-	}
-
+	/**
+	 * Method to return the FlightInformationPage 
 	 */
+	public FlightInformationPage goToFlightInformation() {
 
-	public boolean verifyQuantityFlightDuration() {
-
-		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[data-test-id='offer-listing']")));
-
-		return listFieldSet.size()==listFlightDuration.size()?true:false;
-
-
-
+		return new FlightInformationPage(getDriver());
 	}
 
-	public boolean searchResultsAndSelectBtn() {
 
-		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[data-test-id='offer-listing']")));
-
-		int quantityContainers= (int) listFieldSet.stream().count();
-		int quantityBtnsSelect= (int) listSelectBtns.stream().count();
-
-		if(quantityContainers==quantityBtnsSelect) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-
+	/**
+	 * Method to count and validate the ticket options and flight durations are the same quantity 
+	 */
 	public boolean searchResultsAndFlightDuration() {
 
-		
+
 		waitLoaderDisAppear(progressBar);
 		waitForElementToBeClickable(listFieldSet.get(listFieldSet.size()-1));
 		waitForPageToBeLoaded(getDriver(), 20);
-		
+
 		int quantityContainers= (int) listFieldSet.stream().count();
 		int quantityFlightDuration= (int) listFlightDuration.stream().count();
 		Logger.printInfo("Flights containers count: " + quantityContainers);
@@ -266,56 +145,10 @@ public class FlightsSearchPage extends BasePage {
 		return (quantityContainers==quantityFlightDuration)?true:false;
 	}
 
-	public void getInfoDepartureFlight(int first) {
 
-		Logger.printInfo("In method getInfoDepartureFlight");
-		elementoPresente(By.cssSelector("li[data-test-id='offer-listing'] span[class='medium-bold']"));
-
-		String  totalFlightDuration = listFlightDuration.stream().findFirst().get().getText();
-
-		FlightsDTO flyDep = new FlightsDTO();
-
-		flyDep.setFlightDurationTotalDeparture(totalFlightDuration);
-
-		List<WebElement> listTimeDep = obtainsList(containerTimeDep, By.cssSelector("span[data-test-id='departure-time']"));
-		String timeDeparture= listTimeDep.get(first).getText();
-
-		flyDep.setFlightTimeInitDeparture(timeDeparture);
-
-		List<WebElement> listTimeArrival = obtainsList(containerTimeDep, By.cssSelector("span[data-test-id='arrival-time']"));
-		String timeArrival= listTimeArrival.get(first).getText();
-		flyDep.setFlightTimeEndDeparture(timeArrival);
-
-		String departDate= departureDate.getText();
-		flyDep.setFlightDateDeparture(departDate);
-
-		CONTEXT.set("FlyDep", flyDep);
-	}
-
-	public void getInfoReturnFlight(int third) {
-
-		FlightsDTO flyRet = new FlightsDTO();
-
-		String timeFlight= listFlightDuration.get(third).getText();
-
-		flyRet.setFlightDurationTotalReturn(timeFlight);
-
-		List<WebElement> listHRI = obtainsList(containerTimeDep, By.cssSelector("span[data-test-id='departure-time']"));
-		String timeReturnInit= listHRI.get(third).getText();
-		flyRet.setFlightTimeInitDeparture(timeReturnInit);
-
-		List<WebElement> listHRF = obtainsList(containerTimeDep, By.cssSelector("span[data-test-id='arrival-time']"));
-
-		String timeDepartureEnd= listHRF.get(third).getText();
-		flyRet.setFlightTimeEndDeparture(timeDepartureEnd);
-
-		String returnDate= departureDate.getText();
-		flyRet.setFlightDateDeparture(returnDate);
-
-		CONTEXT.set("FlyRet", flyRet);
-
-	}
-
+	/**
+	 * Method to count and validate the tickets options and baggage fees are the same quantity 
+	 */
 	public boolean searchResultsAndDetailsAndBags() {
 
 		int quantityDetailsAndBags=0;
@@ -335,6 +168,9 @@ public class FlightsSearchPage extends BasePage {
 
 	}
 
+	/**
+	 * Method to count the baggage fees
+	 */
 	int countBaggageFees=1;
 	private int clickFielSetAndClose(List<WebElement> listFieldSet) {
 
@@ -354,6 +190,9 @@ public class FlightsSearchPage extends BasePage {
 
 	}
 
+	/**
+	 * Method to close the detail trip window
+	 */
 	private void closeBaggageFees(WebElement btnBaggageClose) {
 
 		waitForElementToBeClickable(btnBaggageClose);
@@ -361,23 +200,27 @@ public class FlightsSearchPage extends BasePage {
 
 	}
 
-	//int countBaggageFees=1;
-
+	/**
+	 * Method to counts baggage fees
+	 */
 	private int countBaggageFees(String baggageFees) {
 
-		//int countBaggageFees=1;
 		return (getDriver().findElement(By.cssSelector(baggageFees))!=null)?countBaggageFees++:countBaggageFees--;
 	}
 
+	/**
+	 * Method to validate the time is sorted 
+	 */
 	public boolean verifyTimeIsSorted() {
 
 		Logger.printInfo("In method SelectFromSortList");
 
 		waitLoaderDisAppear(progressBar);
-		waitForElementToBeClickable(listFieldSet.get(listFieldSet.size()-1));
 		waitForPageToBeLoaded(getDriver(), 20);
+		waitForPresenceOfAllElementsLocatedByCss("button[data-test-id='select-link']:nth-child(3)");
+		waitForElementToBeClickable(listBtnTickets.get(listBtnTickets.size()-1));
 
-		List<WebElement> listDuration = obtainsList(contenedor, By.cssSelector("div[data-test-id='journey-duration']"));
+
 		List<String> duration = listDuration.stream().map(x-> x.getText()).collect(Collectors.toList());
 		List<Integer> listNumbers = getCleanList(duration);
 		List<Integer> listNumbersCopy = new ArrayList<>(listNumbers);
@@ -386,12 +229,16 @@ public class FlightsSearchPage extends BasePage {
 
 	}
 
+	/**
+	 * Method to clean the list and calculate the time of the flight in minuts
+	 * @return a list with the flight duration in minuts
+	 */
 	private List<Integer> getCleanList(List<String> duration) {
 
 		List<Integer> listNumbers = new ArrayList<>();
 
 		for (String hours : duration) {
-			
+
 			Logger.printInfo("List hours not sorted: " + hours);
 
 			String[] vectorTime= hours.split(" ");
@@ -406,113 +253,69 @@ public class FlightsSearchPage extends BasePage {
 		return listNumbers;
 	}
 
+
+	/**
+	 * Method to validate if are available tickets by position
+	 */
 	public boolean verifyTicketExistGeneral(String position, boolean isLAS) {
 
 
 		int pos = Integer.parseInt(position)-1;
-		//getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[data-test-id='offer-listing'] button[data-test-id='select-button']")));
+
 		waitLoaderDisAppear(progressBar);
+		waitForPresenceOfAllElementsLocatedByCss("li[data-test-id='offer-listing']");
 		waitForElementToBeClickable(listFieldSet.get(listFieldSet.size()-1));
 		waitForPageToBeLoaded(getDriver(), 30);
 
 		if(isLAS 
-				&& (isPresent(Subtitulo)!=null) 
+				&& (isPresent(logo)!=null) 
 				&& (getDriver().getTitle().contains("LAS to LAX "))) {
 
-			return verifyTicketExistInList(listSelectBtns, pos);
+			return verifyTicketExistInList(listFieldSet, pos);
 		}
 
 		if(!isLAS 
-				&& (Subtitulo.getText().equalsIgnoreCase("Select your return to Las Vegas"))) { 
+				&& (getDriver().getTitle().contains("LAS to LAX "))) { 
 
-			return verifyTicketExistInList(listSelectBtns, pos);
+			return verifyTicketExistInList(listFieldSet, pos);
 		}
 		return false;
 	}
 
-	public void getInfoFlight(String position, boolean isDeparture) {
 
-		int pos = Integer.parseInt(position)-1;
+	/**
+	 * Method to select a ticket by position send by "the user"
+	 */
+	public boolean selectTicketByPosition(String position) {
 
-		if(isDeparture) {
-			getInfoDepartureFlight(pos);
+		waitLoaderDisAppear(progressBar);		
+		waitForPresenceOfAllElementsLocatedByCss("button[data-test-id='select-link']");
+
+		if((isPresent(logo)!=null)) {
+			waitForElementToBeClickable(dropDownLastelement);	
+			waitForElementToBeClickable(listSelectBtns.get(listSelectBtns.size()-1));
+
+
+			int pos = Integer.parseInt(position)-1;
+
+			boolean isSelectedTicket = selectTicket(listSelectBtns,pos);
+
+			click(btnContinueDeparture);
+
+			return isSelectedTicket;
 		}
-		else {
-			getInfoReturnFlight(pos);	
-		}
-
-
-	}
-
-	public boolean selectTicketGeneral(String position) {
-
-		int pos = Integer.parseInt(position)-1;
-
-		boolean isSelectedTicket = selectTicket(listSelectBtns,pos);
-
-		if(isSelectedTicket) {
-			modalInFlightSearch();
-		}
-		return isSelectedTicket;
-
-
-	}
-
-	public FlightInformationPage selectFaresBtnGeneral(String position, boolean isLAS) {
-
-		int pos = Integer.parseInt(position)-1;
-
-		if(isLAS) {
-			selectFareBtn(listFareBtnsFinalLA, pos);	
-		}else {
-			boolean isPresentBtn= selectFareBtn(listFareBtnsFinalLA, pos);
-
-			if(isPresentBtn) {
-				return new FlightInformationPage(getDriver());	
-			}else {
-				return null;
-			}
-		}
-		return null;
-
-
-
-	} 
-
-	public boolean selectTicketToLasVegas(String thirdResult) {
-
-		int third = Integer.parseInt(thirdResult)-1;
-		selectFareBtn(listFareBtnsFinalLA, third);
 		return false;
+
 	}
 
-	private boolean selectFareBtn(List<WebElement>listFareBtnsFinalLA,  int position) {
 
-		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("div button.btn-secondary.btn-action.t-select-btn")));
-
-		if(isPresent(listFareBtnsFinalLA.get(position))!=null) {
-
-			if(listFareBtnsFinalLA.get(position).isDisplayed()) {
-
-				try {
-					listFareBtnsFinalLA.get(position).click();
-					return true;
-				} catch (IndexOutOfBoundsException e) {
-					Logger.printInfo("The system doesn't display a third ticket");
-					return false;
-				}
-
-			}else {
-				return true;
-			}
-		}
-		return true;
-	}
-
+	/**
+	 * Method to select an option from a list of  web elements 
+	 */
 	private boolean selectTicket(List<WebElement> listSelect, int position){
 
 		try {
-			getWait().until(ExpectedConditions.elementToBeClickable(listSelect.get(position)));
+			waitForElementToBeClickable(listSelect.get(listSelect.size()-1));
 			listSelect.get(position).click();
 		} catch (IndexOutOfBoundsException e) {
 			Logger.printInfo("The system doesn't display a ticket");
@@ -523,345 +326,28 @@ public class FlightsSearchPage extends BasePage {
 		return true;
 	}
 
+	/**
+	 * Verify the list of tickets has elements in a position
+	 */
 	private boolean verifyTicketExistInList(List<WebElement> list, int position) {
 
 		try {
 			getWait().until(ExpectedConditions.elementToBeClickable(list.get(position)));
 		} catch (IndexOutOfBoundsException e) {
-			Logger.printInfo("The system doesn't display a third ticket");
+			Logger.printInfo("The system doesn't display a ticket in the position: " + position);
 			return false;
 		}
 		return true;
 	}
 
-	public boolean verifySortOptionsFlightHotel() {
-
-		Logger.printInfo("Checking element");
-		return elementoPresente(By.cssSelector("fieldset[class='sort-filter-bar control box']"));
-	}
-
-	public boolean verifyLoaderVisible() {
-
-		isPresent(loaderFH);
-
-		if(loaderFH.getAttribute("aria-live").equalsIgnoreCase("polite")) {
-			return true;
-		}
-
-		boolean loaderVisible=false;
-
-		while (loaderVisible!= false){
-			Logger.printInfo("Attribute:" + loaderFH.getAttribute("aria-live"));
-			loaderVisible= verify();
-		} 
-
-		return true;
-
-	}
-
-	public boolean loaderFlightSearchPage() {
-
-		if(elementoPresente(By.cssSelector("div.progress-bar"))) {
-			if(isPresent(progresBar)!=null) {
-
-				if(	!progresBar.isDisplayed()) {
-					Logger.printInfo("NO visible");
-					return true;
-				}
-				else {
-					Logger.printInfo("NO visible");
-					getWait().until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='progress-bar']")));
-					return true;
-				}
-
-			}
-		}
-		return false;
-	}
-
-	private boolean verify() {
-
-		WebElement loader= getDriver().findElement(By.cssSelector("#uitk-live-announce"));
-		boolean loaderVisible = loader.getAttribute("aria-live").equalsIgnoreCase("polite")?true:false;
-		return loaderVisible;
-
-	}
-
-	public boolean verifyInfoFlight() {
-
-		if(isPresent(btnOriginFlightHotel)!=null) {
-
-			String originFly = btnOriginFlightHotel.getText();
-			String destinationFly = listBtnDestination.get(1).getText().toString();
-
-			String fromExpected= cleanCommaText(originFly, true);
-			String toExpected= cleanCommaText(destinationFly, false);
-
-			String dateDepartureExpected = listDates.get(0).getText().toString();
-			String dateArrivalExpected = listDates.get(1).getText().toString();
-
-			FlightsDTO flightInfo = new FlightsDTO();
-
-			flightInfo = CONTEXT.get("flyDepFH");
-			String dateDepartureFilled = flightInfo.getFlightDateDeparture();
-			String dateArrivalFilled = flightInfo.getFlightDateReturn();
-
-			FlightsDTO fly = CONTEXT.get("fly");
-			String flightFrom = fly.getFlightFrom();
-
-			flightFrom= cleanCommaText(flightFrom, true);
-
-			String flightTo = fly.getFlightTo();
-			flightTo= cleanCommaText(flightTo, true);
-
-			boolean isSameFrom = flightFrom.equalsIgnoreCase(fromExpected)?true:false;
-			boolean isSameTo = flightTo.equalsIgnoreCase(toExpected)?true:false;
-
-			boolean isSameDateDeparture= dateDepartureFilled.equalsIgnoreCase(dateDepartureExpected);
-			boolean isSameDateArrival= dateArrivalFilled.equalsIgnoreCase(dateArrivalExpected);
-
-			boolean isSameInfo= !isSameFrom && !isSameTo && !isSameDateDeparture && !isSameDateArrival?false:true;
-
-			Logger.printInfo("is the same ? " +isSameInfo);
-
-			return isSameInfo;
-		}
-		return false;
-	}
-
-	private String cleanCommaText(String originFly, boolean isOptionComma) {
-
-		if(isOptionComma) {
-			String[] vectorFrom = originFly.split(",");
-			String fromExpected= vectorFrom[0].replace(" ", "");
-			return fromExpected;
-		}
-		else {
-			String[] vectorTo = originFly.split("\\(");
-			String toExpected= vectorTo[0].replace(" ", "");
-			return toExpected;
-
-		}
-	}
-
-	public boolean verifyTitleFlightHotel() {
-
-		String subTitle= getText(subTitleFlightHotel).trim();
-		boolean isSameTitle= subTitleFlightHotel.getText().equalsIgnoreCase(subTitle)?true:false;
-		return isSameTitle;
-	}
-
-	public boolean verifyResultsFlightHotel() {
-
-		boolean isPresentResults= listResultsFH.size()>0?true:false;
-		return isPresentResults;
-	}
-
-	public boolean verifyResultSorteByPrice() {
-
-		btnPriceFlightHotel.click();
-		verifyLoaderVisible();
-		getDriver().navigate().refresh();
-		verifyLoaderVisible();
-
-		getWait().until(ExpectedConditions.textMatches(By.cssSelector("ul[class='hotel-price'] li[class^='actualPrice']"), Pattern.compile("[$?]+([0-9])")));
-
-		List<String> sbListPrices = listPricesFlightHotel.stream().map(x-> x.getText().replace("$", "").replace(",", "")).collect(Collectors.toList());
-		List<Integer> listPricesInt = sbListPrices.stream().map(x-> Integer.parseInt(x)).collect(Collectors.toList());
-		List<Integer> listPricesIntCopy =  sbListPrices.stream().map(x-> Integer.parseInt(x)).collect(Collectors.toList());
-
-		return compareListsLowToHight(listPricesInt, listPricesIntCopy);
-
-	}
-
-	public int obtainPositionOf3StarsHotel() {
-
-		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("#resultsContainer"), By.cssSelector("strong[class='star-rating rating-secondary star rating'] span[class^='icon icon-stars']")));
-
-		int ipos=0;
-		for (WebElement i : listStars) {
-			Logger.printInfo("attribute: " + i.getAttribute("title"));
-
-			if( (i.getAttribute("title").equals("3.0"))
-					|(i.getAttribute("title").equals("3.5"))
-					|(i.getAttribute("title").equals("4.0"))
-					|(i.getAttribute("title").equals("4.5"))) {
-				ipos= listStars.indexOf(i);
-				break;
-			}
-		}
-
-		return ipos;	
-
-
-	}
-
-	public FlightInformationPage selectFirstResultWith3Starts(int position) {
-
-		getWait().until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a.flex-link")));
-
-		try {
-			listResultsFH.get(position).findElement(By.cssSelector("a.flex-link")).click();
-
-			waitFlightInformationPageGenral(imagenEspera);
-
-			return new FlightInformationPage(getDriver());
-
-		} catch (IndexOutOfBoundsException e) {
-			Logger.printInfo("The system doesn't display the Hotel");
-			return null;
-		}
-	}
-
-	public void obtain3StartsHotelInfo(int position) {
-
-		WebElement hotelSelected= listResultsFH.get(position);
-		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(hotelSelected, By.cssSelector("span[class^='icon icon-stars']")));
-
-		String hotelName= hotelSelected.findElement(By.cssSelector("h4[data-automation='hotel-name']")).getText();
-		String value= hotelSelected.findElement(By.cssSelector("li[class^='actualPrice price']")).getText();
-		String stars= hotelSelected.findElement(By.cssSelector("strong[class='star-rating rating-secondary star rating'] span[class^='icon icon-stars']")).getAttribute("title"); 
-
-		HotelDTO hotel = new HotelDTO();
-		hotel = CONTEXT.get("hotel");
-
-		hotel.setName(hotelName);
-		hotel.setValue(value);
-		hotel.setStars(stars);
-
-		CONTEXT.set("hotel", hotel);
-	}
-
-	public boolean findSponsoredSectionHotels() {
-
-		if(!elementoPresente(By.cssSelector("div[class='uitk-card uitk-grid messaging-card all-x-padding-three all-y-padding-three']"))) {
-			Logger.printInfo("The section is not available");
-			return false;
-		}
-
-		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(listLinksHotels.get(0), By.cssSelector("a")));
-
-		if(isPresent(listLinksHotels.get(0))!=null){
-			return true;
-		} else {
-			return false;	
-		}
-
-	}
-
-	public boolean verifyFilterRadioButton() {
-
-		getWait().until(ExpectedConditions.elementToBeClickable(radioBtnCruisesNights.get(1)));
-		Logger.printInfo("Verify filter");
-
-		if(isPresent(radioBtnCruisesNights.get(1))!=null) {
-			return true;
-		} else { 
-			return false;	
-		}
-
-	}
-
-	public boolean verifyCruisesWithDiscountsAndWithOut() {
-
-		boolean isSameDiscount;
-		int quantityCruisesWithOutDiscount = listContainerCruises.size();
-		int quantityCruisesWithDiscount= getDriver().findElements(By.cssSelector("div.flex-card div[class^='message-']")).size();
-
-		return isSameDiscount= quantityCruisesWithDiscount>0 && quantityCruisesWithOutDiscount>0? true:false;
-	}
-
-	public FlightInformationPage selectCruiseWithMoreDiscount() {
-
-		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("div.flex-card"), By.cssSelector("div[class='flex-content']")));
-		getDiscountFromList(listDiscounts);
-
-		return new FlightInformationPage(getDriver());
-	}
-
-	private void getDiscountFromList(List<WebElement> listDiscounts) {
-
-		Integer maxValue=0;
-		WebElement elementMax = null;
-
-		for (WebElement cruise : listContainerCruises) {
-
-			if(childElementIsPresent(cruise, By.cssSelector(".message-flag.flex-flag"))) {
-
-				Integer value = Integer.parseInt(cruise.findElement(By.cssSelector("div[class='message-flag flex-flag']")).getText().replaceAll("[A-Z\\D\\s]", ""));
-
-				if(value > maxValue) {
-
-					maxValue = value;
-					elementMax= cruise;
-				}
-
-			}
-		}         
-
-		obtainCruiseInfo(elementMax);
-		elementMax.findElement(By.cssSelector("a[id^='selectSailingButton']")).click();
-
-	}
-
-	private void obtainCruiseInfo(WebElement cruiseSelected) {
-
-		String cruiseName= cruiseSelected.findElement(By.cssSelector("div.title-on-ship-image")).getText();
-		String cruiseValue= cruiseSelected.findElement(By.cssSelector("span.card-price")).getText();
-		String cruiseFrom= cruiseSelected.findElement(By.cssSelector("div.card-content-detail.departure-city")).getText(); 
-		String cruiseDateDeparture= cruiseSelected.findElement(By.cssSelector("div.card-content-detail.sailing-dates")).getText();
-
-
-		CruiseDTO cruise= new CruiseDTO();
-
-		cruise.setName(cruiseName);
-		cruise.setValue(cruiseValue);
-		cruise.setFrom(cruiseFrom);
-		cruise.setDateDeparture(cruiseDateDeparture);
-
-		CONTEXT.set("cruise", cruise);
-	}
-
-	public boolean verifyFlightFromToVsSelected(String from, String To) {
-
-		String texto=listFlightsVS.get(0).getText();
-		if(texto.contains(from) && texto.contains(To)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public SignInPage clickOnSponsoredSectionHotel() {
-
-		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("div[class='uitk-card uitk-grid messaging-card all-x-padding-three all-y-padding-three']"), By.cssSelector("a")));
-
-		if(isPresent(listLinksHotels.get(0))!=null){
-
-			listLinksHotels.stream().filter(x-> x.getText().equalsIgnoreCase("Sign in")).findFirst().get().click();
-			return new SignInPage(getDriver());
-		} else {
-			return null;	
-		}
-	}
-
-	public void waitCruisesPage() {
-
-		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.cssSelector("div.flex-card"), By.cssSelector("div[class='flex-content']")));
-	}
-
+	/**
+	 * Method to select a dropdown by value 
+	 */
 	public boolean selectDropDownSort(String data) {
 
 		return clickDropdownByValue(sortBy, data);
-
 	}
 
-	
-	
-	public void refresh() {
-		getDriver().navigate().refresh();
-		
-	}
 
 
 }

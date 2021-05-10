@@ -12,13 +12,14 @@
   <parameter name="middleName" value="Angel"/>
   <parameter name="to" value="LAX"/>
   <parameter name="DestinationFlight" value="Los Angeles, California"/>
+  <parameter name="DURATION_INCREASING" value="DURATION_INCREASING"/>
   <test name="Travelocity tests(failed)">
     <classes>
       <class name="com.automation.training.tests.TravelocityTestsOne">
         <methods>
           <include name="beforeSuite"/>
-          <include name="test3SortingByDurationShorter"/>
           <include name="afterSuite"/>
+          <include name="test7_8" invocation-numbers="0"/>
         </methods>
       </class> <!-- com.automation.training.tests.TravelocityTestsOne -->
     </classes>

@@ -1,0 +1,35 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!-- <suite name="My test suite" verbose="1" thread-count="5" parallel="methods"> -->
+<suite name="Test suite Travelocity">
+	<!-- <listeners> -->
+	<!-- <listener class-name="com.automation.training.MyCoolListener"></listener> -->
+	<!-- </listeners> -->
+	<parameter name="browser" value="chrome"></parameter>
+	<parameter name="from" value="LAS"></parameter>
+	<parameter name="to" value="LAX"></parameter>
+	<parameter name="name" value="Wilson"></parameter>
+	<parameter name="middleName" value="Angel"></parameter>
+	<parameter name="lastName" value="Lopez"></parameter>
+	<parameter name="phoneNumber" value="3174253892"></parameter>
+	<parameter name="firstResult" value="1"></parameter>
+	<parameter name="thirdResult" value="3"></parameter>
+	<parameter name="OriginFlight"
+		value="Las Vegas, NV (LAS-McCarran Intl.)"></parameter>
+	<parameter name="DestinationFlight"
+		value="Los Angeles, California"></parameter>
+	<parameter name="DURATION_INCREASING"
+		value="DURATION_INCREASING"></parameter>
+
+	<test name="Travelocity tests">
+
+		<classes>
+
+			<class name="com.automation.training.tests.TravelocityTestsOne">
+				<methods>
+					<include name="testTravelocityFromToAndDataPicker"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

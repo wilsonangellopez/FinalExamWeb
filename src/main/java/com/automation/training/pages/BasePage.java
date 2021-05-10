@@ -61,6 +61,7 @@ public abstract class BasePage {
 
 	protected void click(WebElement webElement) {
 
+		
 		getWait().until(ExpectedConditions.elementToBeClickable(webElement));
 		webElement.click();
 		Logger.printInfo("Click: " + webElement);
@@ -130,10 +131,11 @@ public abstract class BasePage {
 
 	protected void scrollToElement(WebElement element) {
 
+		
 		try {
 			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-			Thread.sleep(500);
-			// meter un wait tradicional de elementos implicito
+		//	Thread.sleep(500);
+			getWait().until(ExpectedConditions.visibilityOf(element));
 
 		} catch (StaleElementReferenceException e) {
 			Logger.printError("Element is not attached to the page document " + e.getStackTrace());
@@ -201,6 +203,9 @@ public abstract class BasePage {
 		}
 	}
 
+	/*
+	 * Method to change to tab from a parameter
+	 */
 	public void changeTab(String parametro) {
 
 		ArrayList<String> handles = new ArrayList<String>(getDriver().getWindowHandles());
@@ -212,27 +217,43 @@ public abstract class BasePage {
 		}
 	}
 
+	
+	/*
+	 * Method to obtain a list from  container list
+	 */
 	protected List<WebElement> obtainsList(List<WebElement> contenedor, By selector) {
 		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(contenedor.get(0), selector));
 		return contenedor.stream().map(f-> f.findElement(selector)).collect(Collectors.toList());
 	}
-
-
-	protected void waitForPresenceOfAllElementsLocatedByCss(String selector) {
-		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(selector)));
-		//getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[data-test-id='offer-listing']")));
+	
+	/*
+	 * Method to wait For child elements from a parent
+	 */	
+	protected void waitForChildElementsFromParent(List<WebElement> parent, String selector) {
+		getWait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(parent.get(0), By.cssSelector(selector)));
 	}
 
+	/*
+	 * Method to wait For Presence Of All Elements by css selector
+	 */
+	protected void waitForPresenceOfAllElementsLocatedByCss(String selector) {
+		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(selector)));
+	}
+
+	/*
+	 * Method to click a web element by java script action
+	 */
 	protected void clickByElementJS(WebDriver driver, WebElement element) throws InterruptedException {
 		Actions act = new Actions(driver);
 		getWait().until(ExpectedConditions.elementToBeClickable(element));
-		//		Thread.sleep(500);
-		// aqui manejar un wait del elemento tradicional 
 		act.moveToElement(element).click().build().perform();
 		Thread.sleep(500);
 
 	}
 
+	/*
+	 * Method to move and click a web element by java script action
+	 */
 	protected void clickByElementJS(WebDriver driver, String element) throws InterruptedException {
 
 
@@ -241,13 +262,14 @@ public abstract class BasePage {
 
 		WebElement elem = getDriver().findElement(By.cssSelector(element));
 		//		Thread.sleep(500);
-		// aqui manejar un wait del elemento tradicional 
 		act.moveToElement(elem).click().build().perform();
 		Thread.sleep(500);
 
 	}
 
-
+	/*
+	 * Method to compare 2 list and return if its sorted lower to hight values
+	 */
 	protected  boolean compareListsLowToHight(List<Integer> a, List<Integer> b){
 
 		boolean isSorted = false;
@@ -385,4 +407,5 @@ public abstract class BasePage {
 
 		getWait().until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(loader)));
 	}
+	
 }
