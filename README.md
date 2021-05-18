@@ -1,5 +1,7 @@
 # FinalExamWeb
 
+<h3>Pleas check the branch "feature_exercise_one"</h3>
+
 Test1 - SuiteTravelocityTest1.xml
 Search for a flight from LAS to LAX, 1 adult (clicking on Flight/Roundtrip). Dates should be at least two month in the future and MUST​ be selected using the datepicker calendar.
 
